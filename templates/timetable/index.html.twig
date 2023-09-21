@@ -9,11 +9,21 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Timetables</h1>
-    <ul>
-       {% for timetable in timetables %}
-            <li>{{ timetable.time }} - {{ timetable.day }}</li>
-        {% endfor %}
-    </ul>
+    <h1>Timetable</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Day</th>
+                <th>Time</th>
+                <th>Event</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in timetable %}
+                <tr>
+                    <td>{{ entry.day }}</td>
+                    <td>{{ entry.time }}</td>
+                    <td>{{ entry.event }}</td>
+                </tr>
 </div>
 {% endblock %}
