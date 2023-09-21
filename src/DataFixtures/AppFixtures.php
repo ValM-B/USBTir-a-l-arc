@@ -3,8 +3,10 @@
 namespace App\DataFixtures;
 
 use App\DataFixtures\Provider\OtirProvider;
+use App\Entity\Course;
 use App\Entity\CourseType;
 use App\Entity\Tarif;
+use DateTime;
 use DateTimeImmutable;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -39,6 +41,18 @@ class AppFixtures extends Fixture
            $manager->persist($newType);
         }
 
+        //Create 10 courses
+        $courses = [];
+        for ($p=0; $p < 10 ; $p++) { 
+            $newCourse = new Course;
+            $newCourse->setDay($faker->dayOfWeek());
+            $newCourse->setHour(new DateTime($faker->numberBetween(10, 20)));
+            $newCourse->setCourseType($courseTypes[array_rand($courseTypes)]);
+            $newCourse->setName($newCourse->getCourseType()->getName()." ".$newCourse->getDay());
+            $newCourse->setCreatedAt(new DateTimeImmutable());
+            $courses[] = $newCourse;
+            $manager->persist($newCourse);
+        }
 
 
         $manager->flush();
