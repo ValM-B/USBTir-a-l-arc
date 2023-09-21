@@ -27,12 +27,12 @@ class OtirProvider
 		[ 
 			"name" => "Adulte Débutant",
 			"ageMin" => 18,
-			"ageMax" =>  null,
+			"ageMax" => null,
 		],
 		[ 
 			"name" => "Adulte Confirmé",
 			"ageMin" => 18,
-			"ageMax" =>  null,
+			"ageMax" => null,
 		]
 	];
 
@@ -47,21 +47,86 @@ class OtirProvider
 		"Handisport"
 	];
 
+	private $userWithPosition = [
+		[
+			"position" => "Président",
+			"role" => ['ROLE_ADMIN']
+		],
+		[
+			"position" => "Secrétaire",
+			"role" => ['ROLE_ADMIN']
+		],
+		[
+			"position" => "Trésorier",
+			"role" => ['ROLE_ADMIN']
+		],
+		[
+			"position" => "Entraîneur",
+			"role" => ['ROLE_USER']
+		]
+	];
+
+	private $hours = [
+		"14:00:00",
+		"16:00:00",
+		"18:00:00",
+		"20:00:00"
+	];
+
+	private $days = [
+		"Lundi",
+		"Mardi",
+		"Mercredi",
+		"Jeudi",
+		"Vendredi",
+		"Samedi",
+		
+	];
+
 	/**
-     * Return array of prices
+     *Get array of prices
 	 * @return array
      */
-    public function prices()
+    public function getPrices()
     {
         return $this->prices;
     }
 
 	/**
-     * Return array of course types
+     * Get array of course types
 	 * @return array
      */
-    public function courseTypes()
+    public function getCourseTypes()
     {
-        return $this->courseTypes();
+        return $this->courseTypes;
+    }
+
+	/**
+     * Get array of users with position
+	 * @return array
+     */
+    public function getUserWithPosition()
+    {
+        return $this->userWithPosition;
+    }
+
+	/**
+     * Get radom hour
+	 * @return string random hour
+     */
+    public function getRandomHour()
+    {
+       
+        return $this->hours[array_rand($this->hours)];
+    }
+
+	/**
+     * Get radom day
+	 * @return string random day
+     */
+    public function getRandomDay()
+    {
+       
+        return $this->days[array_rand($this->days)];
     }
 }
