@@ -47,6 +47,11 @@ class Tarif
      */
     private $updatedAt;
 
+    /**
+     * @ORM\Column(type="string", length=64)
+     */
+    private $name;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +125,18 @@ class Tarif
     public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }
