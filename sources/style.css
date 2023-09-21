@@ -1,0 +1,22 @@
+/* Charte graphique : 
+#137C8B
+#709CA7
+#B8CBD0
+#7A90A4
+#344D59 */
+
+.navbar{
+    background-color: #B8CBD0 !important;
+}
+
+#logo{
+    width: 10%;
+}
+
+.btn_deconnexion{
+    background-color: #7A90A4 ;
+}
+
+ul{
+    margin-left: 20% !important;
+}
