@@ -56,6 +56,20 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->add($user, true);
     }
 
+    /**
+     * Get all users with a position in DB
+     *
+     * @return array all users whose position is not null
+     */
+    public function findAllWithPosition()
+    {
+        return $this->createQueryBuilder('u')
+           ->andWhere('u.position IS NOT NULL')
+           ->getQuery()
+           ->getResult()
+       ;
+    }
+
 //    /**
 //     * @return User[] Returns an array of User objects
 //     */
