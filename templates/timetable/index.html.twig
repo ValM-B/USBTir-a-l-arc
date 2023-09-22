@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello TimetableController!{% endblock %}
+{% block title %}Timetable{% endblock %}
 
 {% block body %}
 <style>
@@ -15,15 +15,13 @@
             <tr>
                 <th>Day</th>
                 <th>Time</th>
-                <th>Event</th>
             </tr>
         </thead>
         <tbody>
-            {% for entry in timetable %}
+            {% for timetable in timetables %}
                 <tr>
-                    <td>{{ entry.day }}</td>
-                    <td>{{ entry.time }}</td>
-                    <td>{{ entry.event }}</td>
+                    <td>{{ timetable.day }}</td>
+                    <td>{{ timetable.time }}</td>
                 </tr>
 </div>
 {% endblock %}
