@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tarif!{% endblock %}
+{% block title %}Access to Location{% endblock %}
 
 {% block body %}
 <style>
@@ -9,11 +9,10 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Tarifs</h1>
-    <ul>
-        {% for tarif in tarifs %}
-            <li>{{ tarif.category }} - {{ tarif.amount }} €/an</li>
-            <p>{{ tarif.details }}</p>
-        {% endfor %}
-    </ul>
+    <h1>Access to Location</h1>
+    <p>Address : {{ accessInfo.address }}</p>
+    <p>City : {{ accessInfo.city }}</p>
+    <p>Zip Code : {{ accessInfo.zipCode }}</p>
+    <p>Directions : {{ accessInfo.directions }}</p>
+</div>
 {% endblock %}
