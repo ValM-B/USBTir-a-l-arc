@@ -11,5 +11,8 @@
 <div class="example-wrapper">
     {% dump(pictures) %}
     Magnifique page d'accueil de O'Tir!
+    {% if is_granted('ROLE_USER') %}
+    <a href="{{ path('app_user')}}">Mon profil</a>
+    {% endif %}
 </div>
 {% endblock %}
