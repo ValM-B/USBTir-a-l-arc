@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+
+
+<div class="example-wrapper">
+    {{ app.user.firstname }} {{ app.user.lastname }} {{app.user.email }} {{ app.user.dateOfBirth|date("d/m/Y") }} 
+    {% if app.user.position is defined %}
+    {{ app.user.position }}
+    {% endif %}
+    
+    {% if app.user.userCourses is defined %}
+        {% for userCourse in app.user.userCourses %}
+        {{ userCourse.course.name }}
+        {% endfor %}
+    {% endif %}    
+</div>
+{% endblock %}
