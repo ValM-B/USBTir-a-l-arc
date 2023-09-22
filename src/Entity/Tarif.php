@@ -23,7 +23,7 @@ class Tarif
     private $ageMin;
 
     /**
-     * @ORM\Column(type="integer", options={"unsigned"=true})
+     * @ORM\Column(type="integer", options={"unsigned"=true}, nullable=true)
      */
     private $ageMax;
 
