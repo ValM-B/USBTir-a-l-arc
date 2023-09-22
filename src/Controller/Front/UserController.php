@@ -20,7 +20,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/organigramme", name="app_organization_chart")
+     * @Route("/organigramme", name="app_organizational_chart")
      */
     public function showUsersWithPosition(UserRepository $userRepository): Response
     {
