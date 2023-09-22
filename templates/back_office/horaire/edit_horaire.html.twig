@@ -1,0 +1,73 @@
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horaire </title>
+    
+    <!-- Lien vers le fichier CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Styles personnalisés -->
+    <style>
+        body {
+            background-color: #137C8B;  /* Vert */
+        }
+
+        .section-personnalisee {
+            background-color: #B8CBD0;  /* Gris  */
+        }
+        .footer-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+           .time{
+        margin-bottom: 30px; /* Espace en bas de chaque élément <li> */
+        font-size: 30px;     /* Taille de la police pour les éléments <li> */
+    }
+    </style>
+
+</head>
+<body>
+
+   
+        <!-- Section Horaires -->
+        <section class="p-5 section-personnalisee rounded shadow"> 
+            <h2 class="text-primary mb-4">vous modifiez l horaire du cours {{ course.name }}</h2>
+            <table class="table table-striped table-bordered">
+                <ul>
+                        <li class="time">Jour {{ course.day }}</li>
+                        <li class="time">Nom du cours {{ course.name }}</li>
+                        <li class="time">Heures {{ course.hour|date('H:i') }}</li>
+                    </ul>
+                
+                <tbody>
+                    
+                            <td><div class="float-right">
+                            
+                            <button class="btn btn-warning btn-sm mr-2">confirmer</button>
+                            
+                            </td>
+                        </div>
+                        </tr>
+                    
+                </tbody>
+            </table>
+        </section>
+         <!-- Boutons en bas -->
+        <div class="footer-buttons">
+            <a href="{{ path('route_retour') }}" class="btn btn-secondary">Retour</a>
+            
+            
+            
+        </div>
+    </div>
+
+    <!-- Scripts Bootstrap (pour ajouter les fonctionnalités JS de Bootstrap si besoin) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+</body>
+</html>

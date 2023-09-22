@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horaire et Tarifs</title>
+    
+    <!-- Lien vers le fichier CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Styles personnalisés -->
+    <style>
+        body {
+            background-color: #006400;  /* Vert plus sombre */
+        }
+
+        .section-personnalisee {
+            background-color: #d3d3d3;  /* Gris un peu plus foncé */
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="container mt-5">
+
+        <!-- Section Tarifs -->
+        <section class="mb-5 p-5 section-personnalisee rounded shadow"> 
+            <h2 class="text-primary mb-4">Tarifs</h2>
+            <ul class="list-group">
+                {% for tarif in tarifs %}
+                    <li class="list-group-item"> 
+                        <strong>Cours pour:</strong> {{ tarif.name }}<br>
+                     <div class="float-right">
+                            <button class="btn btn-primary btn-sm mr-2">Voir</button>
+                            <button class="btn btn-warning btn-sm mr-2">Modifier</button>
+                            <button class="btn btn-danger btn-sm">Supprimer</button>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        
+
+    </div>
+
+    <!-- Scripts Bootstrap (pour ajouter les fonctionnalités JS de Bootstrap si besoin) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+</body>
+</html>

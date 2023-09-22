@@ -1,0 +1,89 @@
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horaire et Tarifs</title>
+
+    <!-- Lien vers le fichier CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Styles personnalisés -->
+    <style>
+        body {
+            background-color: #137C8B; /* Vert  */
+        }
+
+        .section-personnalisee {
+            background-color: #B8CBD0; 
+        }
+
+        .footer-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .case-twig {
+    background-color: #7A90A4;
+    padding: 10px;
+    margin: 5px 0; 
+    border-radius: 5px;
+}
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container mt-5">
+
+        <!-- Section Tarifs -->
+        <section class="mb-5 p-5 section-personnalisee rounded shadow">
+            <h2 class="text-primary mb-4">{{ tarif.name }}</h2>
+            
+
+                
+                    <div class="case-twig">
+                        <strong>Cours pour:</strong> {{ tarif.name }}
+                    </div>
+                    <div class="case-twig">
+                        <strong>Âge minimum:</strong> {{ tarif.age_min }} ans
+                    </div>
+                    <div class="case-twig">
+                        <strong>Âge maximum:</strong> {{ tarif.age_max }} ans
+                    </div>
+                    <div class="case-twig">
+                        <strong>Tarif:</strong> {{ tarif.amount }} €
+                    </div>
+                    <div class="case-twig">
+                        <strong>Matériel:</strong> {{ tarif.gear_amount }} €
+                    </div>
+                
+                     <div class="float-right">
+                            
+                            <button class="btn btn-warning btn-sm mr-2">Modifier</button>
+                            <button class="btn btn-danger btn-sm">Supprimer</button>
+                        </div>
+            
+        </section>
+
+        <!-- Boutons en bas -->
+        <div class="footer-buttons">
+            <a href="{{ path('route_retour') }}" class="btn btn-secondary">Retour</a>
+            
+           
+            
+        </div>
+
+    </div>
+
+    <!-- Scripts Bootstrap (pour ajouter les fonctionnalités JS de Bootstrap si besoin) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    
+</body>
+
+</html>
