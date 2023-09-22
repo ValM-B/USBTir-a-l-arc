@@ -23,7 +23,7 @@ class Tarif
     private $ageMin;
 
     /**
-     * @ORM\Column(type="integer", options={"unsigned"=true})
+     * @ORM\Column(type="integer", options={"unsigned"=true}, nullable=true)
      */
     private $ageMax;
 
@@ -46,6 +46,11 @@ class Tarif
      * @ORM\Column(type="datetime_immutable", nullable=true)
      */
     private $updatedAt;
+
+    /**
+     * @ORM\Column(type="string", length=64)
+     */
+    private $name;
 
     public function getId(): ?int
     {
@@ -120,6 +125,18 @@ class Tarif
     public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }
