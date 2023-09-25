@@ -1,8 +1,21 @@
 {% extends 'base.html.twig' %}
 
-
-
 {% block body %}
+
+<h2 class="text-center profil-title">Organigramme</h2>
+
+<div class="row d-flex justify-content-center">
+
+	<div class="col-12 col-lg-5 col-profil">
+		<div>
+		<h3>Bureau</h3>
+		</div>
+		<div>
+		<h3>Entraineurs</h3>
+		</div>
+	</div>
+</div>
+
 {% for user in users %}
 {{ user.firstname}} {{ user.lastname}}
 {{ user.position }}
