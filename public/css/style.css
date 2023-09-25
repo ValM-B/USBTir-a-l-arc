@@ -83,6 +83,16 @@ main{
     margin-right: 0.5rem;
 }
 
+/* Organizational chart */
+.picture{
+    width: 250px;
+    border-radius: 125px;
+    background-color: #B8CBD0;
+}
+
+.picture img{
+    width: 250px;
+}
 
 /* Footer */
 .footer{
