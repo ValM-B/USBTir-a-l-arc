@@ -35,11 +35,10 @@ h1{
 #logo{
     width: calc(84 * var(--resmin));
 }
-.btn{
+.btn, .navbar-text a{
     background-color: #344D59 ;
     font-weight: 600;
     color: #B8CBD0;
-    font-size: calc(18 * var(--resmin));
 }
 li, a{
     font-size: calc(18 * var(--resmin));
@@ -53,8 +52,7 @@ main{
     background-color: #B8CBD0;
 }
 .content{
-    padding-top: 20%;
-    margin-bottom: auto;
+    padding-top: 10%;
 }
 
 
@@ -106,6 +104,9 @@ h4{
     .navbar-ul{
         margin-left: 12%;
     }
+    .btn, .navbar-text a{
+        font-size: calc(18 * var(--resmin));
+    }
 }
 
 @media screen and (max-width:992px) {
@@ -125,7 +126,7 @@ h4{
         margin-left: auto;
         margin-right: auto;
     }
-    #btn_deconnexion{
+    #btn_deconnexion, #btn_connexion{
         display: block;
         margin-left: auto;
         margin-right: auto;
