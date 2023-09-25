@@ -5,16 +5,52 @@
 {% block body %}
 
 
-<div class="example-wrapper">
-    {{ app.user.firstname }} {{ app.user.lastname }} {{app.user.email }} {{ app.user.dateOfBirth|date("d/m/Y") }} 
-    {% if app.user.position is defined %}
-    {{ app.user.position }}
-    {% endif %}
-    
-    {% if app.user.userCourses is defined %}
-        {% for userCourse in app.user.userCourses %}
-        {{ userCourse.course.name }}
-        {% endfor %}
-    {% endif %}    
-</div>
+    <h2 class="text-center profil-title">Mon Profil</h2>
+
+    <div class="row d-flex justify-content-center">
+
+        <div class="col-12 col-lg-5 col-profil">
+            <h3>Mes infos personnelles</h3>
+            <div>
+                <div class="mb-2 pb-2 profil-name">
+                    <h4 class= "mt-4 mb-0">{{ app.user.firstname }} {{ app.user.lastname }}</h4>
+                    {% if app.user.position is not null %}
+                        <em>{{ app.user.position }}</em>
+                    {% endif %}
+                </div>
+                <div class="profil-data">
+                    <i class="fa-solid fa-envelope profil-icon"></i>
+                    <p class="d-inline">{{app.user.email }}</p>
+                </div>
+                <div class="profil-data">
+                    <i class="fa-solid fa-cake-candles profil-icon"></i>
+                    <p class="d-inline">{{ app.user.dateOfBirth|date("d/m/Y") }} </p>
+                </div>
+                <div class="profil-data">
+                    <i class="fa-solid fa-id-badge profil-icon"></i>
+                    <p class="text-uppercase d-inline">{{app.user.licenceNumber}}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-12 col-lg-5 col-profil">
+            <h3>Mes cours</h3>
+            <div>  
+            {% dump(app.user.userCourses) %}
+                {% if app.user.userCourses is not empty %}
+                    {% for userCourse in app.user.userCourses %}
+                        <div>
+                            <h4 class= "mt-4 mb-1">{{ userCourse.course.name }}</h4>
+                            <p>Le {{ userCourse.course.day }} à {{ userCourse.course.hour|date('H:i')}} h</p>
+                        </div>    
+                    {% endfor %}
+                {% else %}
+                    <p>Aucun cours</p>
+                {% endif %}  
+            </div>
+        </div>
+
+    </div>
+
+
 {% endblock %}
