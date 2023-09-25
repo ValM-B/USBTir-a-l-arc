@@ -13,7 +13,7 @@ class TimetableController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('timetable/index.html.twig', [
+        return $this->render('/front/timetable/index.html.twig', [
             'controller_name' => 'TimetableController',
         ]);
     }

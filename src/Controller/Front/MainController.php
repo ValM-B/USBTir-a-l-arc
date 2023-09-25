@@ -19,5 +19,5 @@ class MainController extends AbstractController
         return $this->render('front/main/index.html.twig', [
             "pictures" => $pictures
         ]);
-    }
+    }    
 }

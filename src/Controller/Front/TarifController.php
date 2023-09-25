@@ -16,7 +16,7 @@ class TarifController extends AbstractController
     {
         $tarifs = $tarifRepository->findAll();
 
-        return $this->render('tarif/index.html.twig', [
+        return $this->render('/front/tarif/index.html.twig', [
             'controller_name' => 'TarifController',
         ]);
     }
