@@ -55,6 +55,26 @@ main{
     padding-top: 10%;
 }
 
+/* Profil */
+
+.col-profil
+{
+    background-color: white;
+    margin: 1rem;
+    padding: 1.5rem;
+    
+}
+
+.profil-name
+{
+    border-bottom: solid 0.2px #B8CBD0;
+}
+
+.profil-icon
+{
+    margin-right: 0.5rem;
+}
+
 
 /* Footer */
 .footer{
