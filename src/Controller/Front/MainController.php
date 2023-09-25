@@ -20,4 +20,14 @@ class MainController extends AbstractController
             "pictures" => $pictures
         ]);
     }
+
+    /**
+     * @Route("/mentions-legales", name="app_legal_notice")
+     */
+    public function legalNotice():Response
+    {
+        return $this->render('front/main/legal_notice.html.twig', [
+
+        ]); 
+    }
 }
