@@ -4,24 +4,46 @@
 
 <h2 class="text-center profil-title">Organigramme</h2>
 
-<div class="row d-flex justify-content-center">
+<div class="d-flex justify-content-center">
 
-	<div class="col-12 col-lg-5 col-profil">
+	<div class="organization-chart">
 		<div>
-		<h3>Bureau</h3>
-		<div class="picture">
-			<img src="{{ asset('images/Président.png')}}" alt="">
-		</div>
+			<h3>Bureau</h3>
+			<div class="row">
+				{% for user in users %}
+					{% if user.position != "Entraîneur" %}
+						<div class="col-lg-4">
+							<div class="picture">
+								<img src="{{ asset('images/' ~ user.position ~ '.png')}}" alt="Photo de {{ user.firstname}} {{ user.lastname}}">
+							</div>
+							<h4>{{ user.firstname}} {{ user.lastname}}</h4>
+							<em>{{ user.position }}</em>
+							<p>{{ user.email }}</p>
+						</div>	
+					{% endif %}
+				{% endfor %}
+			</div>
 		</div>
 		<div>
-		<h3>Entraineurs</h3>
+			<h3>Entraineurs</h3>
+			<div class="row">
+				{% for user in users %}
+					{% if user.position == "Entraîneur" %}
+						<div class="col-lg-4">
+							<div class="picture">
+								<img src="{{ asset('images/' ~ user.position ~ '.png')}}" alt="Photo de {{ user.firstname}} {{ user.lastname}}">
+							</div>
+							<h4>{{ user.firstname}} {{ user.lastname}}</h4>
+							<em>{{ user.position }}</em>
+							<p>{{ user.email }}</p>
+						</div>	
+					{% endif %}
+				{% endfor %}
+			</div>
 		</div>
 	</div>
 </div>
 
-{% for user in users %}
-{{ user.firstname}} {{ user.lastname}}
-{{ user.position }}
-{{ user.email }}
-{% endfor %}
+
+
 {% endblock %}
