@@ -3,16 +3,37 @@
 {% block title %}Hello MainController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
 <div class="example-wrapper">
     {% dump(pictures) %}
-    Magnifique page d'accueil de O'Tir!
-    {% if is_granted('ROLE_USER') %}
-    <a href="{{ path('app_user')}}">Mon profil</a>
-    {% endif %}
+    <section class="slider">
+        <div id="carouselExample" class="carousel slide">
+            <div class="carousel-inner">
+                {% set isFirstPicture = true %}
+                {% for picture in pictures %}
+                    <div class="carousel-item {{ isFirstPicture ? 'active' : '' }}">
+                        <img class="img-fluid" src="{{ asset('images/' ~ picture) }}" alt="image du club">
+                    </div>
+                    {% set isFirstPicture = false %}
+                {% endfor %}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+
+    <section class="presentation">
+        <h2>Notre Club</h2>
+        <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam doloribus adipisci dolor, natus nostrum sit ab omnis atque minus odit, facere consectetur possimus exercitationem. Consectetur reprehenderit numquam sit temporibus ratione.
+        </p>
+    </section>
 </div>
 {% endblock %}
+
+{% block javascripts %} <script src="{{ asset('js/script.js') }}"></script> {% endblock %}
