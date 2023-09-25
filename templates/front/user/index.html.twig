@@ -4,12 +4,12 @@
 
 {% block body %}
 
-<h2 class="text-center">Mon Profil</h2>
 
-<div class="container">
+    <h2 class="text-center profil-title">Mon Profil</h2>
+
     <div class="row d-flex justify-content-center">
 
-        <div class="col-12 col-md-5 col-profil">
+        <div class="col-12 col-lg-5 col-profil">
             <h3>Mes infos personnelles</h3>
             <div>
                 <div class="mb-2 pb-2 profil-name">
@@ -18,22 +18,22 @@
                         <em>{{ app.user.position }}</em>
                     {% endif %}
                 </div>
-                <div>
+                <div class="profil-data">
                     <i class="fa-solid fa-envelope profil-icon"></i>
                     <p class="d-inline">{{app.user.email }}</p>
                 </div>
-                <div>
+                <div class="profil-data">
                     <i class="fa-solid fa-cake-candles profil-icon"></i>
                     <p class="d-inline">{{ app.user.dateOfBirth|date("d/m/Y") }} </p>
                 </div>
-                <div>
+                <div class="profil-data">
                     <i class="fa-solid fa-id-badge profil-icon"></i>
                     <p class="text-uppercase d-inline">{{app.user.licenceNumber}}</p>
                 </div>
             </div>
         </div>
         
-        <div class="col-12 col-md-5 col-profil">
+        <div class="col-12 col-lg-5 col-profil">
             <h3>Mes cours</h3>
             <div>  
             {% dump(app.user.userCourses) %}
@@ -51,5 +51,6 @@
         </div>
 
     </div>
-</div>
+
+
 {% endblock %}
