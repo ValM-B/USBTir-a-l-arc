@@ -1,4 +1,5 @@
-<html lang="fr">
+{% extends 'base.html.twig' %}
+{% block body %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,23 +8,7 @@
     <!-- Lien vers le fichier CSS de Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-    <!-- Styles personnalisés -->
-    <style>
-        body {
-            background-color: #137C8B;  /* Vert */
-        }
-
-        .section-personnalisee {
-            background-color: #B8CBD0;  /* Gris  */
-        }
-        .footer-buttons {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-        }
-    </style>
-
+    
 </head>
 <body>
 
@@ -71,4 +56,5 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     
 </body>
+{% endblock %}
 </html>

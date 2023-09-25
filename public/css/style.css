@@ -61,7 +61,22 @@ body {
 .section-personnalisee {
     background-color: #B8CBD0;  /* Gris  */
 }
-
+.footer-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+.time{
+    margin-bottom: 30px; /* Espace en bas de chaque élément <li> */
+    font-size: 30px;     /* Taille de la police pour les éléments <li> */
+}
+.case-twig {
+    background-color: #7A90A4;
+    padding: 10px;
+    margin: 5px 0; 
+    border-radius: 5px;
+}
 /* Footer */
 .footer{
     background-color: #137C8B;
