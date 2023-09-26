@@ -30,7 +30,7 @@ class MainController extends AbstractController
     {
         $president = $repository->findPresidentPosition();
         
-    return $this->render('front/contact/contact.html.twig', [
+    return $this->render('front/main/contact.html.twig', [
         'controller_name' => 'MainController',
         'president' => $president   
     ]);
