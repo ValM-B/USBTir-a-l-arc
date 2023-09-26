@@ -48,23 +48,29 @@ li, a{
 
 /* Main */
 main{
-    min-height: 75vh;
+    
     background-color: #B8CBD0;
 }
 .content{
-    padding-top: 2%;
-    padding-bottom: 2%;
+    min-height: 75vh; 
     width: 100vw;
 }
 
-/* Carousel */
-#carouselExample{
+/* Home */
+/* --- Carousel --- */
+#carouselHome{
     max-width: fit-content;
+    max-height: 50vh;
 }
 
-.carousel-item img{
-    width: 75vw;
+#carouselHome img{
+   
+    width: 100vw;
+    max-height: 50vh;
+    height: auto;
+    object-fit: cover;
 }
+
 
 /* Profil */
 .col-profil
@@ -91,10 +97,8 @@ main{
 {
     margin-right: 0.5rem;
 }
-body {
-    background-color: #137C8B;  /* Vert */
-}
 
+/* Tarifs et Horaires */
 <<<<<<< HEAD
 /* Organizational chart */
 .organization-chart{
@@ -135,12 +139,31 @@ body {
     font-size: 30px;     /* Taille de la police pour les éléments <li> */
 }
 .case-twig {
-    background-color: #7A90A4;
+    background-color: #344D59;
+    color: #B8CBD0;
     padding: 10px;
     margin: 5px 0; 
     border-radius: 5px;
+    border-color: #B8CBD0;
 }
->>>>>>> dev
+.table-slot  h3{
+    font-size: 1.5em;
+}
+.table-slot th{
+    background-color: #709CA7;
+    color: #344D59;
+}
+
+.table-slot td{
+    background-color: #344D59;
+    color: #B8CBD0;
+}
+
+.table-slot{
+    border-color: #B8CBD0;
+}
+
+
 /* Footer */
 .footer{
     background-color: #137C8B;
@@ -177,6 +200,40 @@ footer h4{
 .footer-link:hover{
     color: #B8CBD0;
     padding-left: 10px;
+}
+
+/* 404 page */
+.page_404{ 
+    padding:40px 0; background:#fff; font-family: 'Arvo', serif;
+}
+.page_404  img{ 
+    width:100%;
+}
+.four_zero_four_bg{
+    background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+    height: 400px;
+    background-position: center;
+}
+ .four_zero_four_bg h1{
+    font-size:80px;
+}
+  .four_zero_four_bg h3{
+    font-size:80px;
+}
+			 
+.link_404{			 
+    color: #fff;
+    padding: 10px 20px;
+    background: #39ac31;
+    margin: 20px 0;
+    display: inline-block;
+}
+.contant_box_404{ 
+    margin-top:-50px;
+}
+.page_404{
+    height: 100vh;
+    width: 100vw;
 }
 
 
