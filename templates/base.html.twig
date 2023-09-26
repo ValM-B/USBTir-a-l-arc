@@ -32,7 +32,7 @@
                                 <a class="nav-link" href="{{ path('app_tarif_and_timetable') }}">Horaires et tarifs</a>
                             </li>
                             <li class="nav-item p-lg-2">
-                                <a class="nav-link" href="#">Contact</a>
+                                <a class="nav-link" href="{{ path('app_contact') }}">Contact</a>
                             </li>
                             {% if is_granted("IS_AUTHENTICATED_FULLY") %}
                                 <li class="nav-item p-lg-2">
