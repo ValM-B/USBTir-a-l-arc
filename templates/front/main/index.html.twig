@@ -1,25 +1,25 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Hello MainController!{% endblock %}
-
+{% block content %}align-items-start{% endblock %}
 {% block body %}
-<div class="p-4">
+<div class="">
     <section class="slider">
-        <div id="carouselExample" class="carousel slide w-75 mx-auto">
+        <div id="carouselHome" class="carousel slide">
             <div class="carousel-inner">
                 {% set isFirstPicture = true %}
                 {% for picture in pictures %}
                     <div class="carousel-item {{ isFirstPicture ? 'active' : '' }} text-center">
-                        <img class="img-fluid mx-auto" src="{{ asset('images/' ~ picture) }}" alt="image du club">
+                        <img src="{{ asset('images/' ~ picture) }}" alt="image du club">
                     </div>
                     {% set isFirstPicture = false %}
                 {% endfor %}
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselHome" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselHome" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
