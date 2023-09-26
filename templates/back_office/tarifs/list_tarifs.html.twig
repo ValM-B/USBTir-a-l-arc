@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <div class="container mt-5">
+
+        <!-- Section Tarifs -->
+        <section class="mb-5 p-5 section-personnalisee rounded shadow"> 
+            <h2 class="text-primary mb-4">Tarifs</h2>
+            <ul class="list-group">
+                {% for tarif in tarifs %}
+                    <li class="list-group-item"> 
+                        <strong>Cours pour:</strong> {{ tarif.name }}<br>
+                     <div class="float-right">
+                            <button class="btn btn-primary btn-sm mr-2">Voir</button>
+                            <button class="btn btn-warning btn-sm mr-2">Modifier</button>
+                            <button class="btn btn-danger btn-sm">Supprimer</button>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        
+
+    </div>
+    {% block javascripts %} 
+    <!-- Scripts Bootstrap (pour ajouter les fonctionnalités JS de Bootstrap si besoin) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    {% endblock %}
+{% endblock %}
+

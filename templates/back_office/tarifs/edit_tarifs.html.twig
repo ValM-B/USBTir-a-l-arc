@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <div class="container mt-5">
+
+        <!-- Section Tarifs -->
+        <section class="mb-5 p-5 section-personnalisee rounded shadow">
+            <h2 class="text-primary mb-4">Editer un Tarifs</h2>
+            
+
+                
+                    <div class="case-twig">
+                        <strong>Cours pour:</strong> {{ tarif.name }}
+                    </div>
+                    <div class="case-twig">
+                        <strong>Âge minimum:</strong> {{ tarif.age_min }} ans
+                    </div>
+                    <div class="case-twig">
+                        <strong>Âge maximum:</strong> {{ tarif.age_max }} ans
+                    </div>
+                    <div class="case-twig">
+                        <strong>Tarif:</strong> {{ tarif.amount }} €
+                    </div>
+                    <div class="case-twig">
+                        <strong>Matériel:</strong> {{ tarif.gear_amount }} €
+                    </div>
+                
+
+            
+        </section>
+
+        <!-- Boutons en bas -->
+        <div class="footer-buttons">
+            <a href="{{ path('route_retour') }}" class="btn btn-secondary">Retour</a>
+            
+            
+            
+        </div>
+
+    </div>
+
+        {% block javascripts %} 
+    <!-- Scripts Bootstrap (pour ajouter les fonctionnalités JS de Bootstrap si besoin) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    {% endblock %}
+{% endblock %}
+
