@@ -91,7 +91,11 @@ main{
 {
     margin-right: 0.5rem;
 }
+body {
+    background-color: #137C8B;  /* Vert */
+}
 
+<<<<<<< HEAD
 /* Organizational chart */
 .organization-chart{
     background-color: #344D59;
@@ -116,6 +120,27 @@ main{
     width: 90%;
 }
 
+=======
+.section-personnalisee {
+    background-color: #B8CBD0;  /* Gris  */
+}
+.footer-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+.time{
+    margin-bottom: 30px; /* Espace en bas de chaque élément <li> */
+    font-size: 30px;     /* Taille de la police pour les éléments <li> */
+}
+.case-twig {
+    background-color: #7A90A4;
+    padding: 10px;
+    margin: 5px 0; 
+    border-radius: 5px;
+}
+>>>>>>> dev
 /* Footer */
 .footer{
     background-color: #137C8B;
