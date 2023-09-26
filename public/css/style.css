@@ -52,7 +52,7 @@ main{
     background-color: #B8CBD0;
 }
 .content{
-    min-height: 75vh;
+    /* min-height: 75vh; */
     width: 100vw;
 }
 
