@@ -2,10 +2,12 @@
 
 namespace App\Controller\Front;
 
+use App\Repository\UserRepository;
 use App\Service\SlideService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 class MainController extends AbstractController
 {
@@ -19,6 +21,19 @@ class MainController extends AbstractController
         return $this->render('front/main/index.html.twig', [
             "pictures" => $pictures
         ]);
+    }
+    
+    /**
+     * @Route("/nous-contacter", name="app_contact")
+     */
+    public function contact(UserRepository $repository): Response
+    {
+        $president = $repository->findPresidentPosition();
+        
+    return $this->render('front/contact/contact.html.twig', [
+        'controller_name' => 'MainController',
+        'president' => $president   
+    ]);
     }
 
     /**
