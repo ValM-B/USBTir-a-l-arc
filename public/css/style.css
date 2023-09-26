@@ -48,19 +48,29 @@ li, a{
 
 /* Main */
 main{
-    min-height: 75vh;
+    
     background-color: #B8CBD0;
 }
 .content{
-    padding-top: 2%;
-    padding-bottom: 2%;
+    min-height: 75vh; 
     width: 100vw;
 }
 
-/* Carousel */
-#carouselExample{
+/* Home */
+/* --- Carousel --- */
+#carouselHome{
     max-width: fit-content;
+    max-height: 50vh;
 }
+
+#carouselHome img{
+   
+    width: 100vw;
+    max-height: 50vh;
+    height: auto;
+    object-fit: cover;
+}
+
 
 /* Profil */
 .col-profil
