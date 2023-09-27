@@ -133,13 +133,45 @@ li, a{
     border-color: #B8CBD0;
 } */
 
-.time-title{
+.time-title
+{
     background-color: #709CA7;
     color:  #344D59;
+    
 }
-.time-content{
+
+.time-course, 
+.time-course-empty
+{
+    height: 150px;
+}
+
+.time-course
+{   
+    position: relative;
     background-color: #344D59;
     color:  #B8CBD0;
+    border: solid 1px #B8CBD0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.time-course-empty
+{
+    background-color: #B8CBD0;
+    border-right: 0.5px solid rgb(122, 122, 122, 0.5);
+    border-left: 0.5px solid rgb(122, 122, 122, 0.5);
+}
+
+.time-hour
+{
+    background-color: #B8CBD0;
+    color: #344D59;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 
