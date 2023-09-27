@@ -2,18 +2,14 @@
 
 
 {% block body %}
-    <h2>Course index</h2>
+    <h2>Liste des Cours</h2>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
-                <th>Day</th>
-                <th>Hour</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>actions</th>
+                <th>Nom</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -21,22 +17,18 @@
             <tr>
                 <td>{{ course.id }}</td>
                 <td>{{ course.name }}</td>
-                <td>{{ course.day }}</td>
-                <td>{{ course.hour ? course.hour|date('H:i:s') : '' }}</td>
-                <td>{{ course.createdAt ? course.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ course.updatedAt ? course.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_back_course_show', {'id': course.id}) }}">show</a>
-                    <a href="{{ path('app_back_course_edit', {'id': course.id}) }}">edit</a>
+                    <a href="{{ path('app_back_course_show', {'id': course.id}) }}">Voir</a>
+                    <a href="{{ path('app_back_course_edit', {'id': course.id}) }}">Editer</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="7">Ressource non trouvée</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_back_course_new') }}">Create new</a>
+    <a href="{{ path('app_back_course_new') }}">Nouveau</a>
 {% endblock %}
