@@ -69,6 +69,10 @@ li, a{
 
 
 /* Profil */
+
+.wrapper-profil{
+    min-height: 75vh;
+}
 .col-profil
 {
     background-color: #344D59;
@@ -92,6 +96,36 @@ li, a{
 .profil-icon
 {
     margin-right: 0.5rem;
+}
+
+
+/* Organizational chart */
+
+.wrapper-chart{
+    min-height: 75vh;
+}
+
+.organization-chart{
+    background-color: #344D59;
+    color: #B8CBD0;
+    margin: 1rem;
+    padding: 1.5rem;
+    text-align: center;
+    width: 75vw;
+}
+.picture{
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    background-color: #B8CBD0;
+    overflow: hidden;
+    margin: 1rem auto;
+}
+
+.picture img{
+    position: relative;
+    bottom: -5px;
+    width: 90%;
 }
 
 /* Tarifs et Horaires */
@@ -311,3 +345,4 @@ footer h4{
         line-height: calc(42 * var(--resmax));
     }
 }
+
