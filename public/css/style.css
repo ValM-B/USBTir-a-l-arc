@@ -69,6 +69,10 @@ li, a{
 
 
 /* Profil */
+
+.wrapper-profil{
+    min-height: 75vh;
+}
 .col-profil
 {
     background-color: #344D59;
@@ -300,3 +304,4 @@ footer h4{
         line-height: calc(42 * var(--resmax));
     }
 }
+

@@ -4,12 +4,25 @@
     <div class="container mt-5">
 
         <!-- Section Tarifs -->
-        <section class="mb-5 p-5 section-personnalisee rounded shadow"> 
-            <h2 class="text-primary mb-4">Tarifs</h2>
-            <ul class="list-group">
-                {% for tarif in tarifs %}
-                    <li class="list-group-item"> 
-                        <strong>Cours pour:</strong> {{ tarif.name }}<br>
+        <h2 class="mb-4 text-center">Tarifs</h2>
+        <section class="mb-5 mt-5 p-5 section-personnalisee rounded shadow"> 
+            {% for tarif in tarifs %}
+                <ul class="list-group pb-3">
+                    <h3 class="text-center">{{ tarif.name }}</h3>
+                    <li class="list-group-item case-twig">
+                    Âge minimum : {{ tarif.ageMin }} ans
+                    </li>
+                    <li class="list-group-item case-twig">
+                    Âge maximum : {{ tarif.ageMax }} ans
+                    </li>
+                    <li class="list-group-item case-twig">
+                    Tarif : {{ tarif.amount }} €
+                    </li>
+                    <li class="list-group-item case-twig">
+                    Matériel : {{ tarif.gearAmount }} €
+                    </li> 
+                    <li class="list-group-item case-twig"> 
+                        >
                      <div class="float-right">
                             <button class="btn btn-primary btn-sm mr-2">Voir</button>
                             <button class="btn btn-warning btn-sm mr-2">Modifier</button>
