@@ -2,11 +2,11 @@
 
 namespace App\Controller\Front;
 
-use App\Repository\UserRepository;
 use App\Service\SlideService;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 class MainController extends AbstractController
@@ -33,7 +33,7 @@ class MainController extends AbstractController
     return $this->render('front/main/contact.html.twig', [
         'controller_name' => 'MainController',
         'president' => $president   
-    ]);
+    ]);  
     }
 
     /**

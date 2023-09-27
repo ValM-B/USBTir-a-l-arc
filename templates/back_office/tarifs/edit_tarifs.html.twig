@@ -4,28 +4,32 @@
     <div class="container mt-5">
 
         <!-- Section Tarifs -->
-        <section class="mb-5 p-5 section-personnalisee rounded shadow">
-            <h2 class="text-primary mb-4">Editer un Tarifs</h2>
-            
-
-                
-                    <div class="case-twig">
-                        <strong>Cours pour:</strong> {{ tarif.name }}
-                    </div>
-                    <div class="case-twig">
-                        <strong>Âge minimum:</strong> {{ tarif.age_min }} ans
-                    </div>
-                    <div class="case-twig">
-                        <strong>Âge maximum:</strong> {{ tarif.age_max }} ans
-                    </div>
-                    <div class="case-twig">
-                        <strong>Tarif:</strong> {{ tarif.amount }} €
-                    </div>
-                    <div class="case-twig">
-                        <strong>Matériel:</strong> {{ tarif.gear_amount }} €
-                    </div>
-                
-
+    <h2 class="mb-4 text-center">Modifier un Tarifs</h2>
+        <section class="mb-5 mt-5 p-5 section-personnalisee rounded shadow"> 
+            {% for tarif in tarifs %}
+                <ul class="list-group pb-3">
+                    <h3 class="text-center">{{ tarif.name }}</h3>
+                    <li class="list-group-item case-twig">
+                    Âge minimum : {{ tarif.ageMin }} ans
+                    </li>
+                    <li class="list-group-item case-twig">
+                    Âge maximum : {{ tarif.ageMax }} ans
+                    </li>
+                    <li class="list-group-item case-twig">
+                    Tarif : {{ tarif.amount }} €
+                    </li>
+                    <li class="list-group-item case-twig">
+                    Matériel : {{ tarif.gearAmount }} €
+                    </li> 
+                     <li class="list-group-item case-twig"> 
+                        
+                     <div class="float-right">
+                            
+                            <button class="btn btn-warning btn-sm mr-2">Modifier</button>
+                            
+                        </div>
+                    </li>
+                </ul>
             
         </section>
 

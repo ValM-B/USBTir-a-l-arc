@@ -2,17 +2,22 @@
 {% block body %}
    
         <!-- Section Horaires -->
-        <section class="p-5 section-personnalisee rounded shadow"> 
-            <h2 class="text-primary mb-4">nouveau  horaire du cours </h2>
-            <table class="table table-striped table-bordered">
-                <ul>
-                        <li class="time">Jour {{ course.day }}</li>
-                        <li class="time">Nom du cours {{ course.name }}</li>
-                        <li class="time">Heures {{ course.hour|date('H:i') }}</li>
-                    </ul>
-                
+         <section class="p-5 section-personnalisee rounded shadow text-center"> 
+            <h2 class="mb-4">Nouvel Horaire</h2>
+            <table class="table table-striped table-bordered table-slot">
+                <thead>
+                    <tr>
+                        <th><h3>Jour</h3></th>
+                        <th><h3>Nom du cours</h3></th>
+                        <th><h3>Heures</h3></th>
+                    </tr>
+                </thead>
                 <tbody>
-                    
+                     <tr>
+                            <td>{{ course.day }}</td>
+                            <td>{{ course.name }}</td>
+                            <td>{{ course.hour|date('H:i') }}</td>
+                        </tr>
                             <td><div class="float-right">
                             
                             <button class="btn btn-warning btn-sm mr-2">confirmer</button>
