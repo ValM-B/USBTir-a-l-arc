@@ -2,8 +2,12 @@
 
 namespace App\Controller\Api;
 
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -14,11 +18,12 @@ class UserController extends AbstractController
     /**
      * @Route("/users", name="api_v1_users")
      */
-    public function index(): JsonResponse
+    public function index(Request $request, UserRepository $userRepository): JsonResponse
     {
-        return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/UserController.php',
-        ]);
+        $page = (int) $request->query->get('page', 1);
+        $limit = 10;
+        $offset = ($page -1) * $limit;
+        $users = $userRepository->findBy([], null, $limit, $offset);
+        return $this->json($users, Response::HTTP_OK, [], ["groups" => "users"]);
     }
 }
