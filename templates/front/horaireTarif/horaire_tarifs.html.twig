@@ -6,45 +6,38 @@
 
         <!-- Section Tarifs -->
         <h2 class="mb-4 text-center">Tarifs</h2>
-        <section class="mb-5 mt-5 p-5 section-personnalisee rounded shadow"> 
-        <div class="row text-center">
+        <section class="mb-5 p-5 rounded shadow"> 
+        <div class="row text-center justify-content-center">
             {% for tarif in tarifs %}
-                {# <ul class="list-group pb-3">
-                    <h3 class="text-center">{{ tarif.name }}</h3>
-                    <li class="list-group-item case-twig">
-                    Âge minimum :  ans
-                    </li>
-                    <li class="list-group-item case-twig">
-                    Âge maximum : {{ tarif.ageMax }} ans
-                    </li>
-                    <li class="list-group-item case-twig">
-                    Tarif : {{ tarif.amount }} €
-                    </li>
-                    <li class="list-group-item case-twig">
-                    Matériel : {{ tarif.gearAmount }} €
-                    </li> 
-                </ul> #}
+
                 {% set amountWithGear = tarif.amount + tarif.gearAmount %}
                 {% if tarif.name == "Baby" %}
-                <div class="col-lg-6 course-tarif">
+                <div class="col-lg-5 course-tarif m-2 p-3">
                     <h3>{{ tarif.name }}</h3>
-                    <p>de {{ tarif.ageMin }} ans à {{ tarif.ageMax }} ans</p>
-                    <p class="amount">{{ amountWithGear }} €</p>
+                    <p class="age-tarif">de {{ tarif.ageMin }} ans à {{ tarif.ageMax }} ans</p>
+                    <div class="list-amount">
+                        <p class="mt-2">Avec prêt de matériel</p>
+                        <p class="amount">{{ amountWithGear }} €</p>
+                    </div>   
                 </div>
                 {% else %}
-                    <div class="col-lg-6 course-tarif">
+                    <div class="col-lg-5 course-tarif m-2 p-3">
                     <h3>{{ tarif.name }}</h3>
 
                     {% if tarif.ageMax is not null %}
-                    <p>de {{ tarif.ageMin }} ans à {{ tarif.ageMax }} ans</p>
+                    <p class="age-tarif">de {{ tarif.ageMin }} ans à {{ tarif.ageMax }} ans</p>
                     {% else %}
                     <p>à partir de {{ tarif.ageMin }} ans</p>
                     {% endif %}
 
-                    <p>Sans prêt de matériel</p>
-                    <p class="amount">{{ tarif.amount }} €</p>
-                    <p>Avec prêt de matériel</p>
-                    <p class="amount">{{ amountWithGear }} €</p>
+                    <div class="list-amount">
+                        <p class="mt-2">Sans prêt de matériel</p>
+                        <p class="amount">{{ tarif.amount }} €</p>
+                    </div>  
+                    <div class="list-amount">
+                        <p class="mt-2">Avec prêt de matériel</p>
+                        <p class="amount">{{ amountWithGear }} €</p>
+                    </div>  
                 </div>
                 {% endif %}
             {% endfor %}
@@ -52,44 +45,31 @@
         </section>
 
         <!-- Section Horaires -->
+
+        <h2 class="mb-4 text-center">Horaires</h2>
         <section class="p-5 section-personnalisee rounded shadow text-center"> 
-            
-            <h2 class="mb-4">Horaires</h2>
-            <div class="row justify-content-center">
-            
-                {% for day, coursesHour in courses %}
-                <div class="col-lg-2 p-0">   
-                    
-                    <div class="time-title">
-                        <h3>{{day}}</h3>
-                    </div>
-                    
-                    {% for hour in ["14:00", "16:00", "18:00", "20:00"] %}             
-                        {% if coursesHour[hour] is defined %}
-                            <div class="time-course">
-                                
-                                {% for course in coursesHour[hour] %} 
-                                    <p class="mb-0">{{course}}</p>
-                                {% endfor %}
-                                
-                                <div class="time-hour">{{hour}}</div>
-                            </div>
-                        {% else %} 
-                        <div class="time-course-empty d-none d-lg-block"></div>
-                        {% endif %}
+                       
+               <table class="table table-striped table-bordered table-slot">
+                <thead>
+                    <tr>
+                        <th scope="col" ><h3>Jour</h3></th>
+                        <th scope="col" ><h3>Nom du cours</h3></th>
+                        <th scope="col" ><h3>Heures</h3></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for course in courses %}
+                        <tr>
+                            <td>{{ course.day }}</td>
+                            <td>{{ course.name }}</td>
+                            <td>{{ course.hour|date('H:i') }}</td>
+                        </tr>
                     {% endfor %}
-                                            
-                </div> 
-                {% endfor %} 
-            </div> 
+                </tbody>
+            </table>
         </section>
 
     </div>
-    {% block javascripts %} 
-    <!-- Scripts Bootstrap (pour ajouter les fonctionnalités JS de Bootstrap si besoin) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    {% endblock %}
+
 {% endblock %}
 

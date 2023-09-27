@@ -129,9 +129,41 @@ li, a{
 }
 
 /* Tarifs et Horaires */
-.section-personnalisee {
-    background-color: #B8CBD0;  /* Gris  */
+
+.course-tarif
+{
+    background-color: #344D59;
+    color: #B8CBD0;
 }
+
+.course-tarif h3
+{
+    margin-bottom: 0.1rem;
+}
+
+.age-tarif
+{
+    margin-bottom: 2rem;
+}
+
+.amount
+{
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.list-amount
+{
+    border : solid 0.5px #B8CBD0;
+    margin-bottom: 1rem;
+}
+
+.list-amount p
+{
+    margin-bottom: 0.2rem;
+}
+
+
 .footer-buttons {
     display: flex;
     justify-content: space-between;
@@ -150,7 +182,8 @@ li, a{
     border-radius: 5px;
     border-color: #B8CBD0;
 }
-/* .table-slot  h3{
+
+.table-slot  h3{
     font-size: 1.5em;
 }
 .table-slot th{
@@ -165,48 +198,8 @@ li, a{
 
 .table-slot{
     border-color: #B8CBD0;
-} */
-
-.time-title
-{
-    background-color: #709CA7;
-    color:  #344D59;
-    
 }
 
-.time-course, 
-.time-course-empty
-{
-    height: 150px;
-}
-
-.time-course
-{   
-    position: relative;
-    background-color: #344D59;
-    color:  #B8CBD0;
-    border: solid 1px #B8CBD0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.time-course-empty
-{
-    background-color: #B8CBD0;
-    border-right: 0.5px solid rgb(122, 122, 122, 0.5);
-    border-left: 0.5px solid rgb(122, 122, 122, 0.5);
-}
-
-.time-hour
-{
-    background-color: #B8CBD0;
-    color: #344D59;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
 
 
 /* Footer */
