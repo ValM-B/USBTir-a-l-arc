@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tarif index{% endblock %}
+
+{% block body %}
+    <h1>Tarif index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>AgeMin</th>
+                <th>AgeMax</th>
+                <th>Amount</th>
+                <th>GearAmount</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tarif in tarifs %}
+            <tr>
+                <td>{{ tarif.id }}</td>
+                <td>{{ tarif.ageMin }}</td>
+                <td>{{ tarif.ageMax }}</td>
+                <td>{{ tarif.amount }}</td>
+                <td>{{ tarif.gearAmount }}</td>
+                <td>{{ tarif.createdAt ? tarif.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ tarif.updatedAt ? tarif.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ tarif.name }}</td>
+                <td>
+                    <a href="{{ path('app_back_tarif_show', {'id': tarif.id}) }}">show</a>
+                    <a href="{{ path('app_back_tarif_edit', {'id': tarif.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_back_tarif_new') }}">Create new</a>
+{% endblock %}
