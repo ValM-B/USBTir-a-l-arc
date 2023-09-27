@@ -1,38 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MainController!{% endblock %}
-
 {% block body %}
-<div class="p-4">
-    <section class="slider">
-        <div id="carouselExample" class="carousel slide w-75 mx-auto">
-            <div class="carousel-inner">
-                {% set isFirstPicture = true %}
-                {% for picture in pictures %}
-                    <div class="carousel-item {{ isFirstPicture ? 'active' : '' }} text-center">
-                        <img class="img-fluid mx-auto" src="{{ asset('images/' ~ picture) }}" alt="image du club">
-                    </div>
-                    {% set isFirstPicture = false %}
-                {% endfor %}
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+<section class="slider">
+    <div id="carouselHome" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            {% set isFirstPicture = true %}
+            {% for picture in pictures %}
+                <div class="carousel-item {{ isFirstPicture ? 'active' : '' }} text-center">
+                    <img src="{{ asset('images/' ~ picture) }}" alt="image du club">
+                </div>
+                {% set isFirstPicture = false %}
+            {% endfor %}
         </div>
-    </section>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselHome" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselHome" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</section>
 
-    <section class="presentation mt-5 text-center">
+<section class="presentation mt-5 text-center">
+    <div class="container presentation-text pb-5">
         <h2>Notre Club</h2>
         <p>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam doloribus adipisci dolor, natus nostrum sit ab omnis atque minus odit, facere consectetur possimus exercitationem. Consectetur reprehenderit numquam sit temporibus ratione.
         </p>
-    </section>
-</div>
+    </div>
+</section>
 {% endblock %}
 
 {% block javascripts %} <script src="{{ asset('js/script.js') }}"></script> {% endblock %}
