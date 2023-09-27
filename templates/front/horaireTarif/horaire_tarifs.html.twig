@@ -7,11 +7,12 @@
         <!-- Section Tarifs -->
         <h2 class="mb-4 text-center">Tarifs</h2>
         <section class="mb-5 mt-5 p-5 section-personnalisee rounded shadow"> 
+        <div class="row text-center">
             {% for tarif in tarifs %}
-                <ul class="list-group pb-3">
+                {# <ul class="list-group pb-3">
                     <h3 class="text-center">{{ tarif.name }}</h3>
                     <li class="list-group-item case-twig">
-                    Âge minimum : {{ tarif.ageMin }} ans
+                    Âge minimum :  ans
                     </li>
                     <li class="list-group-item case-twig">
                     Âge maximum : {{ tarif.ageMax }} ans
@@ -22,8 +23,32 @@
                     <li class="list-group-item case-twig">
                     Matériel : {{ tarif.gearAmount }} €
                     </li> 
-                </ul>
+                </ul> #}
+                {% set amountWithGear = tarif.amount + tarif.gearAmount %}
+                {% if tarif.name == "Baby" %}
+                <div class="col-lg-6 course-tarif">
+                    <h3>{{ tarif.name }}</h3>
+                    <p>de {{ tarif.ageMin }} ans à {{ tarif.ageMax }} ans</p>
+                    <p class="amount">{{ amountWithGear }} €</p>
+                </div>
+                {% else %}
+                    <div class="col-lg-6 course-tarif">
+                    <h3>{{ tarif.name }}</h3>
+
+                    {% if tarif.ageMax is not null %}
+                    <p>de {{ tarif.ageMin }} ans à {{ tarif.ageMax }} ans</p>
+                    {% else %}
+                    <p>à partir de {{ tarif.ageMin }} ans</p>
+                    {% endif %}
+
+                    <p>Sans prêt de matériel</p>
+                    <p class="amount">{{ tarif.amount }} €</p>
+                    <p>Avec prêt de matériel</p>
+                    <p class="amount">{{ amountWithGear }} €</p>
+                </div>
+                {% endif %}
             {% endfor %}
+        </div>    
         </section>
 
         <!-- Section Horaires -->
