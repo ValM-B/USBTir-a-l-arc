@@ -39,6 +39,28 @@ class CourseRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+    * @return Course[] Returns an array of Course objects order by day
+    */
+   public function findAllOrderByDay(): array
+   {
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery(
+            "SELECT c
+            FROM App\Entity\Course AS c
+            ORDER BY CASE
+                WHEN c.day = 'Lundi' THEN 1
+                WHEN c.day = 'Mardi' THEN 2
+                WHEN c.day = 'Mercredi' THEN 3
+                WHEN c.day = 'Jeudi' THEN 4
+                WHEN c.day = 'Vendredi' THEN 5
+                WHEN c.day = 'Samedi' THEN 6
+                ELSE 7
+            END"
+           );
+        return $query->getResult();
+   }
+
 //    /**
 //     * @return Course[] Returns an array of Course objects
 //     */

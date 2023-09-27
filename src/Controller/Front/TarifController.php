@@ -2,32 +2,27 @@
 
 namespace App\Controller\Front;
 
-use App\Repository\CourseRepository;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\TarifRepository;
-
+use App\Service\CoursesListService;
 
 class TarifController extends AbstractController
 {
     /**
      * @Route("/horaires-et-tarifs", name="app_tarif_and_timetable")
      */
-    public function viewTarifsAndTimetable(TarifRepository $tarifRepository, CourseRepository $courseRepository): Response
+    public function viewTarifsAndTimetable(TarifRepository $tarifRepository, CoursesListService $coursesListService): Response
     {
         $tarifs = $tarifRepository->findAll();
-        $courses = $courseRepository->findAll();
-        $courseTime = [];
-        foreach ($courses as $course) {
-            $hour = $course->getHour()->format('H:i');
-            $courseTime[$course->getDay()][$hour][] = $course->getName();
-        }
-
+        $coursesList = $coursesListService->coursesListByDay();
+        
         return $this->render('/front/horaireTarif/horaire_tarifs.html.twig', [
             'controller_name' => 'TarifController',
             'tarifs' => $tarifs,
-            'courses' => $courseTime
+            'courses' => $coursesList
         ]);
     }
 }

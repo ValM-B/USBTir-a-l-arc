@@ -28,35 +28,18 @@
 
         <!-- Section Horaires -->
         <section class="p-5 section-personnalisee rounded shadow text-center"> 
+            
             <h2 class="mb-4">Horaires</h2>
-            <div class="row">
-            {# <div class="col-lg-2 p-0">
-                <div class="time-title">
-                    <h3>Heure</h3>
-                </div>
-                <div class="time-content">
-                    <p>14h00</p>
-                </div>
-                <div class="time-content">
-                    <p>16h00</p>
-                </div>
-                <div class="time-content">
-                    <p>18h00</p>
-                </div>
-                <div class="time-content">
-                    <p>20h00</p>
-                </div>
-                
-            </div>  #}
-            {% for day, coursesHour in courses %}
-            <div class="col-lg-2 p-0">   
-                
+            <div class="row justify-content-center">
+            
+                {% for day, coursesHour in courses %}
+                <div class="col-lg-2 p-0">   
+                    
                     <div class="time-title">
                         <h3>{{day}}</h3>
                     </div>
-                   
                     
-                     {% for hour in ["14:00", "16:00", "18:00", "20:00"] %}             
+                    {% for hour in ["14:00", "16:00", "18:00", "20:00"] %}             
                         {% if coursesHour[hour] is defined %}
                             <div class="time-course">
                                 
@@ -67,14 +50,13 @@
                                 <div class="time-hour">{{hour}}</div>
                             </div>
                         {% else %} 
-                           <div class="time-course-empty d-none d-lg-block"> 
-                           </div>
+                        <div class="time-course-empty d-none d-lg-block"></div>
                         {% endif %}
-               
-                        {% endfor %}
-                                         
-             </div> 
-             {% endfor %}  
+                    {% endfor %}
+                                            
+                </div> 
+                {% endfor %} 
+            </div> 
         </section>
 
     </div>
