@@ -129,9 +129,41 @@ li, a{
 }
 
 /* Tarifs et Horaires */
-.section-personnalisee {
-    background-color: #B8CBD0;  /* Gris  */
+
+.course-tarif
+{
+    background-color: #344D59;
+    color: #B8CBD0;
 }
+
+.course-tarif h3
+{
+    margin-bottom: 0.1rem;
+}
+
+.age-tarif
+{
+    margin-bottom: 2rem;
+}
+
+.amount
+{
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.list-amount
+{
+    border : solid 0.5px #B8CBD0;
+    margin-bottom: 1rem;
+}
+
+.list-amount p
+{
+    margin-bottom: 0.2rem;
+}
+
+
 .footer-buttons {
     display: flex;
     justify-content: space-between;
@@ -150,6 +182,7 @@ li, a{
     border-radius: 5px;
     border-color: #B8CBD0;
 }
+
 .table-slot  h3{
     font-size: 1.5em;
 }
@@ -166,6 +199,7 @@ li, a{
 .table-slot{
     border-color: #B8CBD0;
 }
+
 
 
 /* Footer */
