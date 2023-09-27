@@ -69,6 +69,10 @@ li, a{
 
 
 /* Profil */
+
+.wrapper-profil{
+    min-height: 75vh;
+}
 .col-profil
 {
     background-color: #344D59;
