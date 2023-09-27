@@ -56,7 +56,8 @@ class CourseRepository extends ServiceEntityRepository
                 WHEN c.day = 'Vendredi' THEN 5
                 WHEN c.day = 'Samedi' THEN 6
                 ELSE 7
-            END"
+            END,
+            c.hour"
            );
         return $query->getResult();
    }
