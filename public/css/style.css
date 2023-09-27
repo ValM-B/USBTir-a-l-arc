@@ -172,6 +172,11 @@ footer h4{
     padding-left: 10px;
 }
 
+/* Login */
+.wrapper-login{
+    min-height: 75vh;
+}
+
 
 /* 404 page */
 .page_404{ 
