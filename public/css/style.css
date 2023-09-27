@@ -120,7 +120,7 @@ main{
     border-radius: 5px;
     border-color: #B8CBD0;
 }
-.table-slot  h3{
+/* .table-slot  h3{
     font-size: 1.5em;
 }
 .table-slot th{
@@ -135,6 +135,15 @@ main{
 
 .table-slot{
     border-color: #B8CBD0;
+} */
+
+.time-title{
+    background-color: #709CA7;
+    color:  #344D59;
+}
+.time-content{
+    background-color: #344D59;
+    color:  #B8CBD0;
 }
 
 

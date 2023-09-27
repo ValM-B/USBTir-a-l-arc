@@ -18,11 +18,16 @@ class TarifController extends AbstractController
     {
         $tarifs = $tarifRepository->findAll();
         $courses = $courseRepository->findAll();
+        $courseTime = [];
+        foreach ($courses as $course) {
+            $hour = $course->getHour()->format('H:i');
+            $courseTime[$course->getDay()][$hour][] = $course->getName();
+        }
 
         return $this->render('/front/horaireTarif/horaire_tarifs.html.twig', [
             'controller_name' => 'TarifController',
             'tarifs' => $tarifs,
-            'courses' => $courses
+            'courses' => $courseTime
         ]);
     }
 }

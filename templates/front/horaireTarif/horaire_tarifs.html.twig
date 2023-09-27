@@ -29,24 +29,58 @@
         <!-- Section Horaires -->
         <section class="p-5 section-personnalisee rounded shadow text-center"> 
             <h2 class="mb-4">Horaires</h2>
-            <table class="table table-striped table-bordered table-slot">
-                <thead>
-                    <tr>
-                        <th><h3>Jour</h3></th>
-                        <th><h3>Nom du cours</h3></th>
-                        <th><h3>Heures</h3></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for course in courses %}
+            <div class="row">
+            <div class="col-lg-2 p-0">
+                <div class="time-title">
+                    <h3>Heure</h3>
+                </div>
+                <div class="time-content">
+                    <p>14h00</p>
+                </div>
+                <div class="time-content">
+                    <p>16h00</p>
+                </div>
+                <div class="time-content">
+                    <p>18h00</p>
+                </div>
+                <div class="time-content">
+                    <p>20h00</p>
+                </div>
+                
+            </div> 
+            {% for day, coursesHour in courses %}
+            <div class="col-lg-2 p-0">   
+                <table class="table table-striped table-bordered table-slot">
+                    <thead>
                         <tr>
-                            <td>{{ course.day }}</td>
-                            <td>{{ course.name }}</td>
-                            <td>{{ course.hour|date('H:i') }}</td>
+                            <th><h3>{{day}}</h3></th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>  
+                    {% dump(courses) %}
+                     {% for hour in ["14:00", "16:00", "18:00", "20:00"] %}             
+                        {% if coursesHour[hour] is defined %}
+                            <tr>
+                            <td>
+                            {% for course in coursesHour[hour] %} 
+                                {{course}}</br>
+                            {% endfor %}
+                            </td>
+                            </tr> 
+                        {% else %} 
+                            <tr>
+                            <td>
+
+                            </td>
+                            </tr>  
+                        {% endif %}
+               
+                        {% endfor %}
+                    </tbody>
+                </table> 
+                           
+             </div> 
+             {% endfor %}  
         </section>
 
     </div>
