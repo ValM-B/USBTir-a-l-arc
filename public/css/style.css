@@ -96,6 +96,11 @@ li, a{
 
 
 /* Organizational chart */
+
+.wrapper-chart{
+    min-height: 75vh;
+}
+
 .organization-chart{
     background-color: #344D59;
     color: #B8CBD0;
