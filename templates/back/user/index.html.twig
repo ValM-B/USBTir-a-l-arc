@@ -1,53 +1,39 @@
 {% extends 'back/base.html.twig' %}
 
 {% block body %}
-    <h2>User index</h2>
+    <h2>Liste des Licenciés</h2>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Email</th>
-                <th>Roles</th>
-                <th>Password</th>
-                <th>LicenceNumber</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>DateOfBirth</th>
-                <th>Subscription</th>
+                <th>Numéro de licence</th>
+                <th>Prénom</th>
+                <th>Nom</th>
                 <th>Position</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for user in users %}
             <tr>
                 <td>{{ user.id }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>{{ user.password }}</td>
                 <td>{{ user.licenceNumber }}</td>
                 <td>{{ user.firstname }}</td>
                 <td>{{ user.lastname }}</td>
-                <td>{{ user.dateOfBirth ? user.dateOfBirth|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ user.subscription ? 'Yes' : 'No' }}</td>
                 <td>{{ user.position }}</td>
-                <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ user.updatedAt ? user.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_back_user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('app_back_user_edit', {'id': user.id}) }}">edit</a>
+                    <a href="{{ path('app_back_user_show', {'id': user.id}) }}">voir</a>
+                    <a href="{{ path('app_back_user_edit', {'id': user.id}) }}">editer</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="13">no records found</td>
+                <td colspan="13">Ressource non trouvée</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_back_user_new') }}">Create new</a>
+    <a href="{{ path('app_back_user_new') }}">Nouveau</a>
 {% endblock %}

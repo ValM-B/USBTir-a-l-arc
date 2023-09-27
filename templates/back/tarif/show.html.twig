@@ -18,31 +18,31 @@
                 <td>{{ tarif.ageMax }}</td>
             </tr>
             <tr>
-                <th>Amount</th>
+                <th>Prix</th>
                 <td>{{ tarif.amount }}</td>
             </tr>
             <tr>
-                <th>GearAmount</th>
+                <th>Prix Equipement</th>
                 <td>{{ tarif.gearAmount }}</td>
             </tr>
             <tr>
-                <th>CreatedAt</th>
+                <th>Créé le</th>
                 <td>{{ tarif.createdAt ? tarif.createdAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>UpdatedAt</th>
+                <th>Mis à jour le</th>
                 <td>{{ tarif.updatedAt ? tarif.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>Name</th>
+                <th>Nom</th>
                 <td>{{ tarif.name }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_back_tarif_index') }}">back to list</a>
+    <a href="{{ path('app_back_tarif_index') }}">retour</a>
 
-    <a href="{{ path('app_back_tarif_edit', {'id': tarif.id}) }}">edit</a>
+    <a href="{{ path('app_back_tarif_edit', {'id': tarif.id}) }}">editer</a>
 
     {{ include('back/tarif/_delete_form.html.twig') }}
 {% endblock %}
