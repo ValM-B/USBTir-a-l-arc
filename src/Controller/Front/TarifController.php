@@ -17,8 +17,8 @@ class TarifController extends AbstractController
     public function viewTarifsAndTimetable(TarifRepository $tarifRepository, CourseRepository $courseRepository): Response
     {
         $tarifs = $tarifRepository->findAll();
-        $courses = $courseRepository->findAll();
-
+        $courses = $courseRepository->findAllOrderByDay();
+        
         return $this->render('/front/horaireTarif/horaire_tarifs.html.twig', [
             'controller_name' => 'TarifController',
             'tarifs' => $tarifs,
