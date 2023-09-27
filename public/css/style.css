@@ -4,7 +4,7 @@
 #B8CBD0
 #7A90A4
 #344D59 */
-body{
+.body{
     box-sizing: border-box;
     --resmin: 0.09vmin;
     --resmax: 0.09vmax;
@@ -47,14 +47,11 @@ li, a{
 
 
 /* Main */
-main{
-    
+.main{
     background-color: #B8CBD0;
+    min-height: 75vh;
 }
-.content{
-    min-height: 75vh; 
-    width: 100vw;
-}
+
 
 /* Home */
 /* --- Carousel --- */
@@ -64,7 +61,6 @@ main{
 }
 
 #carouselHome img{
-   
     width: 100vw;
     max-height: 50vh;
     height: auto;
@@ -174,7 +170,7 @@ main{
     padding: 2%;
 }
 .footer-col{
-    width: calc(100% / 3);
+    width: calc(100vw / 3);
 }
 footer h4{
     font-size: calc(24 * var(--resmin));
@@ -200,6 +196,12 @@ footer h4{
     color: #B8CBD0;
     padding-left: 10px;
 }
+
+/* Login */
+.wrapper-login{
+    min-height: 75vh;
+}
+
 
 /* 404 page */
 .page_404{ 
