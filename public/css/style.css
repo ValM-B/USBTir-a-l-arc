@@ -280,6 +280,14 @@ footer h4{
     width: 100vw;
 }
 
+/* BackOffice */
+.wrapper-backoffice{
+    min-height: 75vh;
+}
+.wrapper-backoffice .table{
+    margin-top: 3em;
+    margin-bottom: 3em;
+}
 
 /* Responsive */
 

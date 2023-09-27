@@ -63,9 +63,11 @@
         </header>
 
         <!-- Main -->
+        {% block main %}
         <main class="main">
             {% block body %}{% endblock %}
         </main>
+        {% endblock %}
         
         <!-- Footer -->
         <footer class="footer">

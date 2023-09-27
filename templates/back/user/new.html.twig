@@ -1,9 +1,9 @@
 {% extends 'back/base.html.twig' %}
 
 {% block body %}
-    <h2>Create new User</h2>
+    <h2>Nouveau Licencié</h2>
 
     {{ include('back/user/_form.html.twig') }}
 
-    <a href="{{ path('app_back_user_index') }}">back to list</a>
+    <a href="{{ path('app_back_user_index') }}">retour</a>
 {% endblock %}
