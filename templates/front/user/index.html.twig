@@ -1,7 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello UserController!{% endblock %}
-
 {% block body %}
 
     <div class="wrapper-profil d-flex align-items-center justify-content-center">
@@ -37,7 +35,6 @@
                 <div class="col-12 col-lg-5 col-profil">
                     <h3>Mes cours</h3>
                     <div>  
-                    {% dump(app.user.userCourses) %}
                         {% if app.user.userCourses is not empty %}
                             {% for userCourse in app.user.userCourses %}
                                 <div>
