@@ -39,6 +39,14 @@ h1{
     background-color: #344D59 ;
     font-weight: 600;
     color: #B8CBD0;
+    border-color: #344D59;
+}
+
+.btn:hover
+{
+    background-color:#B8CBD0;
+    border-color:#B8CBD0;
+    color:#344D59;
 }
 li, a{
     font-size: calc(18 * var(--resmin));
@@ -198,6 +206,19 @@ li, a{
 
 .table-slot{
     border-color: #B8CBD0;
+}
+
+ /* Back-office */
+
+/* --- User --- */
+
+.fa-sort
+{
+    color:#344D59
+}
+.fa-sort:hover{
+    color: #709CA7;
+    cursor: pointer;
 }
 
 

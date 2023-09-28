@@ -3,28 +3,39 @@
 {% block body %}
     <h2>Liste des Licenciés</h2>
 
-    <table class="table">
+    <div class="input-group my-3">
+        <input type="text" class="form-control" placeholder="Rechercher un licencié" aria-label="Rechercher un liencié" aria-describedby="button-addon2">
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Rechercher</button>
+    </div>
+
+    <table class="table table-striped">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Numéro de licence</th>
-                <th>Prénom</th>
-                <th>Nom</th>
-                <th>Position</th>
-                <th>Actions</th>
+                <th scope="col">Id</th>
+                <th scope="col">Numéro de licence
+                    <i class="fa-solid fa-sort"></i>
+                </th>
+                <th scope="col">Prénom 
+                    <i class="fa-solid fa-sort"></i>
+                </th>
+                <th scope="col">Nom
+                    <i class="fa-solid fa-sort"></i>
+                </th>
+                <th scope="col">Fonction</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for user in users %}
             <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.licenceNumber }}</td>
-                <td>{{ user.firstname }}</td>
+                <th scope="row">{{ user.id }}</th>
+                <td class="text-uppercase">{{ user.licenceNumber }}</td>
+                <td>{{ user.firstname }} </td>
                 <td>{{ user.lastname }}</td>
                 <td>{{ user.position }}</td>
                 <td>
-                    <a href="{{ path('app_back_user_show', {'id': user.id}) }}">voir</a>
-                    <a href="{{ path('app_back_user_edit', {'id': user.id}) }}">editer</a>
+                    <a href="{{ path('app_back_user_show', {'id': user.id}) }}" class="btn">Voir</a>
+                    <a href="{{ path('app_back_user_edit', {'id': user.id}) }}" class="btn">Editer</a>
                 </td>
             </tr>
         {% else %}
@@ -35,5 +46,6 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_back_user_new') }}">Nouveau</a>
+    <a class="btn" href="{{ path('app_back_user_new') }}">Nouveau</a>
+    
 {% endblock %}
