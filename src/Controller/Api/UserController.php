@@ -3,6 +3,7 @@
 namespace App\Controller\Api;
 
 use App\Repository\UserRepository;
+use App\Service\DataQueryService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -11,32 +12,19 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/api/v1")
+ * @Route("/api")
  */
 class UserController extends AbstractController
 {
     /**
-     * @Route("/users", name="api_v1_users")
+     * @Route("/users", name="api_users")
      */
-    public function index(Request $request, UserRepository $userRepository): JsonResponse
+    public function index(Request $request, UserRepository $userRepository, DataQueryService $dataQueryService): JsonResponse
     {
-        if($request->query->has('search')){
-            $search = $request->query->get('search');
-            $users = $userRepository->findAllBySearch($search);
+        if($dataQueryService->search()){
+           $users = $dataQueryService->search();
         } else {
-
-            $orderBy = [];
-            if ($request->query->has('sort')) {
-                $orderBy[$request->query->get('sort')] = "ASC";
-
-            }
-            // get the page number in url (/users?page=[int])
-            $page = (int) $request->query->get('page', 1);
-            //sets the number of users to display on the page
-            $limit = 10;
-            //sets the number of users of previous pages not to be retrieved
-            $offset = ($page - 1) * $limit;
-            $users = $userRepository->findBy([], $orderBy, $limit, $offset);
+            $users = $dataQueryService->getUsersOfOnePage();
         }
         
         return $this->json($users, Response::HTTP_OK, [], ["groups" => "users"]);
