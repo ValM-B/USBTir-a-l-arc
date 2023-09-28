@@ -1,0 +1,48 @@
+{% extends 'back/base.html.twig' %}
+
+{% block body %}
+    <h2>Tarif</h2>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ tarif.id }}</td>
+            </tr>
+            <tr>
+                <th>AgeMin</th>
+                <td>{{ tarif.ageMin }}</td>
+            </tr>
+            <tr>
+                <th>AgeMax</th>
+                <td>{{ tarif.ageMax }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ tarif.amount }}</td>
+            </tr>
+            <tr>
+                <th>Prix Equipement</th>
+                <td>{{ tarif.gearAmount }}</td>
+            </tr>
+            <tr>
+                <th>Créé le</th>
+                <td>{{ tarif.createdAt ? tarif.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Mis à jour le</th>
+                <td>{{ tarif.updatedAt ? tarif.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ tarif.name }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_back_tarif_index') }}">retour</a>
+
+    <a href="{{ path('app_back_tarif_edit', {'id': tarif.id}) }}">editer</a>
+
+    {{ include('back/tarif/_delete_form.html.twig') }}
+{% endblock %}

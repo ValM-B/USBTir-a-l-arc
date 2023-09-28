@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h2 class="mb-4 text-center pt-5">Association sportive de Tir à l'Arc</h2>
+    <div class="container mt-5"> 
+
+
+    <section class="contact mb-5 p-5 section-personnalisee rounded shadow">
+
+        <h2>Contactez-nous</h2><br />
+        <p>Pour toute question ou information supplémentaire sur notre association de tir à l'arc, n'hésitez pas à nous contacter : usb.archers.bosquet@free.fr</p>
+    </section>
+    <section class="p-5 section-personnalisee rounded shadow"> 
+    <address>
+        <p><h2> Président</h2><br />
+        <p>Adresse : 123 Rue de l Arc en Ciel</p>
+        <p>Ville : Votre Ville</p>
+        <p>Téléphone : +33 01 23 45 67 89</p>
+        <p>Email : <a href="{{ president.email }}">{{ president.email }}</a></p>
+    </address>
+    </section>
+    </div><br /><br />
+
+<div class="container mt-5 pb-5">
+    <section class="p-5 section-personnalisee rounded shadow">
+
+        <h2 class="mb-4 text-center">Accès aux locaux</h2>
+        
+            <div class="d-flex justify-content-center"> 
+                    <iframe class="d-block" src="https://www.google.com/maps/d/embed?mid=1AcESxfitiKzTGu6MKT4g8P9vc2zxdcg&ehbc=2E312F&noprof=1" width="640" height="480"></iframe>
+            </div>
+    </section>
+</div>
+    
+{% endblock %}

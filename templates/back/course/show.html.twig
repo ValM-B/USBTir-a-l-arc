@@ -1,0 +1,40 @@
+{% extends 'back/base.html.twig' %}
+
+{% block body %}
+    <h2>Cours</h2>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ course.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ course.name }}</td>
+            </tr>
+            <tr>
+                <th>Jour</th>
+                <td>{{ course.day }}</td>
+            </tr>
+            <tr>
+                <th>Heure</th>
+                <td>{{ course.hour ? course.hour|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Créé le</th>
+                <td>{{ course.createdAt ? course.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Mis à jour le</th>
+                <td>{{ course.updatedAt ? course.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_back_course_index') }}">retour</a>
+
+    <a href="{{ path('app_back_course_edit', {'id': course.id}) }}">editer</a>
+
+    {{ include('back/course/_delete_form.html.twig') }}
+{% endblock %}

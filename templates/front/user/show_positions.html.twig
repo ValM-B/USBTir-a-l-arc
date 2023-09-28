@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="wrapper-chart d-flex align-items-center justify-content-center">
+    <div class="container py-5">
+        <h2 class="text-center profil-title">Organigramme</h2>
+
+		<section class="my-4 p-4 section-personnalisee rounded shadow">
+        <div class="d-flex justify-content-center p-0">
+
+			<div class="organization-chart">
+				<div>
+					<h3>Bureau</h3>
+					<div class="row d-flex justify-content-center">
+						{% for user in users %}
+							{% if user.position != "Entraîneur" %}
+								<div class="col-lg-4">
+									<div class="picture">
+										<img src="{{ asset('images/' ~ user.position ~ '.png')}}" alt="Photo de {{ user.firstname}} {{ user.lastname}}">
+									</div>
+									<h4>{{ user.firstname}} {{ user.lastname}}</h4>
+									<em>{{ user.position }}</em>
+									<p>{{ user.email }}</p>
+								</div>	
+							{% endif %}
+						{% endfor %}
+					</div>
+				</div>
+
+				<div class="mt-5">
+					<h3>Entraineurs</h3>
+					<div class="row d-flex justify-content-center">
+						{% for user in users %}
+							{% if user.position == "Entraîneur" %}
+								<div class="col-lg-4">
+									<div class="picture">
+										<img src="{{ asset('images/' ~ user.position ~ '.png')}}" alt="Photo de {{ user.firstname}} {{ user.lastname}}">
+									</div>
+									<h4>{{ user.firstname}} {{ user.lastname}}</h4>
+									<em>{{ user.position }}</em>
+									<p>{{ user.email }}</p>
+								</div>	
+							{% endif %}
+						{% endfor %}
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+		</section>
+		</div>
+	</div>
+{% endblock %}

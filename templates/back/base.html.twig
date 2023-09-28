@@ -1,0 +1,37 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    <h1>O'tir ADMIN</h1>
+{% endblock %}
+
+{% block nav %}
+    <li class="nav-item p-lg-2">
+        <a class="nav-link" aria-current="page" href="{{ path('app_back_main') }}">Accueil</a>
+    </li>
+    <li class="nav-item p-lg-2">
+        <a class="nav-link" aria-current="page" href="{{ path('app_back_user_index') }}">Licenciés</a>
+    </li>
+    <li class="nav-item p-lg-2">
+        <a class="nav-link" href="{{ path('app_back_course_index') }}">Cours</a>
+    </li>
+    <li class="nav-item p-lg-2">
+        <a class="nav-link" href="{{ path('app_back_tarif_index') }}">Tarifs</a>
+    </li>
+{% endblock %}
+
+{% block main %}
+    <main class="main">
+        <div class="wrapper-backoffice text-center d-flex justify-content-center align-items-center">
+            <div class="mt-5 mb-5">
+                {% block body %}{% endblock %}
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+
+{% block footer %}
+    <div class="footer-container d-flex justify-content-center m-auto">
+    <a class="nav-link" aria-current="page" href="{{ path('app_home') }}">Retour front-office</a>
+    </div>
+{% endblock %}

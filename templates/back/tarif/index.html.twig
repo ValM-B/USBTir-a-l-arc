@@ -1,0 +1,33 @@
+{% extends 'back/base.html.twig' %}
+
+{% block body %}
+    <h2>Liste des Tarifs</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tarif in tarifs %}
+            <tr>
+                <td>{{ tarif.id }}</td>
+                <td>{{ tarif.name }}</td>
+                <td>
+                    <a href="{{ path('app_back_tarif_show', {'id': tarif.id}) }}">Voir</a>
+                    <a href="{{ path('app_back_tarif_edit', {'id': tarif.id}) }}">Editer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">Ressource non trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_back_tarif_new') }}">Nouveau</a>
+{% endblock %}

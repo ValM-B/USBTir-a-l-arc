@@ -1,0 +1,39 @@
+{% extends 'back/base.html.twig' %}
+
+{% block body %}
+    <h2>Liste des Licenciés</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Numéro de licence</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Position</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.licenceNumber }}</td>
+                <td>{{ user.firstname }}</td>
+                <td>{{ user.lastname }}</td>
+                <td>{{ user.position }}</td>
+                <td>
+                    <a href="{{ path('app_back_user_show', {'id': user.id}) }}">voir</a>
+                    <a href="{{ path('app_back_user_edit', {'id': user.id}) }}">editer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">Ressource non trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_back_user_new') }}">Nouveau</a>
+{% endblock %}

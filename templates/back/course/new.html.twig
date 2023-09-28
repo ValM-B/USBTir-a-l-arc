@@ -1,0 +1,10 @@
+{% extends 'back/base.html.twig' %}
+
+
+{% block body %}
+    <h2>Nouveau Cours</h2>
+
+    {{ include('back/course/_form.html.twig') }}
+
+    <a href="{{ path('app_back_course_index') }}">retour</a>
+{% endblock %}
