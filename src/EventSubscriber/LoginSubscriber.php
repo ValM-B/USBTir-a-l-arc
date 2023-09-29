@@ -19,6 +19,7 @@ class LoginSubscriber implements EventSubscriberInterface
 
     public function onSecurityAuthenticationSuccess(AuthenticationSuccessEvent $event, $request): void
     {
+        dd("test");
         $role = $event->getAuthenticationToken()->getUser()->getRoles();
         if ($this->request->getCurrentRequest()->getPathInfo() === "/connexion" && in_array("ROLE_ADMIN", $role)) {
             // Si l'utilisateur est administrateur, renvoyez une réponse d'erreur.
