@@ -3,22 +3,22 @@
 {% block body %}
     <h2>Liste des Tarifs</h2>
 
-    <table class="table">
+    <table class="table table-striped">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Actions</th>
+                <th scope="col">Id</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for tarif in tarifs %}
             <tr>
-                <td>{{ tarif.id }}</td>
+                <th scope="row">{{ tarif.id }}</th>
                 <td>{{ tarif.name }}</td>
                 <td>
-                    <a href="{{ path('app_back_tarif_show', {'id': tarif.id}) }}">Voir</a>
-                    <a href="{{ path('app_back_tarif_edit', {'id': tarif.id}) }}">Editer</a>
+                    <a href="{{ path('app_back_tarif_show', {'id': tarif.id}) }}" class="btn">Voir</a>
+                    <a href="{{ path('app_back_tarif_edit', {'id': tarif.id}) }}" class="btn">Editer</a>
                 </td>
             </tr>
         {% else %}
@@ -29,5 +29,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_back_tarif_new') }}">Nouveau</a>
+    <a href="{{ path('app_back_tarif_new') }}" class="btn">Nouveau</a>
 {% endblock %}
