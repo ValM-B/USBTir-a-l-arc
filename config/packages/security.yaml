@@ -14,15 +14,8 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        main:
-            lazy: true
-            provider: app_user_provider
-            custom_authenticator: App\Security\LoginFormAuthenticator
-            logout:
-                path: app_logout
-                # where to redirect after logout
-                target: app_login
         admin:
+            pattern: ^/admin35786
             lazy: true
             provider: app_user_provider
             # custom_authenticator: App\Security\LoginAdminFormAuthenticator
@@ -35,7 +28,16 @@ security:
             logout:
                 path: app_logout
                 # where to redirect after logout
-                target: app_admin_login
+                target: app_admin_login    
+        main:
+            lazy: true
+            provider: app_user_provider
+            custom_authenticator: App\Security\LoginFormAuthenticator
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                target: app_login
+        
         
     role_hierarchy: 
         # ROLE_ADMIN: ROLE_USER
@@ -50,6 +52,7 @@ security:
     access_control:
         - { path: ^/profil, roles: ROLE_USER }
         - { path: ^/organigramme, roles: ROLE_USER }
+        - { path: ^/admin35786/connexion, roles: IS_AUTHENTICATED_ANONYMOUSLY}
         - { path: ^/admin35786, roles: ROLE_ADMIN }
 
 when@test:
