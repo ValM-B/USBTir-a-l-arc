@@ -25,24 +25,20 @@
                 <th scope="col">Actions</th>
             </tr>
         </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <th scope="row">{{ user.id }}</th>
-                <td class="text-uppercase">{{ user.licenceNumber }}</td>
-                <td>{{ user.firstname }} </td>
-                <td>{{ user.lastname }}</td>
-                <td>{{ user.position }}</td>
-                <td>
-                    <a href="{{ path('app_back_user_show', {'id': user.id}) }}" class="btn">Voir</a>
-                    <a href="{{ path('app_back_user_edit', {'id': user.id}) }}" class="btn">Editer</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="13">Ressource non trouvée</td>
-            </tr>
-        {% endfor %}
+        <tbody id="user-tbody">
+            <template id="user-template">
+                <tr>
+                    <th scope="row" class="user-id"></th>
+                    <td class="text-uppercase user-licenceNumber"></td>
+                    <td class="user-firstname"></td>
+                    <td class="user-lastname"></td>
+                    <td class="user-position"></td>
+                    <td>
+                        <a href="{{ path('app_back_user_show', {'id': user.id}) }}" class="btn">Voir</a>
+                        <a href="{{ path('app_back_user_edit', {'id': user.id}) }}" class="btn">Editer</a>
+                    </td>
+                </tr>
+            </template>
         </tbody>
     </table>
     <nav aria-label="Page navigation example">
