@@ -228,7 +228,7 @@ li, a{
 {
     color: #709CA7;
 }
-.page-link:active
+.page-link:focus
 {
     color: #709CA7;
 }
