@@ -42,7 +42,7 @@
                 </td>
             </tr>
         </template>
-        
+
     </table>
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
@@ -51,15 +51,17 @@
                 <span aria-hidden="true">&laquo;</span>
             </a>
             </li>
-            <template id="page-template">
-                <li class="page-item"><a class="page-link" href="#"></a></li>
-             </template>
+            
             <li class="page-item" id="next">
             <a class="page-link" href="#" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
             </a>
             </li>
         </ul>
+        {# template to add page button#}
+        <template id="page-template">
+            <li class="page-item"><a class="page-link" href="#"></a></li>
+        </template>
     </nav>
 
     <a class="btn" href="{{ path('app_back_user_new') }}">Nouveau</a>

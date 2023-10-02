@@ -11,7 +11,7 @@ export const userList ={
         }
         const showListUsers = getListUser()
             .then(data => {
-                
+                // TODO factoriser cette partie
                 data.users.forEach(user => {
                     const newTemplate = template.content.cloneNode(true);
                     newTemplate.querySelector(".user-id").textContent = user.id;

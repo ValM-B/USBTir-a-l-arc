@@ -11,7 +11,7 @@ export const userPage ={
         for (const btn of userPage.btnsPage) {
             btn.addEventListener("click", userPage.handleClick);
         }
-     
+    //  TODO charge le page 1 en init
     },
 
     handleClick: function(event)
@@ -28,10 +28,13 @@ export const userPage ={
             const pageNb = btnId.slice(5);
             const usersList = userPage.getData(pageNb)
                 .then(data => {
+                    
+                    const tbody = document.querySelector("#user-tbody");
+                    tbody.innerHTML="";
+                    const template = document.querySelector("#user-template");
                     data.users.forEach(user => {
-                        const tbody = document.querySelector("#user-tbody");
-                        tbody.innerHTML="";
-                        const template = document.querySelector("#user-template");
+
+                        
                         const newTemplate = template.content.cloneNode(true);
                         newTemplate.querySelector(".user-id").textContent = user.id;
                         newTemplate.querySelector(".user-licenceNumber").textContent = user.licenceNumber;
@@ -44,7 +47,7 @@ export const userPage ={
                         tbody.append(newTemplate);
                     })
     
-                    pagination.removePages();
+                    pagination.resetPagination();
                     pagination.addPagination(data);
                 })
             

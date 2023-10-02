@@ -3,9 +3,14 @@ import { userPage } from "./userPage.js";
 export const pagination ={
 
 	paginationList : null,
+	btnPrevious : null,
+	btnNext :null,
+
 	init : function()
 	{
 		pagination.paginationList = document.querySelector('.pagination');
+		pagination.btnPrevious = document.querySelector("#previous");
+		pagination.btnNext = document.querySelector("#next")
 
 	},
 
@@ -24,25 +29,34 @@ export const pagination ={
 			}
 
 			if (data.currentPage === 1) {
-				document.querySelector("#previous").classList.add("disabled")
+				pagination.btnPrevious.classList.add("disabled")
 			}
 
 			if (data.currentPage === data.nbPages) {
-				document.querySelector("#next").classList.add("disabled")
+				pagination.btnNext.classList.add("disabled")
 			}
-			pagination.paginationList.insertBefore(newPage, document.querySelector('#next'));
+			pagination.paginationList.insertBefore(newPage, pagination.btnNext);
 		}
 
 		userPage.init();
 	},
 
-	removePages : function()
+	resetPagination : function()
 	{
 		const btnsPagination = pagination.paginationList.children;
 
 		// remove all the children from the list except the first and the last (previous and next button)
-		for (let i = children.length - 2; i > 0; i--) {
-			parentElement.removeChild(children[i]);
+		for (let i = btnsPagination.length - 2; i > 0; i--) {
+			pagination.paginationList.removeChild(btnsPagination[i]);
+		}
+
+		if(pagination.btnPrevious.classList.contains('disabled'))
+		{
+			pagination.btnPrevious.classList.remove('disabled')
+		}
+		if(pagination.btnNext.classList.contains('disabled'))
+		{
+			pagination.btnNext.classList.remove('disabled')
 		}
 	}
 }
