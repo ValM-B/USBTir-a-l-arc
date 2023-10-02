@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\EntityManagerInterface;
 
 class UserController extends AbstractController
 {
@@ -31,4 +32,5 @@ class UserController extends AbstractController
             'users' => $users
         ]);
     }
+
 }

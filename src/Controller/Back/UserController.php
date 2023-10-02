@@ -25,6 +25,7 @@ class UserController extends AbstractController
         ]);
     }
 
+
     /**
      * @Route("/new", name="app_back_user_new", methods={"GET", "POST"})
      */
