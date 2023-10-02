@@ -19,8 +19,6 @@ security:
             pattern: ^/admin35786
             lazy: true
             provider: app_user_provider
-            # custom_authenticator: App\Security\LoginAdminFormAuthenticator
-            # custom_authenticator: App\Security\LoginFormAuthenticator
             form_login:
                 username_parameter: email
                 password_parameter: password
