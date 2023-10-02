@@ -34,8 +34,8 @@
                     <td class="user-lastname"></td>
                     <td class="user-position"></td>
                     <td>
-                        <a href="{{ path('app_back_user_show', {'id': user.id}) }}" class="btn">Voir</a>
-                        <a href="{{ path('app_back_user_edit', {'id': user.id}) }}" class="btn">Editer</a>
+                        <a href="" class="btn">Voir</a>
+                        <a href="" class="btn">Editer</a>
                     </td>
                 </tr>
             </template>
@@ -61,4 +61,8 @@
 
     <a class="btn" href="{{ path('app_back_user_new') }}">Nouveau</a>
     
+{% endblock %}
+
+{% block js %}
+    <script type ="module" src="{{asset('js/app.js')}}"></script>
 {% endblock %}
