@@ -12,5 +12,4 @@ const app = {
     }
 }
 
-// {{ path('app_back_user_show', {'id': user.id}) }}
 document.addEventListener("DOMContentLoaded", app.init);
