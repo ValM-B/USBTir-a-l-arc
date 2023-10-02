@@ -19,11 +19,13 @@ class LoginSubscriber implements EventSubscriberInterface
 
     public function onSecurityAuthenticationSuccess(AuthenticationSuccessEvent $event, $request): void
     {
-        dd("test");
+        
         $role = $event->getAuthenticationToken()->getUser()->getRoles();
         if ($this->request->getCurrentRequest()->getPathInfo() === "/connexion" && in_array("ROLE_ADMIN", $role)) {
             // Si l'utilisateur est administrateur, renvoyez une réponse d'erreur.
             // isGranted('ROLE_ADMIN'))
+            throw new AccessDeniedHttpException('Accès refusé');
+        } else if ($this->request->getCurrentRequest()->getPathInfo() === "/admin35786/connexion" && !in_array("ROLE_ADMIN", $role)) {
             throw new AccessDeniedHttpException('Accès refusé');
         }
     }
