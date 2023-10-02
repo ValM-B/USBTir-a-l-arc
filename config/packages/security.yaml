@@ -14,8 +14,21 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+
+        login:
+            pattern: ^/api/login
+            stateless: true
+            json_login:
+                check_path: /api/login_check
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+
+        api:
+            pattern: ^/api
+            stateless: true
+            jwt: ~
+
         admin:
-            
             pattern: ^/admin35786
             lazy: true
             provider: app_user_provider
@@ -52,6 +65,8 @@ security:
         - { path: ^/organigramme, roles: ROLE_USER }
         - { path: ^/admin35786/connexion, roles: IS_AUTHENTICATED_ANONYMOUSLY}
         - { path: ^/admin35786, roles: ROLE_ADMIN }
+        - { path: ^/api/login, roles: PUBLIC_ACCESS }
+        - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
 
 when@test:
     security:
