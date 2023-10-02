@@ -4,7 +4,7 @@
 #B8CBD0
 #7A90A4
 #344D59 */
-.body{
+body{
     box-sizing: border-box;
     --resmin: 0.09vmin;
     --resmax: 0.09vmax;
@@ -208,8 +208,6 @@ li, a{
     border-color: #B8CBD0;
 }
 
- /* Back-office */
-
 /* --- User --- */
 
 .fa-sort
@@ -244,6 +242,7 @@ li, a{
 .footer{
     background-color: #137C8B;
     color: #B8CBD0;
+    min-height: 15vh;
 }
 .footer-container{
     display: flex;
@@ -368,12 +367,25 @@ footer h4{
 
 
 /* BackOffice */
+.row{
+    margin-right: 0;
+}
 .wrapper-backoffice{
     min-height: 75vh;
+    padding-left: calc(100vw/6);
+    padding-right: calc(100vw/6);
 }
 .wrapper-backoffice .table{
     margin-top: 3em;
     margin-bottom: 3em;
+}
+.homepage-backoffice li:hover{
+    border-top: 4px solid #344D59;
+    border-bottom: 4px solid #344D59;
+    padding: 6px 0;
+}
+.table{
+    /* display: block; */
 }
 
 /* Responsive */
@@ -388,12 +400,10 @@ footer h4{
     .btn, .navbar-text a{
         font-size: calc(18 * var(--resmin));
     }
-    .footer{
-        min-height: 15vh;
-    }
 }
 
 @media screen and (max-width:992px) {
+    
     h1{
         font-size: calc(42 * var(--resmax));
     }
@@ -416,7 +426,7 @@ footer h4{
         margin-right: auto;
     }
     .footer-container{
-    flex-wrap: wrap;
+        flex-wrap: wrap;
     }
     .footer-col{
         width: 100%;

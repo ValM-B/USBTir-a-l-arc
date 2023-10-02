@@ -2,13 +2,14 @@
 
 {% block body %}
 
-<div class="example-wrapper">
-    <h2>Hello {{ controller_name }}! ✅</h2>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/var/www/html/Apothéose/OTir/src/Controller/Back/MainController.php'|file_link(0) }}">src/Controller/Back/MainController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/var/www/html/Apothéose/OTir/templates/back/main/index.html.twig'|file_link(0) }}">templates/back/main/index.html.twig</a></code></li>
+<section class="homepage-backoffice">
+    <h2 class="mb-5">Bienvenue, {{ app.user.firstname }}</h2>
+    <ul class="">
+        <p class="fs-3">Ici, vous pouvez gérer:</p>
+        <li><a href="{{ path('app_back_user_index') }}">Les Licenciés</a></li>
+        <li><a href="{{ path('app_back_course_index') }}">Les Cours</a></li>
+        <li><a href="{{ path('app_back_tarif_index') }}">Les Tarifs</a></li>
     </ul>
-</div>
+</section>
+
 {% endblock %}
