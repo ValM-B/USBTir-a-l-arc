@@ -1,3 +1,6 @@
+import { pagination } from "./pagination.js";
+import { userList } from "./userList.js";
+
 export const userSearch = {
     init: function(){
      
@@ -7,12 +10,17 @@ export const userSearch = {
     } ,
      getData: async function(){
         const inputSearch = document.querySelector(".form-control");
-        const response = await fetch(`http://localhost:8000/api/users?search=${inputSearch.Value}`);
+        
+        const response = await fetch(`http://localhost:8000/api/users?search=${inputSearch.value}`);
         return await response.json();
     },
     handleClick : function(){
-        const userList= userSearch.getData() 
-        .then(data => {console.log(data)
+        const userLists= userSearch.getData() 
+        .then(data => { console.log(data.users)
+             
+            userList.addUsersList(data.users);
+             pagination.resetPagination();
+            pagination.addPagination(data.nbPages, data.currentPage);
             
         })
     }
