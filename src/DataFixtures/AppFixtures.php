@@ -85,12 +85,9 @@ class AppFixtures extends Fixture
             $newUser->setRoles(['ROLE_USER']);
             $newUser->setCreatedAt(new DateTimeImmutable());
 
-            //Create 1 or 2 UserCourse for the current user
+            //Add 1 or 2 Course for the current user
             for ($i=0; $i <= mt_rand(0, 1) ; $i++) { 
-                $userCourse = new UserCourse;
-                $userCourse->setUser($newUser);
-                $userCourse->setCourse($courses[array_rand($courses)]);
-                $manager->persist($userCourse);
+               $newUser->addCourse($courses[array_rand($courses)]);
             }
 
             $manager->persist($newUser);
