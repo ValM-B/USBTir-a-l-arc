@@ -1,4 +1,20 @@
 {{ form_start(form) }}
+    <div class="row justify-content-center">
+        <div class="col-md-5 mx-2">
+        {{ form_label(form.firstname) }}{{ form_widget(form.firstname) }}
+        {{ form_label(form.lastname) }}{{ form_widget(form.lastname) }}
+        {{ form_label(form.email) }}{{ form_widget(form.email) }}
+        {{ form_label(form.dateOfBirth) }}{{ form_widget(form.dateOfBirth) }}
+        {{ form_label(form.password) }}{{ form_widget(form.password) }}
+        
+        </div>
+        <div class="col-md-5 mx-2">
+        {{ form_label(form.licenceNumber) }}{{ form_widget(form.licenceNumber) }}
+        {{ form_label(form.subscription) }}{{ form_widget(form.subscription) }}
+        {{ form_label(form.position) }}{{ form_widget(form.position) }}
+        {{ form_label(form.roles) }}{{ form_widget(form.roles) }}
+        </div>
+    </div>
     {{ form_widget(form) }}
     <button class="btn">{{ button_label|default('Sauvegarder') }}</button>
 {{ form_end(form) }}
