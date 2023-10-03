@@ -2,8 +2,10 @@
 
 namespace App\Form;
 
+use App\Entity\Course;
 use App\Entity\User;
-
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType as TypeDateType;
@@ -65,6 +67,18 @@ class UserType extends AbstractType
                 "attr" => [
                     "placeholder" => "Président, Trésorier etc..."
                 ]
+            ])
+            ->add('courses', EntityType::class, [
+                'class' => Course::class,
+                'choice_label' => 'name',
+                'multiple' => true,
+                'expanded' => true,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                    ->orderBy('c.name', 'ASC');
+                },
+                "label" => "Cours"
+
             ])
    
         ;
