@@ -16,7 +16,11 @@ export const userList ={
         newTemplate.querySelector(".user-licenceNumber").textContent = user.licenceNumber;
         newTemplate.querySelector(".user-firstname").textContent = user.firstname;
         newTemplate.querySelector(".user-lastname").textContent = user.lastname;
-        newTemplate.querySelector(".user-position").textContent = user.position;
+        if (user.position) {
+            newTemplate.querySelector(".user-position").textContent = user.position;
+        } else {
+            newTemplate.querySelector(".user-position").textContent = "aucune";
+        }
         
         newTemplate.querySelector(".btn-show").href = window.location.href + user.id;
         newTemplate.querySelector(".btn-edit ").href = window.location.href + user.id + "/edit";
