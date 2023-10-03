@@ -449,6 +449,8 @@ footer h4{
     /* Table licenciée responsive */
     .user-id,
     .user-btn-edit,
+    .course-btn-edit,
+    .tarif-btn-edit,
     .user-position{
         display: none;
     }

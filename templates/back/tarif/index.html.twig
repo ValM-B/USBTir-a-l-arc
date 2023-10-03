@@ -1,7 +1,12 @@
 {% extends 'back/base.html.twig' %}
 
 {% block body %}
+<div class="d-flex flex-column w-100">
     <h2>Liste des Tarifs</h2>
+    <div class="align-self-end">
+        <a href="{{ path('app_back_tarif_new') }}" class="btn">Nouveau</a>
+    </div>
+</div>
 
     <table class="table table-striped">
         <thead>
@@ -18,7 +23,7 @@
                 <td>{{ tarif.name }}</td>
                 <td>
                     <a href="{{ path('app_back_tarif_show', {'id': tarif.id}) }}" class="btn">Voir</a>
-                    <a href="{{ path('app_back_tarif_edit', {'id': tarif.id}) }}" class="btn">Editer</a>
+                    <a href="{{ path('app_back_tarif_edit', {'id': tarif.id}) }}" class="btn tarif-btn-edit">Editer</a>
                 </td>
             </tr>
         {% else %}
@@ -29,5 +34,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_back_tarif_new') }}" class="btn">Nouveau</a>
 {% endblock %}

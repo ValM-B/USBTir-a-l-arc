@@ -2,7 +2,12 @@
 
 
 {% block body %}
+<div class="d-flex flex-column w-100">
     <h2>Liste des Cours</h2>
+    <div class="align-self-end">
+        <a href="{{ path('app_back_course_new') }}" class="btn">Nouveau</a>
+    </div>
+</div>
 
     <table class="table table-striped">
         <thead>
@@ -19,7 +24,7 @@
                 <td>{{ course.name }}</td>
                 <td>
                     <a href="{{ path('app_back_course_show', {'id': course.id}) }}" class="btn">Voir</a>
-                    <a href="{{ path('app_back_course_edit', {'id': course.id}) }}" class="btn">Editer</a>
+                    <a href="{{ path('app_back_course_edit', {'id': course.id}) }}" class="btn course-btn-edit">Editer</a>
                 </td>
             </tr>
         {% else %}
@@ -29,6 +34,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_back_course_new') }}" class="btn">Nouveau</a>
 {% endblock %}
