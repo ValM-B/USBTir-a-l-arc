@@ -26,37 +26,42 @@
             </tr>
         </thead>
         <tbody id="user-tbody">
-            <template id="user-template">
-                <tr>
-                    <th scope="row" class="user-id"></th>
-                    <td class="text-uppercase user-licenceNumber"></td>
-                    <td class="user-firstname"></td>
-                    <td class="user-lastname"></td>
-                    <td class="user-position"></td>
-                    <td>
-                        <a href="" class="btn btn-show">Voir</a>
-                        <a href="" class="btn btn-edit">Editer</a>
-                    </td>
-                </tr>
-            </template>
         </tbody>
+
+        {# template to add user in tbody #}
+        <template id="user-template">
+            <tr>
+                <th scope="row" class="user-id"></th>
+                <td class="text-uppercase user-licenceNumber"></td>
+                <td class="user-firstname"></td>
+                <td class="user-lastname"></td>
+                <td class="user-position"></td>
+                <td>
+                    <a href="" class="btn btn-show">Voir</a>
+                    <a href="" class="btn btn-edit">Editer</a>
+                </td>
+            </tr>
+        </template>
+
     </table>
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
-            <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
+            <li class="page-item" id="previous">
+            <a class="page-link"  href="#" aria-label="Previous">
+                <span class="page-arrow" aria-hidden="true">&laquo;</span>
             </a>
             </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
+            
+            <li class="page-item" id="next">
             <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
+                <span class="page-arrow" aria-hidden="true">&raquo;</span>
             </a>
             </li>
         </ul>
+        {# template to add page button#}
+        <template id="page-template">
+            <li class="page-item"><a class="page-link" href="#"></a></li>
+        </template>
     </nav>
 
     <a class="btn" href="{{ path('app_back_user_new') }}">Nouveau</a>
