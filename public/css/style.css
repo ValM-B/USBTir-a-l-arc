@@ -367,9 +367,6 @@ footer h4{
 
 
 /* BackOffice */
-.row{
-    margin-right: 0;
-}
 .wrapper-backoffice{
     min-height: 75vh;
     padding-left: calc(100vw/6);
@@ -379,7 +376,7 @@ footer h4{
     margin-top: 3em;
     margin-bottom: 3em;
 }
-.homepage-backoffice li:hover{
+.container-homepage-backoffice li:hover{
     border-top: 4px solid #344D59;
     border-bottom: 4px solid #344D59;
     padding: 6px 0;
