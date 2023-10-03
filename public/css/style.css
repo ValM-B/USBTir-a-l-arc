@@ -224,7 +224,11 @@ li, a{
 .pagination{
     --bs-pagination-active-bg: #344D59;
     --bs-pagination-active-border-color: #344D59;
+    --bs-pagination-focus-color:none;
+    --bs-pagination-focus-bg:none; 
+    --bs-pagination-focus-box-shadow: none;
 }
+
 .page-link
 {
     color:#344D59
