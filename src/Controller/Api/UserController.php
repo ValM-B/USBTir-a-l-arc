@@ -24,10 +24,18 @@ class UserController extends AbstractController
         if($dataQueryService->search()){
            $users = $dataQueryService->search();
         } else {
-            $users = $dataQueryService->getUsersOfOnePage();
+            $users = $dataQueryService->getUsersOfOnePage()["users"];
         }
+
+        $pageNumber = $dataQueryService->getNumberOfPages();
         
-        return $this->json($users, Response::HTTP_OK, [], ["groups" => "users"]);
+        $responseData = [
+            'users' => $users,
+            'currentPage' => $dataQueryService->getUsersOfOnePage()["page"],
+            'nbPages' => $pageNumber
+        ];
+        
+        return $this->json($responseData, Response::HTTP_OK, [], ["groups" => "users"]);
     }
 
 

@@ -36,6 +36,7 @@ class DataQueryService
 	public function orderBy()
 	{
 		$orderBy = [];
+		// get the result of search request in url (/users?search=[string])
 		if ($this->request->getCurrentRequest()->query->has('sort')) {
 			$orderBy[$this->request->getCurrentRequest()->query->get('sort')] = "ASC";
 		}
@@ -52,11 +53,22 @@ class DataQueryService
 		// get the page number in url (/users?page=[int])
 		$page = (int) $this->request->getCurrentRequest()->query->get('page', 1);
 		//sets the number of users to display on the page
-		$limit = 10;
+		$limit = 20;
 		//sets the number of users of previous pages not to be retrieved
 		$offset = ($page - 1) * $limit;
 		$users = $this->userRepository->findBy([], $this->orderBy(), $limit, $offset);
-		return $users;
+		return ["users" => $users, "page" => $page];
+	}
+
+	/**
+	 * get the number of pages to display
+	 *
+	 * @return int number of pages
+	 */
+	public function getNumberOfPages()
+	{
+		
+		return ceil($this->userRepository->getNumberOfUsers()[1] / 20);
 	}
 	
 }
