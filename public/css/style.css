@@ -327,6 +327,55 @@ footer h4{
     width: 100vw;
 }
 
+
+/* 403 page */
+.page-403 {
+    margin:0;
+    padding: 0;
+}
+.body-403{
+    background: #233142;
+}
+.whistle{
+    width: 20%;
+    fill: #f95959;
+    margin: 100px 40%;
+    text-align: left;
+    transform: translate(-50%, -50%);
+    transform: rotate(0);
+    transform-origin: 80% 30%;
+    animation: wiggle .2s infinite;
+}
+
+@keyframes wiggle {
+    0%{
+    transform: rotate(3deg);
+    }
+    50%{
+    transform: rotate(0deg);
+    }
+    100%{
+    transform: rotate(3deg);
+    }
+}
+.page-403 h2{
+    margin-top: -100px;
+    margin-bottom: 20px;
+    color: #facf5a;
+    text-align: center;
+    font-family: 'Raleway';
+    font-size: 90px;
+    font-weight: 800;
+}
+.page-403 p{
+    color: #455d7a;
+    text-align: center;
+    font-family: 'Raleway';
+    font-size: 30px;
+    text-transform: uppercase;
+}
+
+
 /* BackOffice */
 .wrapper-backoffice{
     min-height: 75vh;
