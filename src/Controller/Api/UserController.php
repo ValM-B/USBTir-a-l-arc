@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/api")
+ * @Route("/admin35786/api")
  */
 class UserController extends AbstractController
 {
