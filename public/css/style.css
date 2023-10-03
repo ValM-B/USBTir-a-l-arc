@@ -446,5 +446,11 @@ footer h4{
         width: calc(42 * var(--resmax));
         line-height: calc(42 * var(--resmax));
     }
+    /* Table licenciée responsive */
+    .user-id,
+    .user-btn-edit,
+    .user-position{
+        display: none;
+    }
 }
 
