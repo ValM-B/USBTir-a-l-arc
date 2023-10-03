@@ -394,6 +394,7 @@ footer h4{
 
 /* Responsive */
 
+/* Large screen */
 @media screen and (min-width:992px) {
     #navbar{
         height: 10vh;
@@ -456,3 +457,15 @@ footer h4{
     }
 }
 
+    /* x-small : phone */
+@media screen and (max-width:576px) {
+    .user-licenceNumber{
+        display: none;
+    }
+    .user-wrapper-search-new, 
+    .user-search{
+        flex-direction: column;
+        margin-bottom: 1rem;
+    }
+
+}
