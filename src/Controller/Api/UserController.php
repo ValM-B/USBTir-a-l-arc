@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/search-user", name="search_user", methods={"GET"})
+     * @Route("/users", name="api_users")
      */
     public function index(Request $request, UserRepository $userRepository, DataQueryService $dataQueryService): JsonResponse
     {
