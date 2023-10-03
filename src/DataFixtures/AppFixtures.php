@@ -7,7 +7,6 @@ use App\Entity\Course;
 use App\Entity\CourseType;
 use App\Entity\Tarif;
 use App\Entity\User;
-use App\Entity\UserCourse;
 use DateTime;
 use DateTimeImmutable;
 use Doctrine\Bundle\FixturesBundle\Fixture;
