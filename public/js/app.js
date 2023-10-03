@@ -1,14 +1,16 @@
-import { userList } from "./userList.js";
+
 import { userSearch } from "./userSearch.js";
 import { userSort } from "./userSort.js";
 import { pagination } from "./pagination.js";
+import { userPage } from "./userPage.js";
 
 const app = {
     init:function() {
-        userList.init();
+        pagination.init();
+        userPage.init();
         userSearch.init();
         userSort.init();
-        pagination.init();
+        
     }
 }
 

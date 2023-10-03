@@ -1,59 +1,86 @@
 import { pagination } from "./pagination.js";
+import { userList } from "./userList.js";
 
 export const userPage ={
-    tbody : null,
-    btnsPage : null,
+    
+    /**
+     * Initializes the user page with user data of de first page
+     */
     init:function(){
-        userPage.tbody = document.querySelector(".user-tbody");
-
-        userPage.btnsPage = document.querySelectorAll(".page-item");
-       
-        for (const btn of userPage.btnsPage) {
-            btn.addEventListener("click", userPage.handleClick);
+        
+        const getUserList = async function(){
+            const response = await fetch('http://localhost:8000/api/users');
+            return await response.json();
         }
-    //  TODO charge le page 1 en init
+        const showListUsers = getUserList()
+            .then(data => {
+                userList.addUsersList(data.users);
+                pagination.addPagination(data.nbPages, data.currentPage);
+            })
+    
     },
 
+    /**
+     * Initializes the button click event handlers for pagination buttons.
+     */
+    initBtnPage: function(){
+        const btnsPage = document.querySelectorAll(".page-item");
+        for (const btn of btnsPage) {
+            if (!btn.classList.contains('disabled')) {
+                btn.addEventListener("click", userPage.handleClick);
+            } else {
+                btn.removeEventListener("click", userPage.handleClick);
+            }
+        }
+    },
+
+    /**
+     *  Handles a click event on pagination buttons and updates the user list.
+     * @param {Event} event 
+     */
     handleClick: function(event)
     {
         event.preventDefault();
         const btnId = event.currentTarget.id;
-       
-        
-        if (btnId === "previous" && !event.currentTarget.classList.contains('disabled')) {
-            console.log("ok")
-        } else if (btnId === "next" && !event.currentTarget.classList.contains('disabled')){
-            console.log("ok next")
+        const currentPage = parseInt(document.querySelector(".pagination .active").id.slice(5));
+               
+        if (btnId === "previous") {
+            const pageNb = currentPage - 1;
+            userPage.updateUsersList(pageNb);
+            
+        } else if (btnId === "next"){
+           
+            const pageNb = currentPage + 1;
+            userPage.updateUsersList(pageNb);
+            
         } else if(!event.currentTarget.classList.contains('active')){
             const pageNb = btnId.slice(5);
-            const usersList = userPage.getData(pageNb)
-                .then(data => {
-                    
-                    const tbody = document.querySelector("#user-tbody");
-                    tbody.innerHTML="";
-                    const template = document.querySelector("#user-template");
-                    data.users.forEach(user => {
-
-                        
-                        const newTemplate = template.content.cloneNode(true);
-                        newTemplate.querySelector(".user-id").textContent = user.id;
-                        newTemplate.querySelector(".user-licenceNumber").textContent = user.licenceNumber;
-                        newTemplate.querySelector(".user-firstname").textContent = user.firstname;
-                        newTemplate.querySelector(".user-lastname").textContent = user.lastname;
-                        newTemplate.querySelector(".user-position").textContent = user.position;
-                        
-                        newTemplate.querySelector(".btn-show").href = window.location.href + user.id;
-                        newTemplate.querySelector(".btn-edit ").href = window.location.href + user.id + "/edit";
-                        tbody.append(newTemplate);
-                    })
-    
-                    pagination.resetPagination();
-                    pagination.addPagination(data);
-                })
-            
+            userPage.updateUsersList(pageNb);
         }
     },
 
+    /**
+     * Updates the user list by fetching data for the specified page number.
+     * 
+     * @param {int} pageNb The page number for which to fetch user data.
+     */
+    updateUsersList: function(pageNb)
+    {
+        const usersList = userPage.getData(pageNb)
+            .then(data => {
+                
+                userList.addUsersList(data.users);
+                pagination.resetPagination();
+                pagination.addPagination(data.nbPages, data.currentPage);
+            })
+    },
+
+    /**
+     * Retrieves user data for a specific page number from the API.
+     * 
+     * @param {int} pageNb The page number for which to retrieve user data.
+     * @returns {Promise} A promise that resolves to the fetched user data.
+     */
     getData: async function( pageNb )
     {
         const response = await fetch('http://localhost:8000/api/users?page='+pageNb)
