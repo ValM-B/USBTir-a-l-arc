@@ -23,6 +23,7 @@ class UserController extends AbstractController
         return $this->render('back/user/index.html.twig');
     }
 
+
     /**
      * @Route("/new", name="app_back_user_new", methods={"GET", "POST"})
      */
