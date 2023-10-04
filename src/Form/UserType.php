@@ -36,14 +36,9 @@ class UserType extends AbstractType
                 "expanded" => true,
                 "label" => "Privilèges"
             ])
-            ->add('password',RepeatedType::class,[
-                "type" => PasswordType::class,
-                "first_options" => ["label" => "Rentrez un mot de passe","help" => "Le mot de passe doit avoir minimum 4 caractères"],
-                "second_options" => ["label" => "Confirmez le mot de passe"],
-                "invalid_message" => "Les champs doivent être identiques",
-                "label" => "Mot de passe"
+            ->add('licenceNumber', TextType::class, [
+                "label" => "Numéro de licence"
             ])
-            ->add('licenceNumber')
             ->add('firstname', TextType::class, [
                 "label" => "Prénom"
             ])
@@ -82,15 +77,24 @@ class UserType extends AbstractType
                 },
                 "label" => "Cours"
 
-            ])
-   
-        ;
+            ]);
+            if($options["custom_option"] !== "edit"){
+                $builder
+                ->add('password',RepeatedType::class,[
+                    "type" => PasswordType::class,
+                    "first_options" => ["label" => "Rentrez un mot de passe","help" => "Le mot de passe doit avoir minimum 4 caractères"],
+                    "second_options" => ["label" => "Confirmez le mot de passe"],
+                    "invalid_message" => "Les champs doivent être identiques",
+                    "label" => "Mot de passe"
+                ]);
+            }
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            "custom_option" => "default"
         ]);
     }
 }

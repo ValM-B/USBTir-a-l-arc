@@ -14,6 +14,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -108,7 +109,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function setCreatedAtValue()
     {
-        dd("ok");
         $this->createdAt = new DateTimeImmutable();
     }
 
