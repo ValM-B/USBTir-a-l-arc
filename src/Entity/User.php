@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use DateTimeImmutable;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -101,6 +102,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->courses = new ArrayCollection();
     }
 
+    /**
+     * 
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue()
+    {
+        dd("ok");
+        $this->createdAt = new DateTimeImmutable();
+    }
+
+    /**
+     * 
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedAtValue()
+    {
+        $this->updatedAt = new DateTimeImmutable();
+    }
  
 
     public function getId(): ?int
