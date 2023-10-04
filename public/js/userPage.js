@@ -9,7 +9,7 @@ export const userPage ={
     init:function(){
         
         const getUserList = async function(){
-            const response = await fetch('http://localhost:8000/api/users');
+            const response = await fetch('http://localhost:8000/admin35786/api/users');
             return await response.json();
         }
         const showListUsers = getUserList()
@@ -83,7 +83,7 @@ export const userPage ={
      */
     getData: async function( pageNb )
     {
-        const response = await fetch('http://localhost:8000/api/users?page='+pageNb)
+        const response = await fetch('http://localhost:8000/admin35786/api/users?page='+pageNb)
         return await response.json();
     }
 }

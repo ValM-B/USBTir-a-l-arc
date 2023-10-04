@@ -5,7 +5,7 @@ export const userList ={
      * 
      * @param {array} data An array of user objects containing user data.
      */
-    addUsersList:function(data){ console.log(data)
+    addUsersList:function(data){
     const tbody = document.querySelector("#user-tbody");
     tbody.innerHTML="";
     const template = document.querySelector("#user-template");
