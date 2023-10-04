@@ -11,12 +11,12 @@ export const userSearch = {
      getData: async function(){
         const inputSearch = document.querySelector(".form-control");
         
-        const response = await fetch(`http://localhost:8000/api/users?search=${inputSearch.value}`);
+        const response = await fetch(`http://localhost:8000/admin35786/api/users?search=${inputSearch.value}`);
         return await response.json();
     },
     handleClick : function(){
         const userLists= userSearch.getData() 
-        .then(data => { console.log(data.users)
+        .then(data => {
              
             userList.addUsersList(data.users);
              pagination.resetPagination();
