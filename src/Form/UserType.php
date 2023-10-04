@@ -52,6 +52,8 @@ class UserType extends AbstractType
             ])
             ->add('dateOfBirth', TypeDateType::class, [
                 'widget' => 'choice',
+                'years' => range(date('Y') - 100, date('Y') + 10),
+                'format' => 'dd MM yyyy',
                 "label" => "Date de naissance"
             ])
             ->add('subscription', ChoiceType::class,[

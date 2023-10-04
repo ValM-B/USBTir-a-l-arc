@@ -36,7 +36,7 @@ class DataQueryService
 	public function orderBy()
 	{
 		$orderBy = [];
-		// get the result of search request in url (/users?search=[string])
+		// get the result of search request in url (/users?sort=[string])
 		if ($this->request->getCurrentRequest()->query->has('sort')) {
 			$orderBy[$this->request->getCurrentRequest()->query->get('sort')] = "ASC";
 		}
