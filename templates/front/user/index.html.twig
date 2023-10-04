@@ -35,11 +35,11 @@
                 <div class="col-12 col-lg-5 col-profil">
                     <h3>Mes cours</h3>
                     <div>  
-                        {% if app.user.userCourses is not empty %}
-                            {% for userCourse in app.user.userCourses %}
+                        {% if app.user.courses is not empty %}
+                            {% for course in app.user.courses %}
                                 <div>
-                                    <h4 class= "mt-4 mb-1">{{ userCourse.course.name }}</h4>
-                                    <p>Le {{ userCourse.course.day }} à {{ userCourse.course.hour|date('H:i')}} h</p>
+                                    <h4 class= "mt-4 mb-1">{{ course.name }}</h4>
+                                    <p>Le {{ course.day }} à {{ course.hour|date('H:i')}} h</p>
                                 </div>    
                             {% endfor %}
                         {% else %}

@@ -51,14 +51,18 @@ class Course
     private $updatedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity=UserCourse::class, mappedBy="course", orphanRemoval=true)
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="courses")
      */
-    private $userCourses;
+    private $users;
 
     public function __construct()
     {
-        $this->userCourses = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
+
+
+
+
 
     public function getId(): ?int
     {
@@ -138,32 +142,30 @@ class Course
     }
 
     /**
-     * @return Collection<int, UserCourse>
+     * @return Collection<int, User>
      */
-    public function getUserCourses(): Collection
+    public function getUsers(): Collection
     {
-        return $this->userCourses;
+        return $this->users;
     }
 
-    public function addUserCourse(UserCourse $userCourse): self
+    public function addUser(User $user): self
     {
-        if (!$this->userCourses->contains($userCourse)) {
-            $this->userCourses[] = $userCourse;
-            $userCourse->setCourse($this);
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->addCourse($this);
         }
 
         return $this;
     }
 
-    public function removeUserCourse(UserCourse $userCourse): self
+    public function removeUser(User $user): self
     {
-        if ($this->userCourses->removeElement($userCourse)) {
-            // set the owning side to null (unless already changed)
-            if ($userCourse->getCourse() === $this) {
-                $userCourse->setCourse(null);
-            }
+        if ($this->users->removeElement($user)) {
+            $user->removeCourse($this);
         }
 
         return $this;
     }
+
 }
