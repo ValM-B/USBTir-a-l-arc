@@ -1,5 +1,6 @@
 import { pagination } from "./pagination.js";
 import { userList } from "./userList.js";
+import { userPage } from "./userPage.js";
 
 export const userSort ={
     init:function(){
@@ -11,6 +12,7 @@ export const userSort ={
 
     handleClick: function(event){
         const btnId = event.currentTarget.id;
+        userPage.sort = btnId;
         const userLists= userSort.getData(btnId) 
         .then(data => {
              

@@ -3,6 +3,8 @@ import { userList } from "./userList.js";
 
 export const userPage ={
     
+    search : null,
+    sort : null,
     /**
      * Initializes the user page with user data of de first page
      */
@@ -83,7 +85,11 @@ export const userPage ={
      */
     getData: async function( pageNb )
     {
-        const response = await fetch(window.location.origin+'/api/users?page='+pageNb)
+        if(userPage.sort){
+            const response = await fetch(window.location.origin+'/admin35786/api/users?page='+pageNb+'&sort='+userPage.sort)
+            return await response.json();
+        }
+        const response = await fetch(window.location.origin+'/admin35786/api/users?page='+pageNb)
         return await response.json();
     }
 }
