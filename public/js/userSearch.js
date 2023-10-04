@@ -1,6 +1,27 @@
-export const userSearch ={
-    init:function(){
-        const tbody = document.querySelector("user-tbody");
+import { pagination } from "./pagination.js";
+import { userList } from "./userList.js";
+
+export const userSearch = {
+    init: function(){
+     
+       const boutonSearch = document.querySelector("#button-addon2");
+
+       boutonSearch.addEventListener("click",userSearch.handleClick); 
+    } ,
+     getData: async function(){
+        const inputSearch = document.querySelector(".form-control");
         
+        const response = await fetch(`http://localhost:8000/api/users?search=${inputSearch.value}`);
+        return await response.json();
+    },
+    handleClick : function(){
+        const userLists= userSearch.getData() 
+        .then(data => { console.log(data.users)
+             
+            userList.addUsersList(data.users);
+             pagination.resetPagination();
+            pagination.addPagination(data.nbPages, data.currentPage);
+            
+        })
     }
 }
