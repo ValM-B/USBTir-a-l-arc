@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -25,6 +26,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email."
+     * )
      */
     private $email;
 
@@ -49,17 +53,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="string", length=64)
      * @Groups({"users"})
+     * @Assert\NotBlank
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=64)
      * @Groups({"users"})
+     * @Assert\NotBlank
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="datetime_immutable")
+     * @Assert\NotBlank
      */
     private $dateOfBirth;
 

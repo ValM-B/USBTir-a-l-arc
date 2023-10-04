@@ -391,6 +391,14 @@ footer h4{
     padding: 6px 0;
 }
 
+/* Form */
+legend,
+.form-label
+{
+    font-weight: 600;
+    margin-top: 2rem
+}
+
 
 /* Responsive */
 

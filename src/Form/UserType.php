@@ -8,7 +8,7 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\DateType as TypeDateType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -50,8 +50,9 @@ class UserType extends AbstractType
             ->add('lastname', TextType::class, [
                 "label" => "Nom"
             ])
-            ->add('dateOfBirth', TypeDateType::class, [
+            ->add('dateOfBirth', DateType::class, [
                 'widget' => 'choice',
+                'input' => 'datetime_immutable',
                 'years' => range(date('Y') - 100, date('Y') + 10),
                 'format' => 'dd MM yyyy',
                 "label" => "Date de naissance"
