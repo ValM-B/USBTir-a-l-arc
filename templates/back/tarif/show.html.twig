@@ -15,7 +15,7 @@
             </tr>
             <tr>
                 <th>Age Maximum</th>
-                <td>{{ tarif.ageMax }}</td>
+                <td>{{ tarif.ageMax is not null ? tarif.ageMax : 'aucun' }}</td>
             </tr>
             <tr>
                 <th>Prix</th>
