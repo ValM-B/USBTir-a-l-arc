@@ -21,7 +21,7 @@ export const userSort ={
         })
     },
     getData: async function(btnId){        
-        const response = await fetch(`http://localhost:8000/admin35786/api/users?sort=${btnId}`);
+        const response = await fetch(window.location.origin+`/admin35786/api/users?sort=${btnId}`);
         return await response.json();
     },
 }
