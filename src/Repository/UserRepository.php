@@ -98,15 +98,42 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ;
     }
 
-    public function getNumberOfUsers()
+    /**
+     * Searches for users based on specified criteria.
+     *
+     * @param string|null $searchValue The search value to filter users by (optional).
+     * @param string|null $orderBy The column to order by (optional)
+     * @param int|null $limit The maximum number of results to return (optional).
+     * @param int|null $offset The offset for paginating results (optional).
+     *
+     * @return array An array containing 'users' (the found users).
+     */
+    public function searchUsers($search = null, $sort = null, $limit = null, $offset = null)
     {
-        return $this->createQueryBuilder('u')
-            ->select('COUNT(u.id)')
-            ->getQuery()
-            ->getOneOrNullResult();
-           
+        $queryBuilder = $this->createQueryBuilder('u');
+
+        if ($search) {
+            $queryBuilder->orwhere("u.lastname LIKE :search")
+            ->orWhere("u.firstname LIKE :search")
+            ->setParameter("search","%$search%");
+        }
+
+        if ($sort) {
+            $queryBuilder->orderBy('u.'.$sort);
+        }
+
+        if ($limit) {
+            $queryBuilder->setMaxResults($limit);
+        }
+
+        if($offset) {
+            $queryBuilder->setFirstResult($offset);
+        }
+
+        return $queryBuilder->getQuery()->getResult();
     }
-    
+
+   
 
 //    /**
 //     * @return User[] Returns an array of User objects

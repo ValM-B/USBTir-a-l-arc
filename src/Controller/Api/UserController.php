@@ -21,21 +21,22 @@ class UserController extends AbstractController
      */
     public function index(Request $request, UserRepository $userRepository, DataQueryService $dataQueryService): JsonResponse
     {
-        if($dataQueryService->search()){
-           $users = $dataQueryService->search();
-        } else {
-            $users = $dataQueryService->getUsersOfOnePage()["users"];
-        }
+        // // if($dataQueryService->search()){
+        // //    $users = $dataQueryService->search();
+        // // } else {
+        //     $users = $dataQueryService->getUsersOfOnePage()["users"];
+        //     dd(count($users));
+        // // }
 
-        $pageNumber = $dataQueryService->getNumberOfPages();
+        // $pageNumber = $dataQueryService->getNumberOfPages();
         
-        $responseData = [
-            'users' => $users,
-            'currentPage' => $dataQueryService->getUsersOfOnePage()["page"],
-            'nbPages' => $pageNumber
-        ];
+        // $responseData = [
+        //     'users' => $users,
+        //     'currentPage' => $dataQueryService->getUsersOfOnePage()["page"],
+        //     'nbPages' => $pageNumber
+        // ];
         
-        return $this->json($responseData, Response::HTTP_OK, [], ["groups" => "users"]);
+        return $this->json($dataQueryService->getUsersOfOnePage(), Response::HTTP_OK, [], ["groups" => "users"]);
     }
 
 

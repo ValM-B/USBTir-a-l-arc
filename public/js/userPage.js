@@ -85,11 +85,21 @@ export const userPage ={
      */
     getData: async function( pageNb )
     {
-        if(userPage.sort){
+        if (userPage.sort && userPage.search) {
+            const response = await fetch(window.location.origin+'/admin35786/api/users?page='+pageNb+'&sort='+userPage.sort+'&search='+userPage.search)
+            return await response.json();
+        } else if(userPage.sort){
             const response = await fetch(window.location.origin+'/admin35786/api/users?page='+pageNb+'&sort='+userPage.sort)
             return await response.json();
+        } else if (userPage.search) {
+            const response = await fetch(window.location.origin+'/admin35786/api/users?page='+pageNb+'&search='+userPage.search)
+            return await response.json();
+        } else {      
+            const response = await fetch(window.location.origin+'/admin35786/api/users?page='+pageNb)
+            return await response.json();
         }
-        const response = await fetch(window.location.origin+'/admin35786/api/users?page='+pageNb)
-        return await response.json();
+
+      
+  
     }
 }
