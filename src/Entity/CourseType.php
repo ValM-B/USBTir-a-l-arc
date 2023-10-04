@@ -23,6 +23,10 @@ class CourseType
      * @ORM\Column(type="string", length=128)
      */
     private $name;
+    public function __toString()
+    {
+        return $this->name;
+    }
 
     /**
      * @ORM\Column(type="datetime_immutable")

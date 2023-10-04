@@ -24,6 +24,26 @@ class SecurityController extends AbstractController
     }
 
     /**
+     * @Route("/admin35786/connexion", name="app_admin_login")
+     */
+    public function adminLogin(AuthenticationUtils $authenticationUtils): Response
+    {
+        
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        $urlAdmin = "/admin35786/connexion";
+        
+        return $this->render('security/login.html.twig', [
+            'last_username' => $lastUsername,
+            'error' => $error,
+            'urlAdmin' => $urlAdmin
+        ]);
+    }
+
+    /**
      * @Route("/deconnexion", name="app_logout")
      */
     public function logout(): void

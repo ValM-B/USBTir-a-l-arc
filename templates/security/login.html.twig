@@ -1,7 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
-
 {% block body %}
 
 <div class="wrapper-login d-flex align-items-center justify-content-center">
@@ -16,8 +14,13 @@
                     You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
                 </div>
             {% endif %}
-
-            <h2 class="h3 mb-5 font-weight-normal">Connectez-vous</h2>
+            <h2 class="h3 mb-5 font-weight-normal">
+            {% if urlAdmin is defined and (path (app.request.attributes.get('_route')) == urlAdmin) %}
+            Accès Administration
+            {% else %}
+            Connectez-vous
+            {% endif %}
+            </h2>
             <label for="inputEmail">Email</label>
             <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control mb-3 mt-2" autocomplete="email" required autofocus>
             <label for="inputPassword">Password</label>

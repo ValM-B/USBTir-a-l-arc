@@ -1,39 +1,76 @@
 {% extends 'back/base.html.twig' %}
 
 {% block body %}
+<div class="d-flex flex-column w-100">
     <h2>Liste des Licenciés</h2>
+    <div class="pt-5 d-flex justify-content-between user-wrapper-search-new">
+        <div class="d-flex user-search">
+            <input type="text" class="form-control" placeholder="Rechercher un licencié" aria-label="Rechercher un liencié" aria-describedby="button-addon2">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Rechercher</button>
+        </div>
+        <div>
+            <a class="btn" href="{{ path('app_back_user_new') }}">Nouveau</a>
+        </div>
+    </div>
+</div>
 
-    <table class="table">
+    <table class="table table-striped">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Numéro de licence</th>
-                <th>Prénom</th>
-                <th>Nom</th>
-                <th>Position</th>
-                <th>Actions</th>
+                <th scope="col" class="user-id">Id</th>
+                <th scope="col" class="user-licenceNumber">Numéro de licence
+                    <i class="fa-solid fa-sort btn-sort" id="licenceNumber"></i>                    
+                </th>
+                <th scope="col">Prénom 
+                    <i class="fa-solid fa-sort btn-sort" id="firstname"></i>
+                </th>
+                <th scope="col">Nom
+                    <i class="fa-solid fa-sort btn-sort" id="lastname"></i>
+                </th>
+                <th scope="col" class="user-position">Fonction</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
-        <tbody>
-        {% for user in users %}
+        <tbody id="user-tbody">
+        </tbody>
+
+        {# template to add user in tbody #}
+        <template id="user-template">
             <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.licenceNumber }}</td>
-                <td>{{ user.firstname }}</td>
-                <td>{{ user.lastname }}</td>
-                <td>{{ user.position }}</td>
+                <th scope="row" class="user-id"></th>
+                <td class="text-uppercase user-licenceNumber"></td>
+                <td class="user-firstname"></td>
+                <td class="user-lastname"></td>
+                <td class="user-position"></td>
                 <td>
-                    <a href="{{ path('app_back_user_show', {'id': user.id}) }}">voir</a>
-                    <a href="{{ path('app_back_user_edit', {'id': user.id}) }}">editer</a>
+                    <a href="" class="btn btn-show">Voir</a>
+                    <a href="" class="btn btn-edit user-btn-edit">Editer</a>
                 </td>
             </tr>
-        {% else %}
-            <tr>
-                <td colspan="13">Ressource non trouvée</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        </template>
 
-    <a href="{{ path('app_back_user_new') }}">Nouveau</a>
+    </table>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <li class="page-item" id="previous">
+            <a class="page-link"  href="#" aria-label="Previous">
+                <span class="page-arrow" aria-hidden="true">&laquo;</span>
+            </a>
+            </li>
+            
+            <li class="page-item" id="next">
+            <a class="page-link" href="#" aria-label="Next">
+                <span class="page-arrow" aria-hidden="true">&raquo;</span>
+            </a>
+            </li>
+        </ul>
+        {# template to add page button#}
+        <template id="page-template">
+            <li class="page-item"><a class="page-link" href="#"></a></li>
+        </template>
+    </nav>
+{% endblock %}
+
+{% block js %}
+    <script type ="module" src="{{asset('js/app.js')}}"></script>
 {% endblock %}

@@ -20,10 +20,9 @@ class UserController extends AbstractController
      */
     public function index(UserRepository $userRepository): Response
     {
-        return $this->render('back/user/index.html.twig', [
-            'users' => $userRepository->findAll(),
-        ]);
+        return $this->render('back/user/index.html.twig');
     }
+
 
     /**
      * @Route("/new", name="app_back_user_new", methods={"GET", "POST"})
@@ -61,7 +60,7 @@ class UserController extends AbstractController
      */
     public function edit(Request $request, User $user, UserRepository $userRepository): Response
     {
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(UserType::class, $user, ["custom_option" => "edit"]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

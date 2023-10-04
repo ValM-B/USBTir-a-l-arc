@@ -1,21 +1,21 @@
 {% extends 'back/base.html.twig' %}
 
 {% block body %}
-    <h2>Tarif</h2>
+    <h2>Tarif {{ tarif.name }}</h2>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ tarif.id }}</td>
+                <th>Nom</th>
+                <td>{{ tarif.name }}</td>
             </tr>
             <tr>
-                <th>AgeMin</th>
+                <th>Age Minimum</th>
                 <td>{{ tarif.ageMin }}</td>
             </tr>
             <tr>
-                <th>AgeMax</th>
-                <td>{{ tarif.ageMax }}</td>
+                <th>Age Maximum</th>
+                <td>{{ tarif.ageMax is not null ? tarif.ageMax : 'aucun' }}</td>
             </tr>
             <tr>
                 <th>Prix</th>
@@ -24,18 +24,6 @@
             <tr>
                 <th>Prix Equipement</th>
                 <td>{{ tarif.gearAmount }}</td>
-            </tr>
-            <tr>
-                <th>Créé le</th>
-                <td>{{ tarif.createdAt ? tarif.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Mis à jour le</th>
-                <td>{{ tarif.updatedAt ? tarif.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ tarif.name }}</td>
             </tr>
         </tbody>
     </table>

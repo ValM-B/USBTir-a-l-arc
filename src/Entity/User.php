@@ -3,14 +3,18 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use DateTimeImmutable;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -18,16 +22,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"users"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email."
+     * )
      */
     private $email;
 
     /**
      * @ORM\Column(type="json")
+     * 
      */
     private $roles = [];
 
@@ -39,21 +48,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=8, unique=true)
+     * @Groups({"users"})
      */
     private $licenceNumber;
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Groups({"users"})
+     * @Assert\NotBlank
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Groups({"users"})
+     * @Assert\NotBlank
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="datetime_immutable")
+     * @Assert\NotBlank
      */
     private $dateOfBirth;
 
@@ -64,6 +79,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=64, nullable=true)
+     * @Groups({"users"})
      */
     private $position;
 
@@ -78,14 +94,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $updatedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity=UserCourse::class, mappedBy="user", orphanRemoval=true)
+     * @ORM\ManyToMany(targetEntity=Course::class, inversedBy="users")
      */
-    private $userCourses;
+    private $courses;
 
     public function __construct()
     {
-        $this->userCourses = new ArrayCollection();
+        $this->courses = new ArrayCollection();
     }
+
+    /**
+     * 
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue()
+    {
+        $this->createdAt = new DateTimeImmutable();
+    }
+
+    /**
+     * 
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedAtValue()
+    {
+        $this->updatedAt = new DateTimeImmutable();
+    }
+ 
 
     public function getId(): ?int
     {
@@ -129,7 +164,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        // $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
     }
@@ -273,32 +308,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, UserCourse>
+     * @return Collection<int, Course>
      */
-    public function getUserCourses(): Collection
+    public function getCourses(): Collection
     {
-        return $this->userCourses;
+        return $this->courses;
     }
 
-    public function addUserCourse(UserCourse $userCourse): self
+    public function addCourse(Course $course): self
     {
-        if (!$this->userCourses->contains($userCourse)) {
-            $this->userCourses[] = $userCourse;
-            $userCourse->setUser($this);
+        if (!$this->courses->contains($course)) {
+            $this->courses[] = $course;
         }
 
         return $this;
     }
 
-    public function removeUserCourse(UserCourse $userCourse): self
+    public function removeCourse(Course $course): self
     {
-        if ($this->userCourses->removeElement($userCourse)) {
-            // set the owning side to null (unless already changed)
-            if ($userCourse->getUser() === $this) {
-                $userCourse->setUser(null);
-            }
-        }
+        $this->courses->removeElement($course);
 
         return $this;
     }
+
+
 }

@@ -1,26 +1,10 @@
 {% extends 'back/base.html.twig' %}
 
 {% block body %}
-    <h2>Licencié</h2>
+    <h2>Licencié {{ user.licenceNumber }}</h2>
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ user.email }}</td>
-            </tr>
-            <tr>
-                <th>Role</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>Mot de passe</th>
-                <td>{{ user.password }}</td>
-            </tr>
             <tr>
                 <th>Numéro de licence</th>
                 <td>{{ user.licenceNumber }}</td>
@@ -38,21 +22,22 @@
                 <td>{{ user.dateOfBirth ? user.dateOfBirth|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>Souscription</th>
-                <td>{{ user.subscription ? 'Yes' : 'No' }}</td>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
             </tr>
             <tr>
-                <th>Position</th>
-                <td>{{ user.position }}</td>
+                <th>Cotisation</th>
+                <td>{{ user.subscription ? 'Payée' : 'Non payée' }}</td>
             </tr>
             <tr>
-                <th>Créé le</th>
-                <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <th>Fonction</th>
+                <td>{{ user.position is not null ? user.position : 'aucune' }}</td>
             </tr>
             <tr>
-                <th>Mis à jour le</th>
-                <td>{{ user.updatedAt ? user.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <th>Role</th>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
             </tr>
+
         </tbody>
     </table>
 
