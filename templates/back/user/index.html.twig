@@ -1,18 +1,24 @@
 {% extends 'back/base.html.twig' %}
 
 {% block body %}
+<div class="d-flex flex-column w-100">
     <h2>Liste des Licenciés</h2>
-
-    <div class="input-group my-3">
-        <input type="text" class="form-control" placeholder="Rechercher un licencié" aria-label="Rechercher un liencié" aria-describedby="button-addon2">
-        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Rechercher</button>
+    <div class="pt-5 d-flex justify-content-between user-wrapper-search-new">
+        <div class="d-flex user-search">
+            <input type="text" class="form-control" placeholder="Rechercher un licencié" aria-label="Rechercher un liencié" aria-describedby="button-addon2">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Rechercher</button>
+        </div>
+        <div>
+            <a class="btn" href="{{ path('app_back_user_new') }}">Nouveau</a>
+        </div>
     </div>
+</div>
 
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Numéro de licence
+                <th scope="col" class="user-id">Id</th>
+                <th scope="col" class="user-licenceNumber">Numéro de licence
                     <i class="fa-solid fa-sort"></i>
                 </th>
                 <th scope="col">Prénom 
@@ -21,7 +27,7 @@
                 <th scope="col">Nom
                     <i class="fa-solid fa-sort"></i>
                 </th>
-                <th scope="col">Fonction</th>
+                <th scope="col" class="user-position">Fonction</th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>
@@ -38,7 +44,7 @@
                 <td class="user-position"></td>
                 <td>
                     <a href="" class="btn btn-show">Voir</a>
-                    <a href="" class="btn btn-edit">Editer</a>
+                    <a href="" class="btn btn-edit user-btn-edit">Editer</a>
                 </td>
             </tr>
         </template>
@@ -63,9 +69,6 @@
             <li class="page-item"><a class="page-link" href="#"></a></li>
         </template>
     </nav>
-
-    <a class="btn" href="{{ path('app_back_user_new') }}">Nouveau</a>
-    
 {% endblock %}
 
 {% block js %}
