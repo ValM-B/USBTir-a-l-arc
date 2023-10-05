@@ -4,6 +4,8 @@ import { userPage } from "./userPage.js";
 
 export const userSort ={
 
+    orientation : null,
+
     init:function(){
         const btns = document.querySelectorAll('.btn-sort');
         for (const btn of btns) {
@@ -17,8 +19,17 @@ export const userSort ={
      * @param {Event} event - The click event object.
      */
     handleClick: function(event){
+        
         const btnId = event.currentTarget.id;
         userPage.sort = btnId;
+        if(event.currentTarget.classList.contains('desc'))
+        {
+            userSort.orientation = 'desc'
+        } else {
+            userSort.orientation = 'asc'
+        }
+        event.currentTarget.classList.toggle('desc');
+        console.log(userSort.orientation);
         const userLists= userSort.getData(btnId) 
         .then(data => {
              

@@ -4,10 +4,17 @@ import { userPage } from "./userPage.js";
 
 export const userSearch = {
 
+    searchInput : null,
+
     init: function(){
      
        const btnSearch = document.querySelector("#button-addon2");
-       btnSearch.addEventListener("click",userSearch.handleClick); 
+       btnSearch.addEventListener("click",userSearch.handleClick);
+
+       userSearch.searchInput = document.querySelector(".form-control");
+       userSearch.searchInput.addEventListener('keypress', function(event) {
+        if (event.keyCode === 13) {userSearch.handleClick();}
+       })
     } ,
 
     /**
@@ -16,10 +23,9 @@ export const userSearch = {
      * @returns {Promise} A promise that resolves to the fetched user data.
      */
     getData: async function(){
-        const inputSearch = document.querySelector(".form-control");
-        userPage.search = inputSearch.value;
+        userPage.search = userSearch.searchInput.value;
         
-        const response = await fetch(window.location.origin+`/admin35786/api/users?search=${inputSearch.value}`);
+        const response = await fetch(window.location.origin+`/admin35786/api/users?search=${userPage.search}`);
         return await response.json();
     },
 
