@@ -35,11 +35,18 @@ class DataQueryService
 	 */
 	public function orderBy()
 	{
-		$orderBy = null;
+		$orderBy = [
+			"sort" => null,
+			"order" => null
+		];
 		// get the result of search request in url (/users?sort=[string])
 		if ($this->request->getCurrentRequest()->query->has('sort')) {
 			// $orderBy[$this->request->getCurrentRequest()->query->get('sort')] = "ASC";
-			$orderBy = $this->request->getCurrentRequest()->query->get('sort');
+			$orderBy["sort"] = $this->request->getCurrentRequest()->query->get('sort');
+		}
+		if ($this->request->getCurrentRequest()->query->has('order')) {
+			// $orderBy[$this->request->getCurrentRequest()->query->get('sort')] = "ASC";
+			$orderBy["order"] = $this->request->getCurrentRequest()->query->get('order');
 		}
 		return $orderBy;
 	}
@@ -57,8 +64,9 @@ class DataQueryService
 		$limit = 20;
 		//sets the number of users of previous pages not to be retrieved
 		$offset = ($page - 1) * $limit;
-		$users = $this->userRepository->searchUsers($this->search(), $this->orderBy(), $limit, $offset);
-		$nbPages = ceil($this->getNumberOfPages() / $limit);
+
+		$users = $this->userRepository->searchUsers($this->search(), $this->orderBy()["sort"], $this->orderBy()["order"] , $limit, $offset);
+		$nbPages = ceil($this->getNumberOfUsers() / $limit);
 		
 		return ["users" => $users, "currentPage" => $page, "nbPages" => $nbPages];
 	}
@@ -66,11 +74,11 @@ class DataQueryService
 	/**
 	 * get the number of users to display
 	 *
-	 * @return int number of pages
+	 * @return int number of users
 	 */
-	public function getNumberOfPages()
+	public function getNumberOfUsers()
 	{
-		return count($this->userRepository->searchUsers($this->search(), $this->orderBy(), null, null));
+		return count($this->userRepository->searchUsers($this->search(), $this->orderBy()["sort"], $this->orderBy()["order"], null, null));
 		
 	}
 	

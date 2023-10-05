@@ -103,12 +103,13 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
      *
      * @param string|null $searchValue The search value to filter users by (optional).
      * @param string|null $orderBy The column to order by (optional)
+     * @param string|null $order The direction to order asc or desc (optional)
      * @param int|null $limit The maximum number of results to return (optional).
      * @param int|null $offset The offset for paginating results (optional).
      *
      * @return array An array containing 'users' (the found users).
      */
-    public function searchUsers($search = null, $sort = null, $limit = null, $offset = null)
+    public function searchUsers($search = null, $orderBy = null, $order = "ASC", $limit = null, $offset = null)
     {
         $queryBuilder = $this->createQueryBuilder('u');
 
@@ -118,8 +119,8 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->setParameter("search","%$search%");
         }
 
-        if ($sort) {
-            $queryBuilder->orderBy('u.'.$sort);
+        if ($orderBy !== null) {
+            $queryBuilder->orderBy('u.'.$orderBy, $order);
         }
 
         if ($limit) {
