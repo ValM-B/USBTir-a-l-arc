@@ -1,4 +1,4 @@
-/* Charte graphique : 
+/* graphic chart : 
 #137C8B
 #709CA7
 #B8CBD0
@@ -141,7 +141,7 @@ li, a{
     width: 90%;
 }
 
-/* Tarifs et Horaires */
+/* Tarif and Datetime */
 
 .course-tarif
 {
@@ -176,7 +176,6 @@ li, a{
     margin-bottom: 0.2rem;
 }
 
-
 .footer-buttons {
     display: flex;
     justify-content: space-between;
@@ -184,8 +183,8 @@ li, a{
     margin-top: 20px;
 }
 .time{
-    margin-bottom: 30px; /* Espace en bas de chaque élément <li> */
-    font-size: 30px;     /* Taille de la police pour les éléments <li> */
+    margin-bottom: 30px;
+    font-size: 30px;
 }
 .case-twig {
     background-color: #344D59;
@@ -196,9 +195,6 @@ li, a{
     border-color: #B8CBD0;
 }
 
-.table-slot  h3{
-    font-size: 1.5em;
-}
 .table-slot th{
     background-color: #709CA7;
     color: #344D59;
@@ -460,7 +456,7 @@ legend,
         width: calc(42 * var(--resmax));
         line-height: calc(42 * var(--resmax));
     }
-    /* Table licenciée responsive */
+    /* user's table responsive */
     .user-id,
     .user-btn-edit,
     .course-btn-edit,
