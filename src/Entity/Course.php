@@ -3,12 +3,15 @@
 namespace App\Entity;
 
 use App\Repository\CourseRepository;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CourseRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class Course
 {
@@ -21,6 +24,7 @@ class Course
 
     /**
      * @ORM\Column(type="string", length=128)
+     * @Assert\NotBlank(message="Le champ ne peut pas être vide.")
      */
     private $name;
 
@@ -31,6 +35,11 @@ class Course
 
     /**
      * @ORM\Column(type="time")
+     * @Assert\Range(
+     *     min="10:00",
+     *     max="20:00",
+     *     minMessage="L'heure doit être au moins 10:00.",
+     *     maxMessage="L'heure doit être au plus 20:00."
      */
     private $hour;
 
@@ -60,9 +69,23 @@ class Course
         $this->users = new ArrayCollection();
     }
 
+    /**
+     * 
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue()
+    {
+        $this->createdAt = new DateTimeImmutable();
+    }
 
-
-
+    /**
+     * 
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedAtValue()
+    {
+        $this->updatedAt = new DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
