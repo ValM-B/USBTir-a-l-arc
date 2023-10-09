@@ -82,7 +82,12 @@ class UserType extends AbstractType
                 $builder
                 ->add('password',RepeatedType::class,[
                     "type" => PasswordType::class,
-                    "first_options" => ["label" => "Rentrez un mot de passe","help" => "Le mot de passe doit avoir minimum 4 caractères"],
+                    "first_options" => ["label" => "Rentrez un mot de passe","help" => html_entity_decode("Le mot de passe doit contenir :
+                    plus de 6 caractères,
+                    au moins une lettre majuscule,
+                    au moins une lettre minuscule,
+                    au moins un chiffre, 
+                    aucun espace.")],
                     "second_options" => ["label" => "Confirmez le mot de passe"],
                     "invalid_message" => "Les champs doivent être identiques",
                     "label" => "Mot de passe"
