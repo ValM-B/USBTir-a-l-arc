@@ -28,10 +28,15 @@ h1{
 #navbar{
     background-color: #709CA7;
 }
+.nav-item{
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+}
 .nav-item:hover{
     border-top: 4px solid #B8CBD0;
     border-bottom: 4px solid #B8CBD0;
-    padding: 6px 0; }
+    padding: 6px 0; 
+}
 #logo{
     width: calc(84 * var(--resmin));
 }
