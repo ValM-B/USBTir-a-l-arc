@@ -3,7 +3,7 @@ import { userList } from "./userList.js";
 import { userPage } from "./userPage.js";
 
 export const userSort ={
-    //détermine si le classement est croissant ou décroissant
+    //Determines if the sorting is ascending or descending
     orientation : null,
 
     init:function(){
@@ -24,13 +24,13 @@ export const userSort ={
         userPage.sort = btnId;
         if(event.currentTarget.classList.contains('desc'))
         {
-            //si la classe desc existe alors le classement sera décroissant
+            //If the 'desc' class exists, then the sorting will be descending
             userSort.orientation = 'desc'
         } else {
-            //si elle nexiste pas alors le classement sera croissant
+            //If it doesn't exist, then the sorting will be ascending.
             userSort.orientation = 'asc'
         }
-        // ajoute ou retire la classe desc
+        // Add or remove the 'desc' class
         event.currentTarget.classList.toggle('desc');
         const userLists= userSort.getData(btnId) 
         .then(data => {
@@ -50,15 +50,15 @@ export const userSort ={
      */
     getData: async function(btnId){ 
         if (userPage.search) {
-            //s'il y a déjà un une recherche des utilisateurs
+            //If there is already a search for users
             const response = await fetch(window.location.origin+'/admin35786/api/users?sort='+userPage.sort+'&order='+userSort.orientation+'&search='+userPage.search)
             return await response.json();
         } else {   
-            //   &order=${userSort.orientation} indique si le classement sera croissant ou décroissant
+            //   &order=${userSort.orientation} indicates whether the sorting will be ascending or descending
             const response = await fetch(window.location.origin+`/admin35786/api/users?sort=${btnId}&order=${userSort.orientation}`);
             return await response.json();
         }
     },
 }
 
-// ici on vérifie si le bouton a une classe desc s'il l'a on indique que "orientation" = desc puis on supprime la classe, s'il ne l'a pas on indique orientation = asc et on ajoute la classe desc, puis on ajoute l'orientation dans l'url afin de transmettre l'orientation à l'api. Ainsi à chaque fois qu'on clique sur le bouton le classement sera un coup asc un coup desc.
+// Here, we check if the button has a "desc" class. If it does, we set "orientation" to "desc," then remove the class. If it doesn't have the class, we set "orientation" to "asc" and add the "desc" class. Then, we add the "orientation" to the URL to pass the orientation to the API. This way, every time we click the button, the sorting will alternate between ascending and descending.

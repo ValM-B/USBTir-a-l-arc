@@ -3,7 +3,7 @@ import { userList } from "./userList.js";
 import { userSort } from "./userSort.js";
 
 export const userPage ={
-    //sotcke la recherche ou le classement déjà effectués pour les réutiliser en cas de consultation d'une autre page et afficher la bonne liste d'utilisateurs (avant la liste était réinitialisée)
+    //Store the previously conducted search or sorting to reuse it when viewing another page and display the correct list of users (previously, the list was reset)
     search : null,
     sort : null,
     /**
@@ -88,15 +88,15 @@ export const userPage ={
     {
     
         if (userPage.sort && userPage.search) {
-            //s'il y a déjà un une recherche et un classement des utilisateurs
+            //If there is already a search and sorting of users
             const response = await fetch(window.location.origin+'/admin35786/api/users?page='+pageNb+'&sort='+userPage.sort+'&order='+userSort.orientation+'&search='+userPage.search)
             return await response.json();
         } else if(userPage.sort){
-            //s'il y a déjà un classement des utilisateurs
+            //If there is already a sorting of users
             const response = await fetch(window.location.origin+'/admin35786/api/users?page='+pageNb+'&sort='+userPage.sort+'&order='+userSort.orientation)
             return await response.json();
         } else if (userPage.search) {
-            //s'il y a déjà une recherche des utilisateurs
+            //If there is already a search of users
             const response = await fetch(window.location.origin+'/admin35786/api/users?page='+pageNb+'&search='+userPage.search)
             return await response.json();
         } else {      
@@ -105,7 +105,6 @@ export const userPage ={
         }
     }
 }
-// dans getData on vérifie avant de faire l'appel à l'api si une recherche et/ou un classement ont déjà été fait avant. Lorsqu'une recherche est faite, le valeur de l'input est enrigstrée dans search, si un classement est fait le nom du champs est enregistré dans sort et l'orientation a déjà été stockée dans userSort.orientation.
-//Ainsi, si search n'est pas null, on on demande à l'api de nous renvoyer la liste des utilisateurs selon cette recherche et le numéro de la page
-// idem pour le classement 
-// idem pour les 2 combinés
+// In getData, we check before making the API call if a search and/or sorting has already been performed. When a search is conducted, the input value is stored in 'search,' and if sorting is done, the field name is stored in 'sort,' and the orientation has already been stored in 'userSort.orientation.
+// Same for sorting
+// Same for both combined
