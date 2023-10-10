@@ -2,7 +2,7 @@
 
 {% block body %}
 <div class="d-flex flex-column w-100">
-    <h2>Liste des Tarifs</h2>
+    <h2>Liste des Types de Cours</h2>
     <div class="align-self-end">
         <a href="{{ path('app_back_tarif_new') }}" class="btn">Nouveau</a>
     </div>
@@ -17,21 +17,22 @@
             </tr>
         </thead>
         <tbody>
-        {% for tarif in tarifs %}
+        {% for course_type in course_types %}
             <tr>
-                <td scope="row">{{ tarif.id }}</th>
-                <td>{{ tarif.name }}</td>
+                <td>{{ course_type.id }}</td>
+                <td>{{ course_type.name }}</td>
                 <td>
-                    <a href="{{ path('app_back_tarif_show', {'id': tarif.id}) }}" class="btn">Voir</a>
-                    <a href="{{ path('app_back_tarif_edit', {'id': tarif.id}) }}" class="btn tarif-btn-edit">Editer</a>
+                    <a href="{{ path('app_back_course_type_show', {'id': course_type.id}) }}">Voir</a>
+                    <a href="{{ path('app_back_course_type_edit', {'id': course_type.id}) }}">Editer</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="9">Ressource non trouvée</td>
+                <td colspan="7">Ressource non trouvée</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
+    <a href="{{ path('app_back_course_type_new') }}">Create new</a>
 {% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CourseType{% endblock %}
+
+{% block body %}
+    <h1>CourseType</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ course_type.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ course_type.name }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ course_type.createdAt ? course_type.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ course_type.updatedAt ? course_type.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_back_course_type_index') }}">back to list</a>
+
+    <a href="{{ path('app_back_course_type_edit', {'id': course_type.id}) }}">edit</a>
+
+    {{ include('back/course_type/_delete_form.html.twig') }}
+{% endblock %}
