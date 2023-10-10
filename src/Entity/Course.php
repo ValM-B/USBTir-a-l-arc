@@ -30,16 +30,14 @@ class Course
 
     /**
      * @ORM\Column(type="string", length=8)
+     * @Assert\Choice(
+     *   choices={"Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"})
      */
     private $day;
 
     /**
      * @ORM\Column(type="time")
-     * @Assert\Range(
-     *     min="10:00",
-     *     max="20:00",
-     *     minMessage="L'heure doit être au moins 10:00.",
-     *     maxMessage="L'heure doit être au plus 20:00."
+     * @Assert\NotBlank(message="Le champ ne peut pas être vide.")
      */
     private $hour;
 
@@ -67,24 +65,6 @@ class Course
     public function __construct()
     {
         $this->users = new ArrayCollection();
-    }
-
-    /**
-     * 
-     * @ORM\PrePersist
-     */
-    public function setCreatedAtValue()
-    {
-        $this->createdAt = new DateTimeImmutable();
-    }
-
-    /**
-     * 
-     * @ORM\PreUpdate
-     */
-    public function setUpdatedAtValue()
-    {
-        $this->updatedAt = new DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -145,9 +125,13 @@ class Course
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    /**
+     * 
+     * @ORM\PrePersist
+     */
+    public function setCreatedAt(): self
     {
-        $this->createdAt = $createdAt;
+        $this->createdAt = new DateTimeImmutable();
 
         return $this;
     }
@@ -157,9 +141,13 @@ class Course
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
+    /**
+     * 
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedAt(): self
     {
-        $this->updatedAt = $updatedAt;
+        $this->updatedAt = new DateTimeImmutable();
 
         return $this;
     }
