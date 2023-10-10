@@ -3,7 +3,7 @@
 namespace App\Controller\Back;
 
 use App\Entity\Course;
-use App\Form\CourseType;
+use App\Form\CourseFormType;
 use App\Repository\CourseRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,11 +31,16 @@ class CourseController extends AbstractController
     public function new(Request $request, CourseRepository $courseRepository): Response
     {
         $course = new Course();
-        $form = $this->createForm(CourseType::class, $course);
+        $form = $this->createForm(CourseFormType::class, $course);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
             $courseRepository->add($course, true);
+            $this->addFlash(
+				'success',
+				"Le cours a bien été créé"
+			);
 
             return $this->redirectToRoute('app_back_course_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -61,12 +66,17 @@ class CourseController extends AbstractController
      */
     public function edit(Request $request, Course $course, CourseRepository $courseRepository): Response
     {
-        $form = $this->createForm(CourseType::class, $course);
+        $form = $this->createForm(CourseFormType::class, $course);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
             $courseRepository->add($course, true);
-
+            $this->addFlash(
+            'success',
+            "Le cours a bien été modifié."
+            );
+    
             return $this->redirectToRoute('app_back_course_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -83,6 +93,15 @@ class CourseController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$course->getId(), $request->request->get('_token'))) {
             $courseRepository->remove($course, true);
+            $this->addFlash(
+				'success',
+				"Le cours a bien été supprimé"
+			);
+        } else {
+            $this->addFlash(
+				'danger',
+				"Une erreur s'est produite, le cours n'a pas été supprimé"
+			);
         }
 
         return $this->redirectToRoute('app_back_course_index', [], Response::HTTP_SEE_OTHER);
