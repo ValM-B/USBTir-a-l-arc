@@ -28,7 +28,8 @@ class TarifType extends AbstractType
                 "label" => "Age maximal",
                 "attr" => [
                     "min" => 2
-                ]
+                ],
+                "required" => false
             ])
             ->add('gearAmount', MoneyType::class, [
                 "label" => "Montant de l'équipement",
