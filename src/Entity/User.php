@@ -28,48 +28,63 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
-     * @Assert\Email(
-     *     message = "The email '{{ value }}' is not a valid email."
-     * )
+     * @Assert\Email(message = "L'email n'est pas valide.")
      */
     private $email;
 
     /**
      * @ORM\Column(type="json")
-     * 
+     * @Assert\NotBlank(message="Champ requis.")
      */
     private $roles = [];
 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
-     * @Assert\Regex(pattern="/^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{6,})\S$/", message="Le mot de passe ne répond pas aux critères")
+     * @Assert\Regex(
+     *      pattern="/^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{6,})\S$/", 
+     *      message="Le mot de passe ne répond pas aux critères"
+     * )
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=8, unique=true)
      * @Groups({"users"})
+     * @Assert\Regex(
+     *     pattern="/^\d{7}[A-Z]$/",
+     *     message="Le numéro de licence doit contenir 7 chiffres suivis d'une lettre majuscule."
+     * )
      */
     private $licenceNumber;
 
     /**
      * @ORM\Column(type="string", length=64)
      * @Groups({"users"})
-     * @Assert\NotBlank
+     * @Assert\NotBlank(message="Champ requis.")
+     * @Assert\Regex(
+     *      pattern="/\d/",
+     *      match=false,
+     *      message="Votre prénom ne peut pas comporter de chiffre."
+     * )
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=64)
      * @Groups({"users"})
-     * @Assert\NotBlank
+     * @Assert\NotBlank(message="Champ requis.")
+     * @Assert\Regex(
+     *      pattern="/\d/",
+     *      match=false,
+     *      message="Votre nom ne peut pas comporter de chiffre."
+     * )
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="datetime_immutable")
-     * @Assert\NotBlank
+     * @Assert\NotBlank(message="Champ requis.")
      */
     private $dateOfBirth;
 
@@ -105,7 +120,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * 
      * @ORM\PrePersist
      */
     public function setCreatedAtValue()
@@ -114,7 +128,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * 
      * @ORM\PreUpdate
      */
     public function setUpdatedAtValue()
