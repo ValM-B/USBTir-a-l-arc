@@ -22,6 +22,12 @@ class Tarif
     private $id;
 
     /**
+     * @ORM\Column(type="integer", options={"unsigned"=true})
+     * @Assert\Positive
+     */
+    private $ageMin;
+
+    /**
      * @Assert\Callback
     */
     public function validateAgeRange(ExecutionContextInterface $context)
@@ -32,13 +38,7 @@ class Tarif
             ->addViolation();
         }
     }
-
-    /**
-     * @ORM\Column(type="integer", options={"unsigned"=true})
-     * @Assert\Positive
-     */
-    private $ageMin;
-
+    
     /**
      * @ORM\Column(type="integer", options={"unsigned"=true}, nullable=true)
      * @Assert\Positive

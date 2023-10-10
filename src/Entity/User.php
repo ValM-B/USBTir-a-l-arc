@@ -11,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -28,13 +29,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
-     * @Assert\Email(message = "L'email n'est pas valide.")
+     * @Assert\Email
      */
     private $email;
 
     /**
      * @ORM\Column(type="json")
-     * @Assert\NotBlank(message="Champ requis.")
      */
     private $roles = [];
 
@@ -109,6 +109,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $updatedAt;
 
+
     /**
      * @ORM\ManyToMany(targetEntity=Course::class, inversedBy="users")
      */
@@ -117,6 +118,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->courses = new ArrayCollection();
+    }
+
+    /**
+     * @Assert\Callback
+     */
+    public function validateRoles(ExecutionContextInterface $context)
+    {
+        $allowedRoles = ["ROLE_ADMIN", "ROLE_USER"];
+
+        if (!is_array($this->roles)) {
+            //  If the "roles" field is not an array, generate a violation.
+            $context->buildViolation('Le champ "roles" doit être un tableau.')->atPath('roles')->addViolation();
+        } elseif (count($this->roles) !== 1 || !in_array($this->roles[0], $allowedRoles)) {
+            // If the array contains more than one role or if the role is not allowed, generate a violation.
+            $context->buildViolation('Vous devez choisir exactement un rôle parmi "Administrateur" et "Licencié".')->atPath('roles')->addViolation();
+        }
     }
 
     /**
