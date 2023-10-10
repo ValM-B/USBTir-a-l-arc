@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/back/course/type")
+ * @Route("/admin35786/cours-types")
  */
 class CourseTypeController extends AbstractController
 {
@@ -43,16 +43,6 @@ class CourseTypeController extends AbstractController
         return $this->renderForm('back/course_type/new.html.twig', [
             'course_type' => $courseType,
             'form' => $form,
-        ]);
-    }
-
-    /**
-     * @Route("/{id}", name="app_back_course_type_show", methods={"GET"})
-     */
-    public function show(CourseType $courseType): Response
-    {
-        return $this->render('back/course_type/show.html.twig', [
-            'course_type' => $courseType,
         ]);
     }
 

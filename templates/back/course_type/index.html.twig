@@ -4,7 +4,7 @@
 <div class="d-flex flex-column w-100">
     <h2>Liste des Types de Cours</h2>
     <div class="align-self-end">
-        <a href="{{ path('app_back_tarif_new') }}" class="btn">Nouveau</a>
+        <a href="{{ path('app_back_course_type_new') }}" class="btn">Nouveau</a>
     </div>
 </div>
 
@@ -22,8 +22,10 @@
                 <td>{{ course_type.id }}</td>
                 <td>{{ course_type.name }}</td>
                 <td>
-                    <a href="{{ path('app_back_course_type_show', {'id': course_type.id}) }}">Voir</a>
-                    <a href="{{ path('app_back_course_type_edit', {'id': course_type.id}) }}">Editer</a>
+                    <div class="d-flex justify-content-center">
+                        <a href="{{ path('app_back_course_type_edit', {'id': course_type.id}) }}" class="btn me-1">Editer</a>
+                        {{ include('back/course_type/_delete_form.html.twig') }}
+                    </div>
                 </td>
             </tr>
         {% else %}
@@ -34,5 +36,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_back_course_type_new') }}">Create new</a>
 {% endblock %}
