@@ -35,7 +35,12 @@ class CourseController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
             $courseRepository->add($course, true);
+            $this->addFlash(
+				'success',
+				"Le cours a bien été créé"
+			);
 
             return $this->redirectToRoute('app_back_course_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -65,8 +70,13 @@ class CourseController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
             $courseRepository->add($course, true);
-
+            $this->addFlash(
+            'success',
+            "Le cours a bien été modifié."
+            );
+    
             return $this->redirectToRoute('app_back_course_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -83,6 +93,15 @@ class CourseController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$course->getId(), $request->request->get('_token'))) {
             $courseRepository->remove($course, true);
+            $this->addFlash(
+				'success',
+				"Le cours a bien été supprimé"
+			);
+        } else {
+            $this->addFlash(
+				'danger',
+				"Une erreur s'est produite, le cours n'a pas été supprimé"
+			);
         }
 
         return $this->redirectToRoute('app_back_course_index', [], Response::HTTP_SEE_OTHER);
