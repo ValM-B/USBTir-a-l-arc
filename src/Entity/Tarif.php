@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\TarifRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=TarifRepository::class)
@@ -19,6 +20,7 @@ class Tarif
 
     /**
      * @ORM\Column(type="integer", options={"unsigned"=true})
+     * @Assert\Positive
      */
     private $ageMin;
 
@@ -49,6 +51,7 @@ class Tarif
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Assert\NotBlank(message="Champ requis.")
      */
     private $name;
 

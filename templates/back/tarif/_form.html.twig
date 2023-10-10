@@ -1,4 +1,13 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Sauvegarder') }}</button>
+{{ form_start(form, {'attr': {'class': 'w-100'}}) }}
+    <div class="row justify-content-center">
+        <div class="col-lg-5 mx-2 ">
+            {{ form_label(form.name) }}{{ form_widget(form.name) }}
+            {{ form_label(form.ageMin) }}{{ form_widget(form.ageMin) }}{{ form_errors(form.ageMin) }}
+            {{ form_label(form.ageMax) }}{{ form_widget(form.ageMax) }}{{ form_errors(form.ageMax) }}
+            {{ form_label(form.gearAmount) }}{{ form_widget(form.gearAmount) }}{{ form_errors(form.gearAmount) }}
+            {{ form_label(form.amount) }}{{ form_widget(form.amount) }}{{ form_errors(form.amount) }}
+        </div>
+    </div>
+   
+    <button class="btn mt-3">{{ button_label|default('Sauvegarder') }}</button>
 {{ form_end(form) }}
