@@ -111,7 +111,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
 
     /**
-     * @ORM\ManyToMany(targetEntity=Course::class, inversedBy="users")
+     * @ORM\ManyToMany(targetEntity=Course::class, inversedBy="users", orphanRemoval=true)
      */
     private $courses;
 
@@ -354,6 +354,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+  
 
     public function removeCourse(Course $course): self
     {

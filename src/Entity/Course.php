@@ -3,12 +3,15 @@
 namespace App\Entity;
 
 use App\Repository\CourseRepository;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CourseRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class Course
 {
@@ -21,16 +24,20 @@ class Course
 
     /**
      * @ORM\Column(type="string", length=128)
+     * @Assert\NotBlank(message="Le champ ne peut pas être vide.")
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=8)
+     * @Assert\Choice(
+     *   choices={"Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"})
      */
     private $day;
 
     /**
      * @ORM\Column(type="time")
+     * @Assert\NotBlank(message="Le champ ne peut pas être vide.")
      */
     private $hour;
 
@@ -59,10 +66,6 @@ class Course
     {
         $this->users = new ArrayCollection();
     }
-
-
-
-
 
     public function getId(): ?int
     {
@@ -122,9 +125,13 @@ class Course
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    /**
+     * 
+     * @ORM\PrePersist
+     */
+    public function setCreatedAt(): self
     {
-        $this->createdAt = $createdAt;
+        $this->createdAt = new DateTimeImmutable();
 
         return $this;
     }
@@ -134,9 +141,13 @@ class Course
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
+    /**
+     * 
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedAt(): self
     {
-        $this->updatedAt = $updatedAt;
+        $this->updatedAt = new DateTimeImmutable();
 
         return $this;
     }
