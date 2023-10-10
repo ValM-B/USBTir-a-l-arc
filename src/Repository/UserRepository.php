@@ -80,33 +80,44 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
        ;
     }
 
+
     /**
-     * Get all Users by search by lastname and firstname
+     * Searches for users based on specified criteria.
      *
-     * @param string|null $search
-     * @return array
+     * @param string|null $searchValue The search value to filter users by (optional).
+     * @param string|null $orderBy The column to order by (optional)
+     * @param string|null $order The direction to order asc or desc (optional)
+     * @param int|null $limit The maximum number of results to return (optional).
+     * @param int|null $offset The offset for paginating results (optional).
+     *
+     * @return array An array containing 'users' (the found users).
      */
-    public function findAllBySearch(?string $search = null)
+    public function searchUsers($search = null, $orderBy = null, $order = "ASC", $limit = null, $offset = null)
     {
-        return $this->createQueryBuilder('u')
-            ->orderBy("u.lastname", "ASC")
-            ->orwhere("u.lastname LIKE :search")
+        $queryBuilder = $this->createQueryBuilder('u');
+
+        if ($search) {
+            $queryBuilder->orwhere("u.lastname LIKE :search")
             ->orWhere("u.firstname LIKE :search")
-            ->setParameter("search","%$search%")
-            ->getQuery()
-            ->getResult()
-            ;
+            ->setParameter("search","%$search%");
+        }
+
+        if ($orderBy !== null) {
+            $queryBuilder->orderBy('u.'.$orderBy, $order);
+        }
+
+        if ($limit) {
+            $queryBuilder->setMaxResults($limit);
+        }
+
+        if($offset) {
+            $queryBuilder->setFirstResult($offset);
+        }
+
+        return $queryBuilder->getQuery()->getResult();
     }
 
-    public function getNumberOfUsers()
-    {
-        return $this->createQueryBuilder('u')
-            ->select('COUNT(u.id)')
-            ->getQuery()
-            ->getOneOrNullResult();
-           
-    }
-    
+   
 
 //    /**
 //     * @return User[] Returns an array of User objects
