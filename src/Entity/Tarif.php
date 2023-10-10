@@ -3,10 +3,14 @@
 namespace App\Entity;
 
 use App\Repository\TarifRepository;
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * @ORM\Entity(repositoryClass=TarifRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class Tarif
 {
@@ -19,11 +23,26 @@ class Tarif
 
     /**
      * @ORM\Column(type="integer", options={"unsigned"=true})
+     * @Assert\Positive
      */
     private $ageMin;
 
     /**
+     * @Assert\Callback
+    */
+    public function validateAgeRange(ExecutionContextInterface $context)
+    {
+        if($this->ageMax && $this->ageMin >= $this->ageMax){
+            $context->buildViolation('L\'âge maximum doit être supérieur à l\'âge minimum.')
+            ->atPath('ageMax')
+            ->addViolation();
+        }
+    }
+    
+    /**
      * @ORM\Column(type="integer", options={"unsigned"=true}, nullable=true)
+     * @Assert\Positive
+     * @Assert\LessThan(120)
      */
     private $ageMax;
 
@@ -49,6 +68,7 @@ class Tarif
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Assert\NotBlank(message="Champ requis.")
      */
     private $name;
 
@@ -110,9 +130,12 @@ class Tarif
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedAt(): self
     {
-        $this->createdAt = $createdAt;
+        $this->createdAt = new DateTimeImmutable();
 
         return $this;
     }
@@ -122,9 +145,12 @@ class Tarif
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedAt(): self
     {
-        $this->updatedAt = $updatedAt;
+        $this->updatedAt = new DateTimeImmutable();
 
         return $this;
     }

@@ -11,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -28,47 +29,62 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
-     * @Assert\Email(
-     *     message = "The email '{{ value }}' is not a valid email."
-     * )
+     * @Assert\Email
      */
     private $email;
 
     /**
      * @ORM\Column(type="json")
-     * 
      */
     private $roles = [];
 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\Regex(
+     *      pattern="/^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{6,})\S$/", 
+     *      message="Le mot de passe ne répond pas aux critères"
+     * )
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=8, unique=true)
      * @Groups({"users"})
+     * @Assert\Regex(
+     *     pattern="/^\d{7}[A-Z]$/",
+     *     message="Le numéro de licence doit contenir 7 chiffres suivis d'une lettre majuscule."
+     * )
      */
     private $licenceNumber;
 
     /**
      * @ORM\Column(type="string", length=64)
      * @Groups({"users"})
-     * @Assert\NotBlank
+     * @Assert\NotBlank(message="Champ requis.")
+     * @Assert\Regex(
+     *      pattern="/\d/",
+     *      match=false,
+     *      message="Votre prénom ne peut pas comporter de chiffre."
+     * )
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=64)
      * @Groups({"users"})
-     * @Assert\NotBlank
+     * @Assert\NotBlank(message="Champ requis.")
+     * @Assert\Regex(
+     *      pattern="/\d/",
+     *      match=false,
+     *      message="Votre nom ne peut pas comporter de chiffre."
+     * )
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="datetime_immutable")
-     * @Assert\NotBlank
+     * @Assert\NotBlank(message="Champ requis.")
      */
     private $dateOfBirth;
 
@@ -93,6 +109,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $updatedAt;
 
+
     /**
      * @ORM\ManyToMany(targetEntity=Course::class, inversedBy="users")
      */
@@ -104,7 +121,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * 
+     * @Assert\Callback
+     */
+    public function validateRoles(ExecutionContextInterface $context)
+    {
+        $allowedRoles = ["ROLE_ADMIN", "ROLE_USER"];
+
+        if (!is_array($this->roles)) {
+            //  If the "roles" field is not an array, generate a violation.
+            $context->buildViolation('Le champ "roles" doit être un tableau.')->atPath('roles')->addViolation();
+        } elseif (count($this->roles) !== 1 || !in_array($this->roles[0], $allowedRoles)) {
+            // If the array contains more than one role or if the role is not allowed, generate a violation.
+            $context->buildViolation('Vous devez choisir exactement un rôle parmi "Administrateur" et "Licencié".')->atPath('roles')->addViolation();
+        }
+    }
+
+    /**
      * @ORM\PrePersist
      */
     public function setCreatedAtValue()
@@ -113,7 +145,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * 
      * @ORM\PreUpdate
      */
     public function setUpdatedAtValue()
