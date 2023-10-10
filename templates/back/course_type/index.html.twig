@@ -1,0 +1,39 @@
+{% extends 'back/base.html.twig' %}
+
+{% block body %}
+<div class="d-flex flex-column w-100">
+    <h2>Liste des Types de Cours</h2>
+    <div class="align-self-end">
+        <a href="{{ path('app_back_course_type_new') }}" class="btn">Nouveau</a>
+    </div>
+</div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for course_type in course_types %}
+            <tr>
+                <td>{{ course_type.id }}</td>
+                <td>{{ course_type.name }}</td>
+                <td>
+                    <div class="d-flex justify-content-center">
+                        <a href="{{ path('app_back_course_type_edit', {'id': course_type.id}) }}" class="btn me-1">Editer</a>
+                        {{ include('back/course_type/_delete_form.html.twig') }}
+                    </div>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Ressource non trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

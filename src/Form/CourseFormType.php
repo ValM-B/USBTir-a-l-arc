@@ -39,7 +39,7 @@ class CourseFormType extends AbstractType
                 ])
             ->add('courseType', EntityType::class, [
                 'class' => CourseType::class,
-                "label" => "Catégorie"
+                "label" => "Type du cours"
                 ])
         ;
     }

@@ -20,7 +20,7 @@
         <tbody>
         {% for tarif in tarifs %}
             <tr>
-                <th scope="row">{{ tarif.id }}</th>
+                <td scope="row">{{ tarif.id }}</th>
                 <td>{{ tarif.name }}</td>
                 <td>
                     <a href="{{ path('app_back_tarif_show', {'id': tarif.id}) }}" class="btn">Voir</a>
