@@ -21,17 +21,14 @@ class AdminLogoutSubscriber implements EventSubscriberInterface
 
     public function onKernelRequest(RequestEvent $event): void
     {
-        $user = null;
-        if ($this->tokenStorage->getToken()) {
-            $user = $this->tokenStorage->getToken()->getUser();
-        }
-        //Check if the user is logged in and if the URL does not contain 'admin
-        if ($user && !strpos($event->getRequest()->getPathInfo(), "admin")) {
-            // If the URL does not contain 'admin', log out the user
-            $this->tokenStorage->setToken(null);
+        // Get the session cookie as it persists across firewalls.
+        $request = $event->getRequest();
+        $cookieSession = $request->cookies->get("PHPSESSID");
+        $previousRequest = $request->server->get('HTTP_REFERER');
+        //Check if the user is logged in and if the URL does not contain 'admin and if the user come from backoffice
+        if ($cookieSession && !str_contains($event->getRequest()->getPathInfo(), "admin") && str_contains($previousRequest, "admin")) {
             // Redirect the user to the logout page
             $url = $this->urlGeneratorInterface->generate('app_logout');
-            dd($url);
             $response = new RedirectResponse($url);
             $event->setResponse($response);
         }
@@ -44,3 +41,4 @@ class AdminLogoutSubscriber implements EventSubscriberInterface
         ];
     }
 }
+ 
