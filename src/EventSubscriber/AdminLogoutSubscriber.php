@@ -3,16 +3,20 @@
 namespace App\EventSubscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class AdminLogoutSubscriber implements EventSubscriberInterface
 {
     private $tokenStorage;
+    private $urlGeneratorInterface;
 
-    public function __construct(TokenStorageInterface $tokenStorage)
+    public function __construct(TokenStorageInterface $tokenStorage, UrlGeneratorInterface $urlGeneratorInterface)
     {
         $this->tokenStorage = $tokenStorage;
+        $this->urlGeneratorInterface = $urlGeneratorInterface;
     }
 
     public function onKernelRequest(RequestEvent $event): void
@@ -25,6 +29,11 @@ class AdminLogoutSubscriber implements EventSubscriberInterface
         if ($user && !strpos($event->getRequest()->getPathInfo(), "admin")) {
             // If the URL does not contain 'admin', log out the user
             $this->tokenStorage->setToken(null);
+            // Redirect the user to the logout page
+            $url = $this->urlGeneratorInterface->generate('app_logout');
+            dd($url);
+            $response = new RedirectResponse($url);
+            $event->setResponse($response);
         }
     }
 
