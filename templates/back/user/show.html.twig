@@ -3,6 +3,12 @@
 {% block body %}
     <h2>Licencié {{ user.licenceNumber }}</h2>
 
+    <div class="alert alert-success alert-dismissible fade show" hidden role="alert">
+            <p>Le status de la cotisation à été mis à jour.</p>
+    </div>
+     <div class="alert alert-danger alert-dismissible fade show" hidden role="alert">
+            <p></p>
+    </div>
     <table class="table">
         <tbody>
             <tr>
@@ -27,7 +33,11 @@
             </tr>
             <tr>
                 <th>Cotisation</th>
-                <td>{{ user.subscription ? 'Payée' : 'Non payée' }}</td>
+                <td id="subscription">{{ user.subscription ? 'Payée' : 'Non payée' }}
+                 {% if user.subscription == false %}
+                    <button class="btn btn-primary btn-subscription ms-2" id="user-{{ user.id }}">Cotisation payée</button>
+                {% endif %}
+                </td>
             </tr>
             <tr>
                 <th>Fonction</th>
@@ -46,4 +56,9 @@
     <a href="{{ path('app_back_user_edit', {'id': user.id}) }}">editer</a>
 
     {{ include('back/user/_delete_form.html.twig') }}
+{% endblock %}
+{% block js %}
+    {% if user.subscription == false %}
+        <script type ="module" src="{{asset('js/subscription.js')}}"></script>
+    {% endif %}
 {% endblock %}

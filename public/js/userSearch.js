@@ -42,6 +42,11 @@ export const userSearch = {
             pagination.addPagination(data.nbPages, data.currentPage);
             
         })
+        .catch(error => {
+            const danger = document.querySelector(".alert-danger");
+            danger.hidden = false;
+            setTimeout(() => {danger.hidden = true;}, 5000);
+        })
         document.querySelector(".form-control").value ="";
     }
 }
