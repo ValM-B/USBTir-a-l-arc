@@ -3,12 +3,16 @@
 namespace App\Entity;
 
 use App\Repository\CourseTypeRepository;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=CourseTypeRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class CourseType
 {
@@ -21,6 +25,7 @@ class CourseType
 
     /**
      * @ORM\Column(type="string", length=128)
+     * @Assert\NotBlank
      */
     private $name;
     public function __toString()
@@ -70,9 +75,12 @@ class CourseType
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedAt(): self
     {
-        $this->createdAt = $createdAt;
+        $this->createdAt = new DateTimeImmutable();
 
         return $this;
     }
@@ -82,9 +90,12 @@ class CourseType
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedAt(): self
     {
-        $this->updatedAt = $updatedAt;
+        $this->updatedAt = new DateTimeImmutable();
 
         return $this;
     }
