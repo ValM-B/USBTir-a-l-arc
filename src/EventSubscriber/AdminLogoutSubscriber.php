@@ -10,16 +10,17 @@ class AdminLogoutSubscriber implements EventSubscriberInterface
 {
     public function onKernelRequest(RequestEvent $event): void
     {
-        // Get the session cookie as it persists across firewalls.
         $request = $event->getRequest();
+        // Get the session cookie as it persists across firewalls.
         $cookieSession = $request->cookies->get("PHPSESSID");
         $previousRequest = $request->server->get('HTTP_REFERER');
         //Check if the user is logged in and if the URL does not contain 'admin' and if the user come from backoffice
+        var_dump($event->getRequest()->getPathInfo());
+        dump($event->getRequest()->getPathInfo());
         if ($cookieSession && !str_contains($event->getRequest()->getPathInfo(), "admin") && str_contains($previousRequest, "admin")) {
             // Redirect the user to the logout page
             $event->setResponse(new RedirectResponse("/deconnexion"));
         }
-        dump($cookieSession);
     }
 
     public static function getSubscribedEvents(): array
