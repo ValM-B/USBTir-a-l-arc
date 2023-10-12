@@ -8,8 +8,12 @@ use Symfony\Component\HttpKernel\Event\RequestEvent;
 
 class AdminLogoutSubscriber implements EventSubscriberInterface
 {
-    public function onKernelRequest(RequestEvent $event): void
+    public function onKernelRequest(RequestEvent $event)
     {
+        if (!$event->isMainRequest()) {
+            // don't do anything if it's not the main request
+            return;
+        }
         $request = $event->getRequest();
         // Get the session cookie as it persists across firewalls.
         $cookieSession = $request->cookies->get("PHPSESSID");
