@@ -10,7 +10,6 @@ const subscription = {
 
     handleClick: async function(){
         const userId = subscription.btn.id.slice(5);
-        console.log(userId)
         fetch(window.location.origin+'/admin35786/api/users/'+userId+'/subscription',{
             method: 'PUT',
             headers: {

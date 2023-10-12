@@ -19,23 +19,17 @@ class ExceptionApiSubscriber implements EventSubscriberInterface
             return;
         }
    
-        if ($exception instanceof NotFoundHttpException) {
+        if ($exception instanceof NotFoundHttpException || $exception instanceof BadRequestHttpException) {
+            
             $data = [
                 'error' => 'Not Found',
                 'message' => $exception->getMessage(),
             ];
             $response = new JsonResponse($data, $exception->getStatusCode());
             $event->setResponse($response);
+            
         }
-        if ($exception instanceof BadRequestHttpException) {
-            $data = [
-                'error' => 'Not Found',
-                'message' => $exception->getMessage(),
-            ];
-            $response = new JsonResponse($data, $exception->getStatusCode());
-            $event->setResponse($response);
-        }
-
+        
     }
 
     public static function getSubscribedEvents(): array
