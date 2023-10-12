@@ -20,6 +20,11 @@ export const userPage ={
                 userList.addUsersList(data.users);
                 pagination.addPagination(data.nbPages, data.currentPage);
             })
+            .catch(error => {
+                const danger = document.querySelector(".alert-danger");
+                danger.hidden = false;
+                setTimeout(() => {danger.hidden = true;}, 5000);
+            })
     
     },
 
@@ -75,6 +80,11 @@ export const userPage ={
                 userList.addUsersList(data.users);
                 pagination.resetPagination();
                 pagination.addPagination(data.nbPages, data.currentPage);
+            })
+            .catch(error => {
+                const danger = document.querySelector(".alert-danger");
+                danger.hidden = false;
+                setTimeout(() => {danger.hidden = true;}, 5000);
             })
     },
 
