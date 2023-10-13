@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\SmokeTest;
+namespace App\Tests\Smoke;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -24,5 +24,6 @@ class PublicSmokeTest extends WebTestCase
         yield ['/nous-contacter'];
         yield ['/mentions-legales'];
         yield ['/connexion'];
+        yield ['/admin35786/connexion'];
     }
 }
