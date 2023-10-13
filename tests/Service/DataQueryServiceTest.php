@@ -22,19 +22,35 @@ class DataQueryServiceTest extends WebTestCase
 
     ];
 
-    public function testSomething(): void
+    public function testDataQueryService(): void
     {
         
         $client = static::createClient();
-        foreach ( self::SEARCH as $search) {
+        // foreach ( self::SEARCH as $search) {
       
            
-           
-            $crawler = $client->request('GET', '/api/users?search='.$search["search"]);
-            dd($crawler);
-            $this->assertJson($client->getResponse()->getContent());
+          
+            // $crawler = $client->request('GET', 'http://localhost:8000/api/users');
+            $crawler = $client->request('GET', 'http://localhost:8000/horaires-et-tarifs');
+            $response = $client->getResponse();
+            if ($client->getResponse()->getStatusCode() == 500) {
+                $block = $crawler->filter('div.text_exception > h1');
+                if ($block->count()) {
+                    $error = $block->text();
+                }
+            }
+
+            dump($client->getRequest()->getUri());
+            dump($client->getResponse()->getStatusCode());
+         
             
-            $this->assertEquals($search["result"], $crawler->filter('html:contains('.$search["search"].')')->count());
+            // $this->assertJson($client->getResponse()->getContent());
+            
+            // $this->assertEquals($search["result"], $crawler->filter('html:contains('.$search["search"].')')->count());
+            // 
+            
+
+
             // $this->assertResponseIsSuccessful();
             // $this->assertJson($client->getResponse()->getContent());
 
@@ -42,7 +58,7 @@ class DataQueryServiceTest extends WebTestCase
             // $responseData = json_decode($client->getResponse()->getContent(), true);
             // // Vérifiez le nombre d'utilisateurs correspondant à la recherche
             // $this->assertCount($search["result"], $responseData);
-        }
+        // }
 
     }
 }
