@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Tests;
+namespace App\Tests\SmokeTest;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class SmokeTest extends WebTestCase
+class PublicSmokeTest extends WebTestCase
 {
     /**
      * @dataProvider urlProvider
