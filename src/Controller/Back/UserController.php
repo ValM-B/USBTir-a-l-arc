@@ -36,6 +36,11 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $userRepository->add($user, true);
 
+            $this->addFlash(
+                'success',
+                "Le licencié a bien été ajouté."
+                );
+
             return $this->redirectToRoute('app_back_user_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -66,6 +71,11 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $userRepository->add($user, true);
 
+            $this->addFlash(
+                'success',
+                "Le licencié a bien été modifié."
+                );
+
             return $this->redirectToRoute('app_back_user_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -82,6 +92,15 @@ class UserController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
             $userRepository->remove($user, true);
+            $this->addFlash(
+                'success',
+                "Le licencié a bien été supprimé."
+                );
+        } else {
+            $this->addFlash(
+                'danger',
+                "Une erreur s'est produite, le licencié n'a pas été supprimé."
+                );
         }
 
         return $this->redirectToRoute('app_back_user_index', [], Response::HTTP_SEE_OTHER);

@@ -2,6 +2,7 @@
 
 {% block body %}
 <div class="d-flex flex-column w-100">
+    {% include "fragments/_flash_message.html.twig" %}
     <h2>Liste des Tarifs</h2>
     <div class="align-self-end">
         <a href="{{ path('app_back_tarif_new') }}" class="btn">Nouveau</a>
@@ -19,7 +20,7 @@
         <tbody>
         {% for tarif in tarifs %}
             <tr>
-                <th scope="row">{{ tarif.id }}</th>
+                <td scope="row">{{ tarif.id }}</th>
                 <td>{{ tarif.name }}</td>
                 <td>
                     <a href="{{ path('app_back_tarif_show', {'id': tarif.id}) }}" class="btn">Voir</a>

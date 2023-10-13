@@ -24,7 +24,7 @@ class DataQueryService
 	{	
 		if($this->request->getCurrentRequest()->query->has('search')) {
 			$search = $this->request->getCurrentRequest()->query->get('search');
-			return $this->userRepository->findAllBySearch($search);
+			return $search;
 		}
 	}
 
@@ -35,16 +35,24 @@ class DataQueryService
 	 */
 	public function orderBy()
 	{
-		$orderBy = [];
+		$orderBy = [
+			"sort" => null,
+			"order" => null
+		];
 		// get the result of search request in url (/users?sort=[string])
 		if ($this->request->getCurrentRequest()->query->has('sort')) {
-			$orderBy[$this->request->getCurrentRequest()->query->get('sort')] = "ASC";
+			// $orderBy[$this->request->getCurrentRequest()->query->get('sort')] = "ASC";
+			$orderBy["sort"] = $this->request->getCurrentRequest()->query->get('sort');
+		}
+		if ($this->request->getCurrentRequest()->query->has('order')) {
+			// $orderBy[$this->request->getCurrentRequest()->query->get('sort')] = "ASC";
+			$orderBy["order"] = $this->request->getCurrentRequest()->query->get('order');
 		}
 		return $orderBy;
 	}
 
 	/**
-	 * Get all users of one page
+	 * Get all users of one page, the number of pages and the current page
 	 * 
 	 * @return array 
 	 */
@@ -56,19 +64,22 @@ class DataQueryService
 		$limit = 20;
 		//sets the number of users of previous pages not to be retrieved
 		$offset = ($page - 1) * $limit;
-		$users = $this->userRepository->findBy([], $this->orderBy(), $limit, $offset);
-		return ["users" => $users, "page" => $page];
+
+		$users = $this->userRepository->searchUsers($this->search(), $this->orderBy()["sort"], $this->orderBy()["order"] , $limit, $offset);
+		$nbPages = ceil($this->getNumberOfUsers() / $limit);
+		
+		return ["users" => $users, "currentPage" => $page, "nbPages" => $nbPages];
 	}
 
 	/**
-	 * get the number of pages to display
+	 * get the number of users to display
 	 *
-	 * @return int number of pages
+	 * @return int number of users
 	 */
-	public function getNumberOfPages()
+	public function getNumberOfUsers()
 	{
+		return count($this->userRepository->searchUsers($this->search(), $this->orderBy()["sort"], $this->orderBy()["order"], null, null));
 		
-		return ceil($this->userRepository->getNumberOfUsers()[1] / 20);
 	}
 	
 }

@@ -1,8 +1,11 @@
 import { pagination } from "./pagination.js";
 import { userList } from "./userList.js";
+import { userSort } from "./userSort.js";
 
 export const userPage ={
-    
+    //Store the previously conducted search or sorting to reuse it when viewing another page and display the correct list of users (previously, the list was reset)
+    search : null,
+    sort : null,
     /**
      * Initializes the user page with user data of de first page
      */
@@ -16,6 +19,11 @@ export const userPage ={
             .then(data => {
                 userList.addUsersList(data.users);
                 pagination.addPagination(data.nbPages, data.currentPage);
+            })
+            .catch(error => {
+                const danger = document.querySelector(".alert-danger");
+                danger.hidden = false;
+                setTimeout(() => {danger.hidden = true;}, 5000);
             })
     
     },
@@ -73,6 +81,11 @@ export const userPage ={
                 pagination.resetPagination();
                 pagination.addPagination(data.nbPages, data.currentPage);
             })
+            .catch(error => {
+                const danger = document.querySelector(".alert-danger");
+                danger.hidden = false;
+                setTimeout(() => {danger.hidden = true;}, 5000);
+            })
     },
 
     /**
@@ -83,7 +96,25 @@ export const userPage ={
      */
     getData: async function( pageNb )
     {
-        const response = await fetch(window.location.origin+'/api/users?page='+pageNb)
-        return await response.json();
+    
+        if (userPage.sort && userPage.search) {
+            //If there is already a search and sorting of users
+            const response = await fetch(window.location.origin+'/admin35786/api/users?page='+pageNb+'&sort='+userPage.sort+'&order='+userSort.orientation+'&search='+userPage.search)
+            return await response.json();
+        } else if(userPage.sort){
+            //If there is already a sorting of users
+            const response = await fetch(window.location.origin+'/admin35786/api/users?page='+pageNb+'&sort='+userPage.sort+'&order='+userSort.orientation)
+            return await response.json();
+        } else if (userPage.search) {
+            //If there is already a search of users
+            const response = await fetch(window.location.origin+'/admin35786/api/users?page='+pageNb+'&search='+userPage.search)
+            return await response.json();
+        } else {      
+            const response = await fetch(window.location.origin+'/admin35786/api/users?page='+pageNb)
+            return await response.json();
+        }
     }
 }
+// In getData, we check before making the API call if a search and/or sorting has already been performed. When a search is conducted, the input value is stored in 'search,' and if sorting is done, the field name is stored in 'sort,' and the orientation has already been stored in 'userSort.orientation.
+// Same for sorting
+// Same for both combined

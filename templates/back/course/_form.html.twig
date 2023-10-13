@@ -1,4 +1,28 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Sauvegarder') }}</button>
+
+<div class="form-group">
+    {{ form_label(form.name) }}
+    {{ form_widget(form.name) }}
+</div>
+
+<div class="form-group">
+    {{ form_label(form.day) }}
+    {{ form_widget(form.day) }}
+    {{ form_errors(form.day) }}
+</div>
+
+<div class="form-group">
+    {{ form_label(form.hour) }}
+    {{ form_widget(form.hour) }}
+    {{ form_errors(form.hour) }}
+</div>
+
+<div class="form-group">
+    {{ form_label(form.courseType) }}
+    {{ form_widget(form.courseType) }}
+</div>
+
+<button class="btn mt-3">{{ button_label|default('Sauvegarder') }}</button>
+
 {{ form_end(form) }}
+

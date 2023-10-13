@@ -2,7 +2,11 @@
 
 {% block body %}
 <div class="d-flex flex-column w-100">
+    {% include "fragments/_flash_message.html.twig" %}  
     <h2>Liste des Licenciés</h2>
+    <div class="alert alert-danger alert-dismissible fade show" hidden role="alert">
+            <p>Une erreur s'est produite</p>
+    </div>
     <div class="pt-5 d-flex justify-content-between user-wrapper-search-new">
         <div class="d-flex user-search">
             <input type="text" class="form-control" placeholder="Rechercher un licencié" aria-label="Rechercher un liencié" aria-describedby="button-addon2">

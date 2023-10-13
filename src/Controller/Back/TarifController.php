@@ -36,6 +36,10 @@ class TarifController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $tarifRepository->add($tarif, true);
+            $this->addFlash(
+                'success',
+                "Le tarif a bien été ajouté."
+            );
 
             return $this->redirectToRoute('app_back_tarif_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -66,6 +70,10 @@ class TarifController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $tarifRepository->add($tarif, true);
+            $this->addFlash(
+                'success',
+                "Le tarif a bien été modifié."
+            );
 
             return $this->redirectToRoute('app_back_tarif_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -83,6 +91,15 @@ class TarifController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$tarif->getId(), $request->request->get('_token'))) {
             $tarifRepository->remove($tarif, true);
+            $this->addFlash(
+                'success',
+                "Le tarif a bien été supprimé."
+            );
+        } else {
+            $this->addFlash(
+                'danger',
+                "Une erreur s'est produite, le tarif n'a pas été supprimé."
+            );
         }
 
         return $this->redirectToRoute('app_back_tarif_index', [], Response::HTTP_SEE_OTHER);
