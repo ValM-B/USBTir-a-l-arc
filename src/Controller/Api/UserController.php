@@ -24,8 +24,11 @@ class UserController extends AbstractController
      */
     public function index(DataQueryService $dataQueryService): JsonResponse
     {
-        
-        return $this->json($dataQueryService->getUsersOfOnePage(), Response::HTTP_OK, [], ["groups" => "users"]);
+        if($dataQueryService === "error"){
+            throw new BadRequestHttpException("Aucune donnée valide fournie.");
+        } else {
+            return $this->json($dataQueryService->getUsersOfOnePage(), Response::HTTP_OK, [], ["groups" => "users"]);
+        }
     }
 
     /**
