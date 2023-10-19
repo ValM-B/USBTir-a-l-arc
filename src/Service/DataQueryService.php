@@ -39,14 +39,27 @@ class DataQueryService
 			"sort" => null,
 			"order" => null
 		];
+		$validColumns = ['licenceNumber', 'firstname', 'lastname']; // Liste blanche des colonnes autorisées
+		$validOrders = ['asc', 'desc']; // Liste blanche des ordres autorisés
+		
 		// get the result of search request in url (/users?sort=[string])
 		if ($this->request->getCurrentRequest()->query->has('sort')) {
-			// $orderBy[$this->request->getCurrentRequest()->query->get('sort')] = "ASC";
-			$orderBy["sort"] = $this->request->getCurrentRequest()->query->get('sort');
+			
+			$sort = $this->request->getCurrentRequest()->query->get('sort');
+			if(in_array($sort, $validColumns)){
+				$orderBy["sort"] = $sort;
+			} else {
+				return "error";
+			}
 		}
 		if ($this->request->getCurrentRequest()->query->has('order')) {
-			// $orderBy[$this->request->getCurrentRequest()->query->get('sort')] = "ASC";
-			$orderBy["order"] = $this->request->getCurrentRequest()->query->get('order');
+			
+			$order = $this->request->getCurrentRequest()->query->get('order');
+			if(in_array($order, $validOrders)){
+				$orderBy["order"] = $order;
+			} else {
+				return "error";
+			}
 		}
 		return $orderBy;
 	}
@@ -65,10 +78,14 @@ class DataQueryService
 		//sets the number of users of previous pages not to be retrieved
 		$offset = ($page - 1) * $limit;
 
+		if($this->orderBy() === "error"){
+			return $this->orderBy();
+		} else {
 		$users = $this->userRepository->searchUsers($this->search(), $this->orderBy()["sort"], $this->orderBy()["order"] , $limit, $offset);
 		$nbPages = ceil($this->getNumberOfUsers() / $limit);
 		
 		return ["users" => $users, "currentPage" => $page, "nbPages" => $nbPages];
+			}
 	}
 
 	/**
