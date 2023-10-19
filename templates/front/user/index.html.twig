@@ -5,6 +5,7 @@
     <div class="wrapper-profil d-flex align-items-center justify-content-center">
     <div class="container">
         <h2 class="text-center profil-title">Mon Profil</h2>
+        {% include "fragments/_flash_message.html.twig" %}  
 		<section class="my-4 p-4 rounded shadow">
             <div class="row d-flex justify-content-center p-0">
 
@@ -20,6 +21,8 @@
                         <div class="profil-data">
                             <i class="fa-solid fa-envelope profil-icon"></i>
                             <p class="d-inline">{{app.user.email }}</p>
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#emailModal">Modifier</button>
+
                         </div>
                         <div class="profil-data">
                             <i class="fa-solid fa-cake-candles profil-icon"></i>
@@ -29,7 +32,9 @@
                             <i class="fa-solid fa-id-badge profil-icon"></i>
                             <p class="text-uppercase d-inline">{{app.user.licenceNumber}}</p>
                         </div>
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#passwordModal">Modifier mon mot de passe</button>
                     </div>
+                      
                 </div>
                 
                 <div class="col-12 col-lg-5 col-profil">
@@ -52,4 +57,34 @@
         </section>
       </div>  
     </div>
+    <!-- Modal email-->
+<div class="modal fade" id="emailModal" tabindex="-1" aria-labelledby="emailModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+       
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{ include('front/user/_email_form.html.twig', {'button_label': 'Enregistrer'}) }}
+      </div>
+    </div>
+  </div>
+</div>
+ <!-- Modal password-->
+<div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+       
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{ include('front/user/_password_form.html.twig', {'button_label': 'Enregistrer'}) }}
+      </div>
+    </div>
+  </div>
+</div>
+
+
 {% endblock %}
