@@ -20,7 +20,9 @@ class UserController extends AbstractController
      */
     public function edit(HttpFoundationRequest $request, UserRepository $userRepository, UserPasswordHasherInterface $passwordHasher): Response
     {
+        /** @var \App\Entity\User $user */
         $user = $this->getUser();
+        
         $formEmail = $this->createForm(UserEmailType::class, $user);
         $formEmail->handleRequest($request);
         if ($formEmail->isSubmitted() && $formEmail->isValid()) {

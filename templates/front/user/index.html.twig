@@ -21,7 +21,7 @@
                         <div class="profil-data">
                             <i class="fa-solid fa-envelope profil-icon"></i>
                             <p class="d-inline">{{app.user.email }}</p>
-                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#emailModal">Modifier</button>
+                            <button type="button" class="btn btn-secondary ms-5" data-bs-toggle="modal" data-bs-target="#emailModal">Modifier</button>
 
                         </div>
                         <div class="profil-data">
@@ -32,7 +32,7 @@
                             <i class="fa-solid fa-id-badge profil-icon"></i>
                             <p class="text-uppercase d-inline">{{app.user.licenceNumber}}</p>
                         </div>
-                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#passwordModal">Modifier mon mot de passe</button>
+                        <button type="button" class="btn btn-secondary mt-2" data-bs-toggle="modal" data-bs-target="#passwordModal">Modifier mon mot de passe</button>
                     </div>
                       
                 </div>
@@ -44,7 +44,7 @@
                             {% for course in app.user.courses %}
                                 <div>
                                     <h4 class= "mt-4 mb-1">{{ course.name }}</h4>
-                                    <p>Le {{ course.day }} à {{ course.hour|date('H:i')}} h</p>
+                                    <p>Le {{ course.day }} à {{ course.hour|date('H')}}h{{ course.hour|date('i')}}</p>
                                 </div>    
                             {% endfor %}
                         {% else %}
@@ -62,7 +62,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-       
+       <h4>Modifier mon adresse email</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -76,7 +76,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-       
+       <h4>Modifier mon mot de passe</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
