@@ -244,7 +244,15 @@ li, a{
 {
     margin: 0
 }
-
+.btn-secondary {
+    background-color: #B8CBD0;
+    color: #344D59;
+}
+.btn-secondary:hover {
+    color: #344D59;
+    background-color: #709CA7;
+    border: 1px solid #709CA7;
+}
 
 
 
