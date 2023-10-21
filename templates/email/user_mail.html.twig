@@ -1,0 +1,15 @@
+{% apply inline_css %}
+
+    <style>
+        {# here, define your CSS styles as usual #}
+        .mail-body {
+            background-color: #f0f;
+        }
+    </style>
+<div class="mail-body">
+	<img src="{{ email.image('@images/logo-otir.png') }}" alt="Logo club O'tir">
+	<h1>Vous avez un message</h1>
+	<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis repellendus magnam error maxime voluptates aut deleniti quis tempore, ad dolorem nulla id, veniam aliquam. Exercitationem cupiditate ipsam aliquid ducimus praesentium!</p>
+	<p>O'tir</p>
+</div>
+{% endapply %}

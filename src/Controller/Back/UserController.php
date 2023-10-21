@@ -5,11 +5,14 @@ namespace App\Controller\Back;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use App\Service\MailerService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Mime\Email;
 
 /**
  * @Route("/admin35786/utilisateurs")
@@ -28,7 +31,7 @@ class UserController extends AbstractController
     /**
      * @Route("/new", name="app_back_user_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $passwordHasher): Response
+    public function new(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $passwordHasher, MailerService $mailer): Response
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
@@ -37,6 +40,13 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setPassword($passwordHasher->hashPassword($user, $user->getPassword()));
             $userRepository->add($user, true);
+
+            $mailer->sendToUser(
+                $user->getEmail(),
+                "Nouvel espace privé",
+                "email/user_created.html.twig",
+                []
+               );
 
             $this->addFlash(
                 'success',
@@ -106,5 +116,22 @@ class UserController extends AbstractController
         }
 
         return $this->redirectToRoute('app_back_user_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+     /**
+     * @Route("/{id}/mail", name="app_back_user_mail", methods={"GET"})
+     */
+    public function mail(User $user, MailerService $mailer): Response
+    {
+        $mailer->sendToUser(
+            $user->getEmail(),
+            "Message de O'tir",
+            "email/user_mail.html.twig",
+            []
+           );
+
+        return $this->render('back/user/show.html.twig', [
+            'user' => $user,
+        ]);
     }
 }

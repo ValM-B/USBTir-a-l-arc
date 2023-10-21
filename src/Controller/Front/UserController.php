@@ -18,7 +18,7 @@ class UserController extends AbstractController
     /**
      * @Route("/profil", name="app_user", methods={"GET", "POST"})
      */
-    public function edit(HttpFoundationRequest $request, UserRepository $userRepository, UserPasswordHasherInterface $passwordHasher): Response
+    public function show(HttpFoundationRequest $request, UserRepository $userRepository, UserPasswordHasherInterface $passwordHasher): Response
     {
         /** @var \App\Entity\User $user */
         $user = $this->getUser();
