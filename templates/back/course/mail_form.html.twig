@@ -1,0 +1,21 @@
+{% extends 'back/base.html.twig' %}
+
+{% block body %}
+    <h2>Envoyer un mail au groupe du cours {{ course.name }}</h2>
+	<form action="" method="post">
+		<div class="mb-3">
+			<label for="object" class="form-label">Objet</label>
+			<input type="text" class="form-control" id="object" placeholder="Objet du mail">
+		</div>
+
+		<div class="mb-3">
+			<label for="content" class="form-label">Texte du mail</label>
+			<textarea class="form-control" id="content" rows="3"></textarea>
+		</div>
+
+		 <div class="col-12">
+			<button class="btn btn-primary" type="submit">Envoyer</button>
+		</div>
+
+	</form>
+{% endblock %}

@@ -106,4 +106,14 @@ class CourseController extends AbstractController
 
         return $this->redirectToRoute('app_back_course_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    /**
+     * @Route("/{id}/email", name="app_back_course_email")
+     */
+    public function email(Course $course)
+    {
+        return $this->render('back/course/mail_form.html.twig', [
+            'course' => $course,
+        ]);
+    }
 }

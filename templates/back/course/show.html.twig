@@ -20,6 +20,33 @@
         </tbody>
     </table>
 
+    <h2>Liste des inscrits</h2>
+    <a href="{{ path('app_back_course_email', {id:course.id})}}" class="btn btn-primary mt-2">Envoyer un mail au groupe</a>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col" class="user-licenceNumber">Numéro de licence</th>
+                <th scope="col">Prénom</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody id="user-tbody">
+            {% for user in course.users %}
+                <tr>
+                    <th class="text-uppercase user-licenceNumber">{{ user.licenceNumber }}</th>
+                    <td class="user-firstname">{{ user.firstname }}</td>
+                    <td class="user-lastname">{{ user.lastname }}</td>
+                    <td>
+                        <a href="{{ path('app_back_user_show', {id: user.id})}}" class="btn btn-show">Voir</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
     <a href="{{ path('app_back_course_index') }}">Retour</a>
 
     <a href="{{ path('app_back_course_edit', {'id': course.id}) }}">Editer</a>
