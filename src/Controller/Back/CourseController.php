@@ -5,6 +5,7 @@ namespace App\Controller\Back;
 use App\Entity\Course;
 use App\Form\CourseFormType;
 use App\Repository\CourseRepository;
+use App\Service\MailerService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -115,5 +116,32 @@ class CourseController extends AbstractController
         return $this->render('back/course/mail_form.html.twig', [
             'course' => $course,
         ]);
+    }
+
+        /**
+     * @Route("/{id}/send-email", name="app_back_course_email_send", methods={"POST"})
+     */
+    public function sendEmail(Course $course, Request $request, MailerService $mailer)
+    {
+        $object = $request->request->get('object');
+        $content = $request->request->get('content');
+        $users = $course->getUsers();
+       
+        foreach ($users as $user) {
+           
+            $mailer->sendToUser(
+                $user->getEmail(),
+                $object,
+                "email/user_mail.html.twig",
+                ['content' => $content]
+               );
+        }
+        
+        $this->addFlash(
+            'success',
+            "L'email a bien été envoyé"
+        );
+
+        return $this->redirectToRoute('app_back_course_show', ["id" => $course->getId()], Response::HTTP_SEE_OTHER);
     }
 }

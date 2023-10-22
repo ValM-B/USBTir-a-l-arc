@@ -2,15 +2,21 @@
 
 {% block body %}
     <h2>Envoyer un mail au groupe du cours {{ course.name }}</h2>
-	<form action="" method="post">
+	<form action="{{ path('app_back_course_email_send', {id: course.id}) }}" method="post" class="w-100">
 		<div class="mb-3">
 			<label for="object" class="form-label">Objet</label>
-			<input type="text" class="form-control" id="object" placeholder="Objet du mail">
+			<input type="text" class="form-control" id="object" placeholder="Objet du mail" name="object">
+		</div>
+		
+		<h3>Contenu de mail</h3>
+		<div class="mb-3">
+			<label for="title" class="form-label">Titre</label>
+			<input type="text" class="form-control" id="title" placeholder="Titre du mail" name="title">
 		</div>
 
 		<div class="mb-3">
 			<label for="content" class="form-label">Texte du mail</label>
-			<textarea class="form-control" id="content" rows="3"></textarea>
+			<textarea class="form-control" id="content" rows="3" name="content"></textarea>
 		</div>
 
 		 <div class="col-12">
