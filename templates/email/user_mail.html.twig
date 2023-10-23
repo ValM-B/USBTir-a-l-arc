@@ -3,13 +3,32 @@
     <style>
         {# here, define your CSS styles as usual #}
         .mail-body {
-            background-color: #f0f;
+			color: #344D59;
+         					
+		}
+		.container-img{
+			text-align: center;
+		}
+		img{
+			display: block;
+   			margin: 0 auto;
+		}
+		
+
+		h1{
+			text-align: center;
+		}
+        p{
+            margin: 10px 25px;
         }
+
     </style>
-<div class="mail-body">
-	<img src="{{ email.image('@images/logo-otir.png') }}" alt="Logo club O'tir">
-	<h1>Vous avez un message</h1>
-	<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis repellendus magnam error maxime voluptates aut deleniti quis tempore, ad dolorem nulla id, veniam aliquam. Exercitationem cupiditate ipsam aliquid ducimus praesentium!</p>
-	<p>O'tir</p>
-</div>
+    <div class="mail-body">
+        <div class="container-img">
+			<img src="{{ email.image('@images/logo-otir.png') }}" alt="Logo club O'tir" width="100" height="auto">
+		</div>
+        <h1>{{ title }}</h1>
+        <p>{{ content }}</p>
+        <p>O'tir</p>
+    </div>
 {% endapply %}
