@@ -125,7 +125,7 @@ class UserController extends AbstractController
     {
         $mailer->sendToUser(
             $user->getEmail(),
-            "Message de O'tir",
+            "Message de USB Tir à l'arc",
             "email/user_mail.html.twig",
             []
            );
