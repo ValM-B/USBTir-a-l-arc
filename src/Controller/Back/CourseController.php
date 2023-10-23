@@ -124,16 +124,20 @@ class CourseController extends AbstractController
     public function sendEmail(Course $course, Request $request, MailerService $mailer)
     {
         $object = $request->request->get('object');
+        $title = $request->request->get('title');
         $content = $request->request->get('content');
+        
         $users = $course->getUsers();
        
         foreach ($users as $user) {
-           
+            $content = str_replace("[prénom]", $user->getFirstname(), $content);
+            $content = str_replace("[nom]", $user->getLastname(), $content);
             $mailer->sendToUser(
                 $user->getEmail(),
                 $object,
                 "email/user_mail.html.twig",
-                ['content' => $content]
+                [ 'title' => $title,
+                'content' => $content,]
                );
         }
         
