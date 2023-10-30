@@ -30,7 +30,9 @@ a{
 /* Header */
 h1{
     font-size: calc(42 * var(--resmin));
+    font-weight: 600;
     color: var(--font-color);
+    margin-top: 0.5rem;
 }
 #navbar{
     background-color: var(--secondary-color);

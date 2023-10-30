@@ -1,7 +1,7 @@
 <?php
 namespace App\DataFixtures\Provider;
 
-class OtirProvider
+class UsbProvider
 {
 	private $prices = [
 		[ 
