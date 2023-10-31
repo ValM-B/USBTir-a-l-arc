@@ -63,9 +63,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @Groups({"users"})
      * @Assert\NotBlank(message="Champ requis.")
      * @Assert\Regex(
-     *      pattern="/\d/",
-     *      match=false,
-     *      message="Votre prénom ne peut pas comporter de chiffre."
+     *      pattern="/^[A-Za-z\-]+$/",
+     *      match=true,
+     *      message="Votre nom ne peut contenir que des lettres et des tirets."
      * )
      */
     private $firstname;
@@ -75,9 +75,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @Groups({"users"})
      * @Assert\NotBlank(message="Champ requis.")
      * @Assert\Regex(
-     *      pattern="/\d/",
-     *      match=false,
-     *      message="Votre nom ne peut pas comporter de chiffre."
+     *      pattern="/^[A-Za-z\-]+$/",
+     *      match=true,
+     *      message="Votre nom ne peut contenir que des lettres et des tirets."
      * )
      */
     private $lastname;
