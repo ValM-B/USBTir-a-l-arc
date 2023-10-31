@@ -50,6 +50,4 @@ class UserController extends AbstractController
 
         throw new BadRequestHttpException("Aucune donnée valide fournie.");
     }
-
-
 }

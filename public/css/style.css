@@ -1,21 +1,23 @@
 /* graphic chart : 
-#137C8B
-#709CA7
-#B8CBD0
-#7A90A4
-#344D59 */
+main : #C5DFF8
+secondary : #A0BFE0
+font : #254da3
+footer : #5e83c6
+font family : 'Noto Sans', sans-serif;
+*/
 
 :root {
     --main-color: #C5DFF8 ;
     --secondary-color: #A0BFE0;
     --font-color : #254da3;
     --footer-color: #5e83c6;
+    --font-family: 'Noto Sans', sans-serif;
 }
 body{
     box-sizing: border-box;
     --resmin: 0.09vmin;
     --resmax: 0.09vmax;
-    font-family: 'Noto Sans', sans-serif;
+    font-family: var(--font-family);
     color: var(--font-color);
 }
 ul{
