@@ -41,6 +41,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\NotBlank(message="Champ requis.")
      * @Assert\Regex(
      *      pattern="/^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{6,})\S$/", 
      *      message="Le mot de passe ne répond pas aux critères"
@@ -63,7 +64,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @Groups({"users"})
      * @Assert\NotBlank(message="Champ requis.")
      * @Assert\Regex(
-     *      pattern="/^[A-Za-z\-]+$/",
+     *      pattern="/^[\p{L}\-]+$/u",
      *      match=true,
      *      message="Votre nom ne peut contenir que des lettres et des tirets."
      * )
@@ -139,7 +140,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\PrePersist
      */
-    public function setCreatedAtValue()
+    public function setCreatedAt()
     {
         $this->createdAt = new DateTimeImmutable();
     }
@@ -147,7 +148,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\PreUpdate
      */
-    public function setUpdatedAtValue()
+    public function setUpdatedAt()
     {
         $this->updatedAt = new DateTimeImmutable();
     }
@@ -319,25 +320,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
+    
     public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
+    
     /**
      * @return Collection<int, Course>
      */

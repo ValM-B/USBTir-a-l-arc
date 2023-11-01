@@ -1,22 +1,22 @@
 {% extends 'back/base.html.twig' %}
 
 {% block body %}
-    <h2>Envoyer un mail au groupe du cours {{ course.name }}</h2>
+    <h2>Envoyer un e-mail au groupe du cours {{ course.name }}</h2>
 	<form action="{{ path('app_back_course_email_send', {id: course.id}) }}" method="post" class="w-100">
 		<div class="mb-3">
 			<label for="object" class="form-label">Objet</label>
-			<input type="text" class="form-control" id="object" placeholder="Objet du mail" name="object">
+			<input type="text" class="form-control" id="object" placeholder="Objet de l'e-mail" name="object">
 		</div>
 		
-		<h3>Contenu de mail</h3>
+		<h3>Contenu de l'e-mail</h3>
 		<div class="mb-3">
 			<label for="title" class="form-label">Titre</label>
-			<input type="text" class="form-control" id="title" placeholder="Titre du mail" name="title">
+			<input type="text" class="form-control" id="title" placeholder="Titre de l'e-mail" name="title">
 		</div>
 
 		<div class="mb-3">
 			<label for="content" class="form-label">Texte</label>
-			<textarea class="form-control" id="content" rows="3" name="content" placeholder="Texte du mail"></textarea>
+			<textarea class="form-control" id="content" rows="3" name="content" placeholder="Texte de l'e-mail"></textarea>
 			<p>Vous pouvez personnaliser le texte pour chaque licencié en utilisant : [prénom] ou [nom]</p>
 		</div>
 

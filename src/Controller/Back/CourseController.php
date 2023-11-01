@@ -118,7 +118,7 @@ class CourseController extends AbstractController
         ]);
     }
 
-        /**
+     /**
      * @Route("/{id}/send-email", name="app_back_course_email_send", methods={"POST"})
      */
     public function sendEmail(Course $course, Request $request, MailerService $mailer)

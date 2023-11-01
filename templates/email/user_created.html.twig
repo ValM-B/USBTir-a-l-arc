@@ -1,11 +1,8 @@
 {% apply inline_css %}
-
     <style>
-        {# here, define your CSS styles as usual #}
-        .mail-body {
+		.mail-body {
             background-color: #B8CBD0;
 			border: solid 5px #344D59;
-						
 		}
 		.container-img{
 			text-align: center;
@@ -14,12 +11,9 @@
 			display: block;
    			margin: 0 auto;
 		}
-		
-
 		h1{
 			text-align: center;
 		}
-
     </style>
 	<div class="mail-body">
 		<div class="container-img">
@@ -27,7 +21,9 @@
 		</div>
 		<h1>Votre espace licencié a été créé !</h1>
 		<p>Cher {{app.user.firstname}},</p>
-		<p>Vous pouvez maintenant accéder àvotre espace licencié avec votre adresse email en <a href="{{url('app_login')}}">Cliquant ici</a></p>
+		<p>Vous pouvez maintenant accéder àvotre espace licencié avec votre adresse email en 
+			<a href="{{url('app_login')}}">Cliquant ici</a>
+		</p>
 		<p>Votre mot de passe est votre numéro de licence/vos initiales (exemple: 0000000A/ab). Nous vous recommandons fortement de le modifier lors de votre première connexion.</p>
 		<p>USB Tir à l'arc</p>
 	</div>
