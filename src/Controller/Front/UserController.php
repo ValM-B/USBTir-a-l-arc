@@ -26,9 +26,9 @@ class UserController extends AbstractController
         // Create and handle the email update form
         $formEmail = $this->createForm(UserEmailType::class, $user);
         $formEmail->handleRequest($request);
-        if ($formEmail->isSubmitted() && $formEmail->isValid()) {
-           
-            $userRepository->add($user, true);
+        if ($formEmail->isSubmitted()) {
+            if($formEmail->isValid()){
+                     $userRepository->add($user, true);
 
             $this->addFlash(
                 'success',
@@ -36,23 +36,37 @@ class UserController extends AbstractController
                 );
 
             return $this->redirectToRoute('app_user', [], Response::HTTP_SEE_OTHER);
+            } else {
+                $this->addFlash(
+                    'danger',
+                    "La mise à jour n'a pas pu être effectuée."
+                );
+            }
+       
         }
 
         // Create and handle the password update form
         $formPassword = $this->createForm(UserPasswordType::class, $user);
         $formPassword->handleRequest($request);
-        if ($formPassword->isSubmitted() && $formPassword->isValid()) {
+        if ($formPassword->isSubmitted()) {
            
-            $user->setPassword($passwordHasher->hashPassword($user, $user->getPassword()));
-           
-            $userRepository->add($user, true);
+            if($formPassword->isValid()) {
+                $user->setPassword($passwordHasher->hashPassword($user, $user->getPassword()));
 
-            $this->addFlash(
-                'success',
-                "Le mot de passe a bien été mis à jour"
+                $userRepository->add($user, true);
+
+                $this->addFlash(
+                    'success',
+                    "Le mot de passe a bien été mis à jour"
                 );
 
-            return $this->redirectToRoute('app_user', [], Response::HTTP_SEE_OTHER);
+                return $this->redirectToRoute('app_user', [], Response::HTTP_SEE_OTHER);
+            } else {
+                $this->addFlash(
+                    'danger',
+                    "Le mot de passe n'a pas pu être mis à jour"
+                );
+            }
         }
 
          // Render the user's profile page with email and password forms

@@ -305,6 +305,9 @@ footer h4{
     color: var(--main-color);
     padding-left: 10px;
 }
+.partners{
+    width : 100px;
+}
 
 /* Login */
 .wrapper-login{
