@@ -73,7 +73,7 @@ class DataQueryService
 	{
 		// get the page number in url (/users?page=[int])
 		$page = (int) $this->request->getCurrentRequest()->query->get('page', 1);
-		if($page < 0){
+		if($page < 1){
 			$page = 1;
 		}
 		//sets the number of users to display on the page

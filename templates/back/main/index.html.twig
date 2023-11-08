@@ -7,12 +7,34 @@
     [{{ app.user.position }}]
 </div>
 <div class="container-homepage-backoffice">
-    <ul>
-        <p class="fs-3">Ici, vous pouvez gérer:</p>
-        <li class="pb-3"><a href="{{ path('app_back_user_index') }}" class="fs-5">Les Licenciés</a></li>
-        <li class="pb-3"><a href="{{ path('app_back_course_index') }}" class="fs-5">Les Cours</a></li>
-        <li><a href="{{ path('app_back_tarif_index') }}" class="fs-5">Les Tarifs</a></li>
-    </ul>
+    
+        <div class="row justify-content-center">
+            <a href="{{ path('app_back_user_index') }}" class="col-12 col-lg-3 m-2 card-link">
+                <div class="card" >
+                    <img src="{{ asset('images/licencies.jpg') }}" alt="Designed by slidesgo / Freepik" class="card-img-top ">
+                    <div class="card-body">
+                        <p class="card-text">Les Licenciés</p>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ path('app_back_course_index') }}" class="col-12 col-lg-3 m-2 card-link">
+            <div class="card" >
+                <img src="{{ asset('images/cours.jpg') }}" alt="Designed by slidesgo / Freepik" class="card-img-top ">
+                <div class="card-body">
+                    <p class="card-text">Les Cours</p>
+                </div>
+            </div>
+            </a>
+            <a href="{{ path('app_back_tarif_index') }}" class="col-12 col-lg-3 m-2 card-link">
+            <div class="card" >
+                <img src="{{ asset('images/tarifs.jpg') }}" alt="Designed by slidesgo / Freepik" class="card-img-top ">
+                <div class="card-body">
+                    <p class="card-text">Les Tarifs</p>
+                </div>
+            </div>
+            </a>
+        </div>
+  
 </div>
 
 {% endblock %}

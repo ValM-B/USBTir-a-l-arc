@@ -312,86 +312,10 @@ footer h4{
 }
 
 
-/* 404 page */
-.page_404{ 
-    padding:40px 0; background:#fff; font-family: 'Arvo', serif;
-}
-.page_404  img{ 
-    width:100%;
-}
-.four_zero_four_bg{
-    background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
-    height: 400px;
-    background-position: center;
-}
- .four_zero_four_bg h1{
-    font-size:80px;
-}
-  .four_zero_four_bg h3{
-    font-size:80px;
-}
-			 
-.link_404{			 
-    color: #fff;
-    padding: 10px 20px;
-    background: #39ac31;
-    margin: 20px 0;
-    display: inline-block;
-}
-.contant_box_404{ 
-    margin-top:-50px;
-}
-.page_404{
-    height: 100vh;
-    width: 100vw;
-}
-
-
-/* 403 page */
-.page-403 {
-    margin:0;
-    padding: 0;
-}
-.body-403{
-    background: #233142;
-}
-.whistle{
-    width: 20%;
-    fill: #f95959;
-    margin: 100px 40%;
-    text-align: left;
-    transform: translate(-50%, -50%);
-    transform: rotate(0);
-    transform-origin: 80% 30%;
-    animation: wiggle .2s infinite;
-}
-
-@keyframes wiggle {
-    0%{
-    transform: rotate(3deg);
-    }
-    50%{
-    transform: rotate(0deg);
-    }
-    100%{
-    transform: rotate(3deg);
-    }
-}
-.page-403 h2{
-    margin-top: -100px;
-    margin-bottom: 20px;
-    color: #facf5a;
-    text-align: center;
-    font-family: 'Raleway';
-    font-size: 90px;
-    font-weight: 800;
-}
-.page-403 p{
-    color: #455d7a;
-    text-align: center;
-    font-family: 'Raleway';
-    font-size: 30px;
-    text-transform: uppercase;
+/* error pages */
+.page-404,
+.page-403{
+    min-height: 75vh;
 }
 
 
@@ -409,6 +333,14 @@ footer h4{
     border-top: 4px solid var(--font-color);
     border-bottom: 4px solid var(--font-color);
     padding: 6px 0;
+}
+
+.card-link{
+    max-width: 20rem;
+}
+
+.card:hover{
+    border: 4px solid var(--font-color);
 }
 
 /* Form */
