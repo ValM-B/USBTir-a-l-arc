@@ -23,6 +23,7 @@ class UserController extends AbstractController
         /** @var \App\Entity\User $user */
         $user = $this->getUser();
         
+        // Create and handle the email update form
         $formEmail = $this->createForm(UserEmailType::class, $user);
         $formEmail->handleRequest($request);
         if ($formEmail->isSubmitted() && $formEmail->isValid()) {
@@ -36,6 +37,8 @@ class UserController extends AbstractController
 
             return $this->redirectToRoute('app_user', [], Response::HTTP_SEE_OTHER);
         }
+
+        // Create and handle the password update form
         $formPassword = $this->createForm(UserPasswordType::class, $user);
         $formPassword->handleRequest($request);
         if ($formPassword->isSubmitted() && $formPassword->isValid()) {
@@ -52,6 +55,7 @@ class UserController extends AbstractController
             return $this->redirectToRoute('app_user', [], Response::HTTP_SEE_OTHER);
         }
 
+         // Render the user's profile page with email and password forms
         return $this->render('front/user/index.html.twig', [
             'formEmail' => $formEmail->createView(),
             'formPassword' => $formPassword->createView(),

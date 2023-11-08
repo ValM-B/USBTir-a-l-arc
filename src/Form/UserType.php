@@ -76,7 +76,6 @@ class UserType extends AbstractType
                     ->orderBy('c.name', 'ASC');
                 },
                 "label" => "Cours"
-
             ]);
             if($options["custom_option"] !== "edit"){
                 $builder

@@ -26,7 +26,6 @@ class UserPasswordType extends AbstractType
                 "second_options" => ["label" => "Confirmez le mot de passe"],
                 "invalid_message" => "Les champs doivent être identiques",
             ]);
-    
         ;
     }
 

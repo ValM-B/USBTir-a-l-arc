@@ -39,8 +39,8 @@ class DataQueryService
 			"sort" => null,
 			"order" => null
 		];
-		$validColumns = ['licenceNumber', 'firstname', 'lastname']; // Liste blanche des colonnes autorisées
-		$validOrders = ['asc', 'desc']; // Liste blanche des ordres autorisés
+		$validColumns = ['licenceNumber', 'firstname', 'lastname']; // Whitelist of allowed columns
+		$validOrders = ['asc', 'desc']; // Whitelist of allowed orders
 		
 		// get the result of search request in url (/users?sort=[string])
 		if ($this->request->getCurrentRequest()->query->has('sort')) {
@@ -73,8 +73,11 @@ class DataQueryService
 	{
 		// get the page number in url (/users?page=[int])
 		$page = (int) $this->request->getCurrentRequest()->query->get('page', 1);
+		if($page < 1){
+			$page = 1;
+		}
 		//sets the number of users to display on the page
-		$limit = 20;
+		$limit = 10;
 		//sets the number of users of previous pages not to be retrieved
 		$offset = ($page - 1) * $limit;
 

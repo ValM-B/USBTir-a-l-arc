@@ -2,7 +2,8 @@
 
 namespace App\DataFixtures;
 
-use App\DataFixtures\Provider\OtirProvider;
+
+use App\DataFixtures\Provider\UsbProvider;
 use App\Entity\Course;
 use App\Entity\CourseType;
 use App\Entity\Tarif;
@@ -31,7 +32,7 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create('fr_FR');
-        $provider = new OtirProvider();
+        $provider = new UsbProvider();
 
         //Create all Tarifs
         foreach ($provider->getPrices() as $price) {
