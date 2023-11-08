@@ -72,28 +72,38 @@
         <!-- Footer -->
         <footer class="footer">
             {% block footer %}
-            <div class="footer-container">
-                <div class="footer-col">
-                    <h4>Mentions légales</h4>
-                    <a class="footer-link" href="{{ path('app_legal_notice') }}">Consulter</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Retrouvez-nous</h4>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h4>Nos partenaires</h4>
+            <div class="footer-container row">
+                <div class="col-12 col-lg-2">
+                    <h4>Liens utiles</h4>
                     <ul>
-                        <li><a class="footer-link" href="#">partenaire 1</a></li>
-                        <li><a class="footer-link" href="#">partenaire 2</a></li>
-                        <li><a class="footer-link" href="#">partenaire 3</a></li>
+                        <li><a class="footer-link" href="{{ path('app_legal_notice') }}">Mentions légales</a></li>
+                        <li><a class="footer-link" href="{{ path('app_contact') }}">Nous contacter</a></li>
                     </ul>
                 </div>
+                <div class="col-12 col-lg-8">
+                    <h4>Nos partenaires</h4>
+                    
+                    <a href="https://www.ffta.fr/index.php/">
+                        <img src="{{ asset('images/ffta.jpg') }}" alt="Logo ffta" class="partners">
+                    </a>
+                    <a href="https://www.bouscat.fr/">
+                        <img src="{{ asset('images/le-bouscat.jpg') }}" alt="Logo Le Bouscat" class="partners">
+                    </a>
+                    <a href="https://www.crnata.fr/">
+                        <img src="{{ asset('images/comité-regional-aquitaine.jpg') }}" alt="Logo comité regional nouvelle aquitaine" class="partners">
+                    </a>
+                    <a href="https://www.cdh33.org/">
+                        <img src="{{ asset('images/handi-sport-gironde.png') }}" alt="Logo handisport gironde" class="partners">
+                    </a>
+                </div>
+                <div class="col-12 col-lg-2">
+                <h4>Suivez-nous</h4>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/LesArchersDuBosquet/?ref=embed_page"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
             </div>
+
             {% endblock %}
         </footer>
 
