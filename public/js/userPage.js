@@ -25,7 +25,6 @@ export const userPage ={
                 danger.hidden = false;
                 setTimeout(() => {danger.hidden = true;}, 5000);
             })
-    
     },
 
     /**

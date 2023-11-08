@@ -3,53 +3,90 @@
 {% block body %}
 
     <div class="wrapper-profil d-flex align-items-center justify-content-center">
-    <div class="container">
-        <h2 class="text-center profil-title">Mon Profil</h2>
-		<section class="my-4 p-4 rounded shadow">
-            <div class="row d-flex justify-content-center p-0">
+        <div class="container">
+            <section class="my-4 p-4 rounded shadow">
+                <h2 class="text-center profil-title">Mon Profil</h2>
+                {% include "fragments/_flash_message.html.twig" %}  
+                <div class="row d-flex justify-content-center p-0">
+                    <div class="col-12 col-lg-5 col-profil">
+                        <h3>Mes infos personnelles</h3>
+                        <div>
+                            <div class="mb-2 pb-2 profil-name">
+                                <h4 class= "mt-4 mb-0">{{ app.user.firstname }} {{ app.user.lastname }}</h4>
+                                {% if app.user.position is not null %}
+                                    <em>{{ app.user.position }}</em>
+                                {% endif %}
+                            </div>
+                            <div class="profil-data">
+                                <i class="fa-solid fa-envelope profil-icon"></i>
+                                <p class="d-inline">{{app.user.email }}</p>
+                                <button type="button" class="btn btn-secondary ms-5" data-bs-toggle="modal" data-bs-target="#emailModal">Modifier</button>
 
-                <div class="col-12 col-lg-5 col-profil">
-                    <h3>Mes infos personnelles</h3>
-                    <div>
-                        <div class="mb-2 pb-2 profil-name">
-                            <h4 class= "mt-4 mb-0">{{ app.user.firstname }} {{ app.user.lastname }}</h4>
-                            {% if app.user.position is not null %}
-                                <em>{{ app.user.position }}</em>
-                            {% endif %}
+                            </div>
+                            <div class="profil-data">
+                                <i class="fa-solid fa-cake-candles profil-icon"></i>
+                                <p class="d-inline">{{ app.user.dateOfBirth|date("d/m/Y") }} </p>
+                            </div>
+                            <div class="profil-data">
+                                <i class="fa-solid fa-id-badge profil-icon"></i>
+                                <p class="text-uppercase d-inline">{{app.user.licenceNumber}}</p>
+                            </div>
+                            <button type="button" class="btn btn-secondary mt-2" data-bs-toggle="modal" data-bs-target="#passwordModal">Modifier mon mot de passe</button>
                         </div>
-                        <div class="profil-data">
-                            <i class="fa-solid fa-envelope profil-icon"></i>
-                            <p class="d-inline">{{app.user.email }}</p>
-                        </div>
-                        <div class="profil-data">
-                            <i class="fa-solid fa-cake-candles profil-icon"></i>
-                            <p class="d-inline">{{ app.user.dateOfBirth|date("d/m/Y") }} </p>
-                        </div>
-                        <div class="profil-data">
-                            <i class="fa-solid fa-id-badge profil-icon"></i>
-                            <p class="text-uppercase d-inline">{{app.user.licenceNumber}}</p>
+                        
+                    </div>
+                    
+                    <div class="col-12 col-lg-5 col-profil">
+                        <h3>Mes cours</h3>
+                        <div>  
+                            {% if app.user.courses is not empty %}
+                                {% for course in app.user.courses %}
+                                    <div>
+                                        <h4 class= "mt-4 mb-1">{{ course.name }}</h4>
+                                        <p>Le {{ course.day }} à {{ course.hour|date('H')}}h{{ course.hour|date('i')}}</p>
+                                    </div>    
+                                {% endfor %}
+                            {% else %}
+                                <p>Aucun cours</p>
+                            {% endif %}  
                         </div>
                     </div>
-                </div>
-                
-                <div class="col-12 col-lg-5 col-profil">
-                    <h3>Mes cours</h3>
-                    <div>  
-                        {% if app.user.courses is not empty %}
-                            {% for course in app.user.courses %}
-                                <div>
-                                    <h4 class= "mt-4 mb-1">{{ course.name }}</h4>
-                                    <p>Le {{ course.day }} à {{ course.hour|date('H:i')}} h</p>
-                                </div>    
-                            {% endfor %}
-                        {% else %}
-                            <p>Aucun cours</p>
-                        {% endif %}  
-                    </div>
-                </div>
 
-            </div>
-        </section>
-      </div>  
+                </div>
+            </section>
+        </div>  
     </div>
+    <!-- Modal email-->
+<div class="modal fade" id="emailModal" tabindex="-1" aria-labelledby="emailModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+       <h4>Modifier mon adresse email</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{ include('front/user/_email_form.html.twig', {'button_label': 'Enregistrer'}) }}
+      </div>
+    </div>
+  </div>
+</div>
+ <!-- Modal password-->
+<div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+       <h4>Modifier mon mot de passe</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{ include('front/user/_password_form.html.twig', {'button_label': 'Enregistrer'}) }}
+      </div>
+    </div>
+  </div>
+</div>
+
+
 {% endblock %}
+   {% block js %}
+    <script type ="module" src="{{asset('js/password.js')}}"></script>
+  {% endblock %}
