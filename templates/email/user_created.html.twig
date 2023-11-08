@@ -1,8 +1,7 @@
 {% apply inline_css %}
     <style>
 		.mail-body {
-            background-color: #B8CBD0;
-			border: solid 5px #344D59;
+			color: #254da3;
 		}
 		.container-img{
 			text-align: center;
@@ -14,13 +13,16 @@
 		h1{
 			text-align: center;
 		}
+        p{
+            margin: 10px 25px;
+        }
     </style>
 	<div class="mail-body">
 		<div class="container-img">
-			<img src="{{ email.image('@images/logo-otir.png') }}" alt="Logo club USB" width="100" height="auto">
+			<img src="{{ email.image('@images/logo-usb.png') }}" alt="Logo club USB" width="100" height="auto">
 		</div>
 		<h1>Votre espace licencié a été créé !</h1>
-		<p>Cher {{app.user.firstname}},</p>
+		<p>Cher {{user.firstname}},</p>
 		<p>Vous pouvez maintenant accéder àvotre espace licencié avec votre adresse email en 
 			<a href="{{url('app_login')}}">Cliquant ici</a>
 		</p>

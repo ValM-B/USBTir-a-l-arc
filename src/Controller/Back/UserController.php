@@ -45,7 +45,7 @@ class UserController extends AbstractController
                 $user->getEmail(),
                 "Nouvel espace privé",
                 "email/user_created.html.twig",
-                []
+                ['user' => $user]
                );
 
             $this->addFlash(
