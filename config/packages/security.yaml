@@ -19,17 +19,12 @@ security:
             pattern: ^/admin35786
             lazy: true
             provider: app_user_provider
-            form_login:
-                username_parameter: email
-                password_parameter: password
-                login_path: app_admin_login
-                check_path: app_admin_login
-                enable_csrf: true
-                default_target_path: app_back_main
+            custom_authenticator: App\Security\AdminLoginFormAuthenticator
             logout:
                 path: app_logout
                 # where to redirect after logout
-                target: app_home    
+                target: app_home
+ 
         main:
             lazy: true
             provider: app_user_provider
