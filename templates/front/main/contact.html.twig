@@ -1,56 +1,48 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <div class="container pt-5 pb-5">
+        <section class="contact my-4 p-4 rounded shadow">
+            <h2 class="mb-4 text-center">Contactez-nous</h2><br />
+            <p>Pour toute demande d'informations vous pouvez nous contacter :</p>
+            <p>
+                <i class="fa-solid fa-envelope me-2"></i><a href="usb.archers.bosquet@free.fr">usb.archers.bosquet@free.fr</a>
+            </p>
+        </section>
+        <section class="my-4 p-4 rounded shadow"> 
+            <address>
+                <h2 class="mb-4 text-center"> Président du club</h2>
+                <h3>{{president.firstname}} {{president.lastname}}</h3>
+                <p><i class="fa-solid fa-location-dot me-2"></i>123 Rue de l Arc en Ciel 33110 Le Bouscat</p>
+                <p><i class="fa-solid fa-phone me-2"></i>01 23 45 67 89</p>
+                <p><i class="fa-solid fa-envelope me-2"></i><a href="{{ president.email }}">{{ president.email }}</a></p>
+            </address>
+        </section>
+    </div>
 
-<h2 class="mb-4 text-center pt-5">Association sportive de Tir à l'Arc</h2>
-    <div class="container mt-5"> 
-
-
-    <section class="contact mb-5 p-5 rounded shadow">
-
-        <h2 class="mb-4 text-center">Contactez-nous</h2><br />
-        <p>Pour toute demande d'informations vous pouvez nous contacter :</p>
-        <p>
-            <i class="fa-solid fa-envelope me-2"></i><a href="usb.archers.bosquet@free.fr">usb.archers.bosquet@free.fr</a>
-        </p>
-    </section>
-    <section class="p-5 rounded shadow"> 
-    <address>
-        <h2 class="mb-4 text-center"> Président du club</h2>
-        <h3>{{president.firstname}} {{president.lastname}}</h3>
-        <p><i class="fa-solid fa-location-dot me-2"></i>123 Rue de l Arc en Ciel 33110 Le Bouscat</p>
-        <p><i class="fa-solid fa-phone me-2"></i>01 23 45 67 89</p>
-        <p><i class="fa-solid fa-envelope me-2"></i><a href="{{ president.email }}">{{ president.email }}</a></p>
-    </address>
-    </section>
-    </div><br /><br />
-
-<div class="container mt-5 pb-5">
-    <section class="p-5 rounded shadow">
-
-        <h2 class="mb-4 text-center">Accès aux installations</h2>
-        <div class="row justify-content-center">
-            <div class="col-12 col-lg-5 text-center">
-                <h3>Salle</h3>
-                <h4>Complexe sportif Jehan Buhan</h4>
-                <address>
-                    32 avenue Aristide Briand 33110 Le Bouscat
-                </address>
+    <div class="container pb-5">
+        <section class="p-4 rounded shadow">
+            <h2 class="mb-4 text-center">Accès aux installations</h2>
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-5 text-center">
+                    <h3>Salle</h3>
+                    <h4>Complexe sportif Jehan Buhan</h4>
+                    <address>
+                        32 avenue Aristide Briand 33110 Le Bouscat
+                    </address>
+                </div>
+                <div class="col-12 col-lg-5 text-center">
+                    <h3>Pas de tir extérieur</h3>
+                    <h4>Espace Florence Villars</h4>
+                    <address>
+                        rue Jean Claude Dassot 33110 Le Bouscat
+                    </address>
+                </div>
             </div>
-            <div class="col-12 col-lg-5 text-center">
-                <h3>Pas de tir extérieur</h3>
-                <h4>Espace Florence Villars</h4>
-                <address>
-                    rue Jean Claude Dassot 33110 Le Bouscat
-                </address>
+            <div class="d-flex justify-content-center"> 
+                <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1VR-62gXhktiwjqwrbNWGSqmnL8O4Ptc&ehbc=2E312F&noprof=1" width="640" height="480"></iframe>
             </div>
-        
-        </div>
-        
-        <div class="d-flex justify-content-center"> 
-            <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1VR-62gXhktiwjqwrbNWGSqmnL8O4Ptc&ehbc=2E312F&noprof=1" width="640" height="480"></iframe>
-        </div>
-    </section>
-</div>
+        </section>
+    </div>
     
 {% endblock %}

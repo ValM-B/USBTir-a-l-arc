@@ -307,6 +307,7 @@ footer h4{
 }
 .partners{
     width : 100px;
+    margin: 0.25em;
 }
 
 /* Login */
@@ -319,6 +320,9 @@ footer h4{
 .page-404,
 .page-403{
     min-height: 75vh;
+}
+.img-error{
+    height: 30vh;
 }
 
 
