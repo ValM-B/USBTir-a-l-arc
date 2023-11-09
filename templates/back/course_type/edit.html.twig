@@ -3,9 +3,9 @@
 {% block body %}
     <h2>Editer ce type de cours</h2>
 
-    {{ include('back/course_type/_form.html.twig', {'button_label': 'Sauvegarder'}) }}
-
-    {{ include('back/course_type/_delete_form.html.twig') }}
-
+    {{ include('back/course_type/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+    <div class="mt-2">
+        {{ include('back/course_type/_delete_form.html.twig') }}
+    </div>
     <a href="{{ path('app_back_course_type_index') }}">Retour</a>
 {% endblock %}
