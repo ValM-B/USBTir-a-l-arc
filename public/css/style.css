@@ -321,6 +321,9 @@ footer h4{
 .page-403{
     min-height: 75vh;
 }
+.img-error{
+    height: 30vh;
+}
 
 
 /* BackOffice */
