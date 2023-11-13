@@ -2,6 +2,7 @@
 
 {% block body %}
     <h2>Licencié {{ user.licenceNumber }}</h2>
+    {% include "fragments/_flash_message.html.twig" %} 
 
     <div class="alert alert-success alert-dismissible fade show" hidden role="alert">
             <p>Le status de la cotisation à été mis à jour.</p>
@@ -25,7 +26,7 @@
             </tr>
             <tr>
                 <th>Date de naissance</th>
-                <td>{{ user.dateOfBirth ? user.dateOfBirth|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user.dateOfBirth ? user.dateOfBirth|date('d/m/Y') : '' }}</td>
             </tr>
             <tr>
                 <th>Email</th>
@@ -45,7 +46,11 @@
             </tr>
             <tr>
                 <th>Role</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                {% if user.roles == ["ROLE_USER"]%}
+                <td>Licencié</td>
+                {% elseif user.roles == ["ROLE_ADMIN"] %}
+                <td>Administrateur</td>
+                {% endif %}
             </tr>
 
         </tbody>
