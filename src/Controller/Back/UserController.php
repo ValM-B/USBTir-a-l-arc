@@ -5,6 +5,7 @@ namespace App\Controller\Back;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use App\Service\FormVerificatorService;
 use App\Service\MailerService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,13 +32,39 @@ class UserController extends AbstractController
     /**
      * @Route("/new", name="app_back_user_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $passwordHasher, MailerService $mailer): Response
+    public function new(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $passwordHasher, MailerService $mailer, FormVerificatorService $formVerificator): Response
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if($formVerificator->checkEmail($user)) {
+                $this->addFlash(
+                    'danger',
+                    "Un utilisateur avec cette adresse email existe déjà."
+                );
+                return $this->renderForm('back/user/new.html.twig', [
+                    'user' => $user,
+                    'form' => $form,
+                ]);
+            } elseif ($formVerificator->checkLicenceNumber($user)) {
+                $this->addFlash(
+                    'danger',
+                    "Un utilisateur avec ce numéro de licence existe déjà."
+                );
+                return $this->renderForm('back/user/new.html.twig', [
+                    'user' => $user,
+                    'form' => $form,
+                ]);
+            }  elseif ($form->isSubmitted() && !$form->isValid()) {
+                $this->addFlash(
+                    'danger',
+                    "Une erreur s'est produite, le licencié n'a pas été ajouté."
+                    );
+                    return $this->redirectToRoute('app_back_user_index', [], Response::HTTP_BAD_REQUEST);
+            }
+
             $user->setPassword($passwordHasher->hashPassword($user, $user->getPassword()));
             $userRepository->add($user, true);
 
@@ -46,7 +73,7 @@ class UserController extends AbstractController
                 "Nouvel espace privé",
                 "email/user_created.html.twig",
                 ['user' => $user]
-               );
+            );
 
             $this->addFlash(
                 'success',
@@ -54,7 +81,7 @@ class UserController extends AbstractController
                 );
 
             return $this->redirectToRoute('app_back_user_index', [], Response::HTTP_SEE_OTHER);
-        }
+        }   
 
         return $this->renderForm('back/user/new.html.twig', [
             'user' => $user,
@@ -75,12 +102,46 @@ class UserController extends AbstractController
     /**
      * @Route("/{id}/edit", name="app_back_user_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, User $user, UserRepository $userRepository): Response
+    public function edit(Request $request, User $user, UserRepository $userRepository, FormVerificatorService $formVerificator): Response
     {
         $form = $this->createForm(UserType::class, $user, ["custom_option" => "edit"]);
         $form->handleRequest($request);
-
+ 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $userByLicence = $userRepository->findOneBy(['licenceNumber' => $user->getLicenceNumber()]); //Find user who has the same licence number
+
+            //if the user who has the same email is not the same as the user who is edited
+            if($formVerificator->checkEmail($user)) {
+               
+                $this->addFlash(
+                    'danger',
+                    "Un utilisateur avec cette adresse email existe déjà."
+                );
+                return $this->renderForm('back/user/edit.html.twig', [
+                    'user' => $user,
+                    'form' => $form,
+                ]);
+
+            //if the user who has the same licence number is not the same as the user who is edited
+            } elseif ($formVerificator->checkLicenceNumber($user)) {
+                $this->addFlash(
+                    'danger',
+                    "Un utilisateur avec ce numéro de licence existe déjà."
+                );
+                return $this->renderForm('back/user/edit.html.twig', [
+                    'user' => $user,
+                    'form' => $form,
+                ]);
+
+            }  elseif ($form->isSubmitted() && !$form->isValid()) {
+                $this->addFlash(
+                    'danger',
+                    "Une erreur s'est produite, le licencié n'a pas été modifié."
+                    );
+                    return $this->redirectToRoute('app_back_user_show', ['id' => $user->getId()], Response::HTTP_BAD_REQUEST);
+            }
+
             $userRepository->add($user, true);
 
             $this->addFlash(
@@ -88,7 +149,7 @@ class UserController extends AbstractController
                 "Le licencié a bien été modifié."
                 );
 
-            return $this->redirectToRoute('app_back_user_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_back_user_show', ['id' => $user->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('back/user/edit.html.twig', [

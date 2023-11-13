@@ -2,6 +2,7 @@
 
 {% block body %}
     <h2>Nouveau Licencié</h2>
+    {% include "fragments/_flash_message.html.twig" %}  
 
     {{ include('back/user/_form.html.twig') }}
 
