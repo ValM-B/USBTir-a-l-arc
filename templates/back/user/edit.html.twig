@@ -1,7 +1,9 @@
 {% extends 'back/base.html.twig' %}
 
 {% block body %}
+    {% include "fragments/_flash_message.html.twig" %}  
     <h2>Editer ce licencié</h2>
+    
 
     {{ include('back/user/_form.html.twig', {'button_label': 'Enregistrer'}) }}
     <div class="mt-2">
