@@ -65,7 +65,7 @@ h1{
     color:var(--font-color);
 }
 li, a{
-    font-size: calc(18 * var(--resmin));
+    font-size: calc(19 * var(--resmin));
     color: var(--font-color);
 }
 
