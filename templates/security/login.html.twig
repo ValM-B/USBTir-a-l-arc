@@ -25,10 +25,16 @@
             <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control mb-3 mt-2" autocomplete="email" required autofocus>
             <label for="inputPassword">Password</label>
             <input type="password" name="password" id="inputPassword" class="form-control mb-3 mt-2" autocomplete="current-password" required>
+            {% if urlAdmin is defined and (path (app.request.attributes.get('_route')) == urlAdmin) %}
+                <input type="hidden" name="_csrf_token_admin"
+                    value="{{ csrf_token('authenticate_admin') }}"
+                >
+            {% else %}
+                <input type="hidden" name="_csrf_token"
+                    value="{{ csrf_token('authenticate') }}"
+                >
+            {% endif %}
 
-            <input type="hidden" name="_csrf_token"
-                value="{{ csrf_token('authenticate') }}"
-            >
 
             <button class="btn btn-lg btn-primary mt-3" type="submit">
                 Se connecter
