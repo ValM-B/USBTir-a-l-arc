@@ -2,6 +2,8 @@
 
 namespace App\Controller\Front;
 
+use App\Repository\CourseRepository;
+use App\Repository\TarifRepository;
 use App\Service\SlideService;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,29 +16,21 @@ class MainController extends AbstractController
     /**
      * @Route("/", name="app_home")
      */
-    public function index(SlideService $slideService): Response
+    public function index(UserRepository $userRepository, TarifRepository $tarifRepository, CourseRepository $courseRepository): Response
     {
-        $pictures = $slideService->getRandomPictures(5);
+        $president = $userRepository->findPresidentPosition();
+        $tarifs = $tarifRepository->findAll();
+        $courses = $courseRepository->findAllOrderByDay();
+
 
         return $this->render('front/main/index.html.twig', [
-            "pictures" => $pictures
+            'president' => $president,
+            'tarifs' => $tarifs,
+            'courses' => $courses
         ]);
     }
     
-    /**
-     * @Route("/nous-contacter", name="app_contact")
-     */
-    public function contact(UserRepository $repository): Response
-    {
-        $president = $repository->findPresidentPosition();
-        
-    return $this->render('front/main/contact.html.twig', [
-        'controller_name' => 'MainController',
-        'president' => $president   
-    ]);  
-    }
-
-    /**
+     /**
      * @Route("/mentions-legales", name="app_legal_notice")
      */
     public function legalNotice():Response

@@ -44,11 +44,18 @@
                                 <a class="nav-link" aria-current="page" href="{{ path('app_home') }}">Accueil</a>
                             </li>
                             <li class="nav-item p-lg-2">
-                                <a class="nav-link" href="{{ path('app_tarif_and_timetable') }}">Horaires et tarifs</a>
+                                <a class="nav-link" href="{{ path('app_home') }}#contact">Contact</a>
                             </li>
                             <li class="nav-item p-lg-2">
-                                <a class="nav-link" href="{{ path('app_contact') }}">Contact</a>
+                                <a class="nav-link" href="{{ path('app_home') }}#localisation">Localisation</a>
                             </li>
+                            <li class="nav-item p-lg-2">
+                                <a class="nav-link" href="{{ path('app_home') }}#courses">Horaires</a>
+                            </li>
+                            <li class="nav-item p-lg-2">
+                                <a class="nav-link" href="{{ path('app_home') }}#prices">Tarifs</a>
+                            </li>
+
                             {% if is_granted("IS_AUTHENTICATED_FULLY") %}
                                 <li class="nav-item p-lg-2">
                                     <a class="nav-link" href="{{ path('app_user') }}">Mon profil</a>
@@ -89,7 +96,7 @@
                     <h4>Liens utiles</h4>
                     <ul>
                         <li><a class="footer-link" href="{{ path('app_legal_notice') }}">Mentions légales</a></li>
-                        <li><a class="footer-link" href="{{ path('app_contact') }}">Nous contacter</a></li>
+                        <li><a class="footer-link" href="{{ path('app_home') }}#contact">Nous contacter</a></li>
                     </ul>
                 </div>
                 <div class="col-12 col-lg-8">

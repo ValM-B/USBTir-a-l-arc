@@ -3,10 +3,10 @@
 {% block body %}
 <div class="bg-home">
         
-        <section class="presentation text-center">
+        <section class="text-center" id="presentation">
       
             <div class="container presentation-text py-5">
-                <h2>Notre Club</h2>
+                <h2 class="text-center">Notre Club</h2>
                 <p>
                     Créée en 1979, l'Union Sportive Bouscataise Tir à l'arc compte aujourd'hui 130 archers qui participent régulièrement aux championnats départementaux, régionaux et nationaux.
                 </p>
@@ -18,8 +18,8 @@
                 </p>
             </div>
         </section>
-        <section class="contact">
-            <div class="row d-flex justify-content-center p-0">
+        <section id="contact">
+            <div class="row d-flex justify-content-center p-0 w-100">
                 <div class="col-12 col-lg-5 col-contact">
                     <h2>Nous contacter</h2>
                     <div class="contact-data">
@@ -34,15 +34,15 @@
                 <div class="col-12 col-lg-5 col-contact">
                     <h2>Président du club</h2>
                     <div class="contact-data">
-                        <h3>Prénom Nom</h3>
+                        <h3>{{ president.firstname }} {{ president.lastname }}</h3>
                         <p><i class="fa-solid fa-phone me-2"></i>01 23 45 67 89</p>
-                        <p><i class="fa-solid fa-envelope me-2"></i><a href="mail">mail</a></p>
+                        <p><i class="fa-solid fa-envelope me-2"></i><a href="mail">{{president.email}}</a></p>
                     </div>
                 </div>
 
             </div>
         </section>
-        <section class="localisation py-4">
+        <section class="py-4" id="localisation">
             <h2 class="text-center">Nos installations</h2>
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-5 text-center">
@@ -64,6 +64,67 @@
                 <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1VR-62gXhktiwjqwrbNWGSqmnL8O4Ptc&ehbc=2E312F&noprof=1" width="640" height="480"></iframe>
             </div>
         
+        </section>
+        <section class="py-4" id="courses">
+            <h2 class="mb-4 text-center">Horaires</h2>
+            <div class="container text-center justify-content-center table-responsive">
+               <table class="table table-hover table-bordered align-middle table-slot">
+                    <thead>
+                        <tr class="align-middle">
+                            <th scope="col"><h3>Jour</h3></th>
+                            <th scope="col"><h3>Cours</h3></th>
+                            <th scope="col"><h3>Heure</h3></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for course in courses %}
+                            <tr>
+                                <td>{{ course.day }}</td>
+                                <td>{{ course.name }}</td>
+                                <td>{{ course.hour|date('H:i') }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section class="py-4" id="prices">
+            <h2 class="mb-4 text-center">Cotisation</h2>
+            <div class="row text-center justify-content-center">
+                {% for tarif in tarifs %}
+
+                    {% set amountWithGear = tarif.amount + tarif.gearAmount %}
+                    {% if tarif.name == "Baby" %}
+                    <div class="col-lg-3 col-md-5 course-tarif m-2 p-3">
+                        <h3>{{ tarif.name }}</h3>
+                        <p class="age-tarif">de {{ tarif.ageMin }} ans à {{ tarif.ageMax }} ans</p>
+                        <div class="list-amount">
+                            <p class="mt-2">Avec prêt de matériel</p>
+                            <p class="amount">{{ amountWithGear }} €</p>
+                        </div>   
+                    </div>
+                    {% else %}
+                        <div class="col-lg-3 col-md-5 course-tarif m-2 p-3">
+                        <h3>{{ tarif.name }}</h3>
+
+                        {% if tarif.ageMax is not null %}
+                        <p class="age-tarif">de {{ tarif.ageMin }} ans à {{ tarif.ageMax }} ans</p>
+                        {% else %}
+                        <p class="age-tarif">à partir de {{ tarif.ageMin }} ans</p>
+                        {% endif %}
+
+                        <div class="list-amount">
+                            <p class="mt-2">Sans prêt de matériel</p>
+                            <p class="amount">{{ tarif.amount | number_format(0, '.', ',') }} €</p>
+                        </div>  
+                        <div class="list-amount">
+                            <p class="mt-2">Avec prêt de matériel</p>
+                            <p class="amount">{{ amountWithGear | number_format(0, '.', ',')}} €</p>
+                        </div>  
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>    
         </section>
 </div>
 
