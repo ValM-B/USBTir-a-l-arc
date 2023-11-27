@@ -70,17 +70,41 @@ li, a{
 }
 
 /* Home */
-/* --- Carousel --- */
-#carouselHome{
-    max-width: fit-content;
-    max-height: 50vh;
+
+/* --- back-ground --- */
+
+.bg-home{
+    background: url('../images/fleches-en-cible.jpg') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 75vh; /* Ajustez la hauteur selon vos besoins */
+   
 }
 
-#carouselHome img{
-    width: 100vw;
-    max-height: 50vh;
-    height: auto;
-    object-fit: cover;
+/*--- presentation ---*/
+
+.presentation{
+    background: rgba(255, 255, 255, 0.8);
+}
+
+/* --- Contact --- */
+
+.col-contact
+{
+    background-color: white;
+    color: var(--font-color);
+    margin: 3rem 1rem;
+    padding: 2rem;
+    text-align: center;
+}
+
+.contact-data
+{
+    text-align: left;
+}
+
+/* --- Localisation --- */
+.localisation {
+    background-color: white;
 }
 
 
