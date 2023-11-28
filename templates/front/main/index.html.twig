@@ -44,15 +44,15 @@
         </section>
         <section class="py-4" id="localisation">
             <h2 class="text-center">Nos installations</h2>
-            <div class="row justify-content-center">
-                <div class="col-12 col-lg-5 text-center">
+            <div class="row justify-content-center gx-0">
+                <div class="col-12 col-lg-5 text-center col-localisation">
                     <h3>Pas de tir intérieur</h3>
                     <h4>Complexe sportif Jehan Buhan</h4>
                     <address>
                         32 avenue Aristide Briand 33110 Le Bouscat
                     </address>
                 </div>
-                <div class="col-12 col-lg-5 text-center">
+                <div class="col-12 col-lg-5 text-center col-localisation">
                     <h3>Pas de tir extérieur</h3>
                     <h4>Espace Florence Villars</h4>
                     <address>
@@ -90,7 +90,7 @@
         </section>
         <section class="py-4" id="prices">
             <h2 class="mb-4 text-center">Cotisation</h2>
-            <div class="row text-center justify-content-center">
+            <div class="row text-center justify-content-center gx-0">
                 {% for tarif in tarifs %}
 
                     {% set amountWithGear = tarif.amount + tarif.gearAmount %}

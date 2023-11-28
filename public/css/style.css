@@ -35,6 +35,7 @@ h1{
     font-weight: 600;
     color: var(--font-color);
     margin-top: 0.5rem;
+    display: inline;
 }
 #navbar{
     background-color: var(--secondary-color);
@@ -67,6 +68,28 @@ h1{
 li, a{
     font-size: calc(19 * var(--resmin));
     color: var(--font-color);
+}
+
+.logo-sticky{
+    display:none;
+}
+
+.sticky#navbar{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.sticky button{
+    padding: 0.2rem 0.6rem;
+    font-size: 1rem;
+}
+
+@media screen and (min-width:992px){
+    .sticky#navbar{
+        height: 5vh;
+    }
 }
 
 /* Home */
@@ -107,7 +130,7 @@ li, a{
 {
     background-color: white;
     color: var(--font-color);
-    margin: 0 1rem;
+    margin-top: 2rem;
     padding: 2rem;
     text-align: center;
 }
@@ -117,9 +140,30 @@ li, a{
     text-align: left;
 }
 
+@media screen and (min-width:992px){
+    .col-contact{
+        margin: 0 1rem;
+    }
+}
+
 /* --- Localisation --- */
 #localisation {
     background-color: white;
+    margin-top: 2rem;
+}
+
+.col-localisation {
+    margin-top: 1.5rem;
+}
+
+@media screen and (min-width:992px){
+    #localisation{
+        margin-top: 0;
+    }
+
+    .col-localisation{
+        margin-top: 0;
+    }
 }
 
 /* --- Courses --- */
